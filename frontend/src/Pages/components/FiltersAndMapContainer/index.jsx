@@ -6,6 +6,7 @@ import { JobsCountContainer } from "../JobsCountContainer";
 import { MunicipalityGrid } from "../MunicipalityGrid";
 import { FiltersInputs } from "../FiltersInputs";
 import { Map } from "../Map";
+import { ResultsGrid } from "../ResultsGrid";
 
 const FiltersAndMapContainer = () => {
     
@@ -21,8 +22,9 @@ const FiltersAndMapContainer = () => {
                 <MunicipalityGrid/>
                 
             </div>
-            <div>
+            <div className="map-an-results-container">
                 <Map/>
+                <ResultsGrid/>
             </div>
 
         </div>

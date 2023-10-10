@@ -1,12 +1,19 @@
 .filters-and-map-container {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: 10px;
+    gap: 20px;
 }
 .filters-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.map-an-results-container {
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+    place-content: center;
+    gap: 15px;
 }
 
 @media (max-width: 800px) {

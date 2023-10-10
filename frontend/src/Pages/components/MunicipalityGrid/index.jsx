@@ -1,9 +1,7 @@
 import { FiltersWrapper } from "../FiltersWrapper";
+import { ScrollableWrapper } from "../ScrollableWrapper";
 import { SubTitle } from "../SubTitle";
 import { MunicipalityCard } from "./MunicipalityCard";
-
-
-import "./styles.css";
 
 const MunicipalityGrid = () => {
     return(
@@ -14,7 +12,9 @@ const MunicipalityGrid = () => {
         >
             <SubTitle text="Municipios"/>
 
-            <div className="municipality-grid-container">
+            <ScrollableWrapper
+                maxHeight={250}
+            >
                 {/* TEST */}
                 <MunicipalityCard
                     text={"Bogotá"}
@@ -52,7 +52,7 @@ const MunicipalityGrid = () => {
                     text={"Pereira"}
                     value={2352}
                 />                
-            </div>
+            </ScrollableWrapper>
         </FiltersWrapper>
     );
 }
