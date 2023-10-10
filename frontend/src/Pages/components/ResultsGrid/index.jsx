@@ -1,6 +1,7 @@
 import { FiltersWrapper } from "../FiltersWrapper";
 import { ScrollableWrapper } from "../ScrollableWrapper";
 import { SubTitle } from "../SubTitle";
+import { ResultsCard } from "./ResultsCard";
 
 import "./styles.css";
 
@@ -8,7 +9,7 @@ const ResultsGrid = () => {
     return (
         <FiltersWrapper
             flexDirection={"column"}
-            padding={25}
+            padding={20}
         >
             <SubTitle
                 text={"Resultados"}
@@ -19,9 +20,16 @@ const ResultsGrid = () => {
             </div>
 
             <ScrollableWrapper
-                maxHeight={400}
+                maxHeight={450}
+                gap={10}
             >
-                <ResultsGrid/>
+                <ResultsCard/>
+                <ResultsCard/>
+                <ResultsCard/>
+                <ResultsCard/>
+                <ResultsCard/>
+                <ResultsCard/>
+
             </ScrollableWrapper>
         </FiltersWrapper>
     );

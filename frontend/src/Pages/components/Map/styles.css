@@ -2,6 +2,18 @@
     box-sizing: border-box;
     width: 100%;
     height: 100%;
+    position: relative;
+}
 
-    
+.san-andres-container {
+    position: absolute;
+    width: 150px;
+    height: 175px;
+
+    top: 100px;
+    left: 100px;
+
+
+    display: flex;
+    flex-direction: row;
 }
