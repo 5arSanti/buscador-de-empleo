@@ -1,0 +1,12 @@
+.all-info-container {
+    box-sizing: border-box;
+    width: 95%;
+
+    background-color: var(--all-info-container-color);
+    padding: 20px;
+
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

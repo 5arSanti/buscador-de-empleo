@@ -15,7 +15,7 @@ const Navbar = () => {
     return (
         <div className="navbar-container">
             <a className="banner-image" href="https://www.serviciodeempleo.gov.co/portada" title="Ir a Servicio Publico de Empleo" rel="noopener noreferrer">
-                <img src="public/banner.png" alt="Ir a Servicio Publico de Empleo" />
+                <img src="/banner.png" alt="Ir a Servicio Publico de Empleo" />
             </a>    
 
             {context.windowWidth <= 800 ?
@@ -23,7 +23,9 @@ const Navbar = () => {
                     {context.toggleNavBarResponsive ? <AiOutlineClose /> : <AiOutlineBars/> }
                 </button>
                 :
-                <NavIcons/>
+                <NavIcons
+                    direction={"row"}
+                />
             }
 
         </div>

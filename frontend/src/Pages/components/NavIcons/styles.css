@@ -22,6 +22,7 @@
 .nav-icons-container a:hover,
 .nav-icons-container button:hover {
     transform: scale(1.25);
+    padding: 0;
 }
 
 

@@ -1,0 +1,43 @@
+.input-job-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.input-job-container label {
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+}
+.input-job-container input {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    box-sizing: border-box;
+    border: 2px solid #FFF;
+    color: #000;
+}
+.input-job-container input::placeholder {
+    opacity: 0.75;
+    font-style: italic;
+}
+.input-job-container input:focus {
+    border: 2px solid var(--navbar-color);
+    outline: none;
+}
+.info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #FFF;
+    font-size: 14px;
+    text-align: center;
+    gap: 5px;
+}
+
+@media (max-width: 450px) {
+    .input-job-container label {
+        font-size: 14px;
+    }
+}

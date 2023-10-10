@@ -1,4 +1,15 @@
 :root{
-    --navbar-color: #4172FF;
-    --icon-colors: #FFF
+    /* --navbar-color: #4172FF; */
+    --navbar-color: #6ABFE1;
+    /* --navbar-responsive-color: rgba(65, 114, 255, 0.75); */
+    --navbar-responsive-color: rgba(106, 191, 225, 0.85);
+    --icon-colors: #FFF;
+    --navbar-height: 100px;
+
+
+    --all-info-container-color: #DCF6FF;
+
+    --input-and-info-container-color: #6ABFE1;
+
+    --filters-input-color: #FFF;
 }

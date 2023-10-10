@@ -33,14 +33,13 @@ const AppRoutes = () => {
 }
 
 const App = () => {
-    // const context = React.useContext();
 
     return (
         <AppProvider>
             <BrowserRouter>
                 <Wrapper>
                     <Navbar/>
-                    {/* {context.toggleNavBarResponsive && <NavBarResponsive/>} */}
+                    <NavBarResponsive/>
                     <AppRoutes/>
                 </Wrapper>
             </BrowserRouter>

@@ -2,7 +2,7 @@
     box-sizing: border-box;
     z-index: 5;
     position: fixed;
-    height: 100px;
+    height: var(--navbar-height);
     top: 0;
     width: 100%;
 
@@ -35,4 +35,10 @@
     height: 25px;
     fill: var(--icon-colors);
     /* margin-right: 40px; */
+}
+
+@media (max-width: 450px) {
+    :root{
+        --navbar-height: 65px;
+    }
 }

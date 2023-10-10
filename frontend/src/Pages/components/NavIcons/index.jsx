@@ -7,9 +7,11 @@ import { ImBrightnessContrast } from "react-icons/im";
 
 import "./styles.css";
 
-const NavIcons = () => {
+const NavIcons = ({direction}) => {
     return (
-        <div className="nav-icons-container">
+        <div className="nav-icons-container" style={{
+            flexDirection: direction,
+        }}>
             <a href="https://www.youtube.com/user/ServiciodEmpleo" title="YouTube - Servicio Publico de Empleo" target="__blank" rel="noopener noreferrer">
                 <ImYoutube />
             </a>

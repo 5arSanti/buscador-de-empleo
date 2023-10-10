@@ -1,0 +1,28 @@
+.job-board-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+
+    width: 90%;
+    background-color: #FFF;
+
+    padding: 15px 25px;
+
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: lighter;
+
+    transition: transform 0.25s ease;
+}
+.job-board-container:hover {
+    transform: scaleX(1.05);
+}
+.job-board-container svg {
+    width: 25px;
+    height: 25px;
+    fill: #000;
+}
