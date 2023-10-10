@@ -1,11 +1,11 @@
 import { MdElderly } from "react-icons/md";
-import { FiltersWrapper } from "../../FiltersWrapper";
+import { FiltersWrapper } from "../FiltersWrapper";
 import { JobBoardCard } from "./JobBoardCard";
 import { HiUserGroup } from "react-icons/hi";
 import { BsFillBuildingFill, BsFillPersonFill } from "react-icons/bs";
 import { PiGasCanFill } from "react-icons/pi";
 
-import { SubTitle } from "../../SubTitle";
+import { SubTitle } from "../SubTitle";
 
 import "./styles.css";
 const JobBoardGrid = () => {
