@@ -1,0 +1,5 @@
+.places-of-interest-icons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

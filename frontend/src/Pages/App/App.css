@@ -1,8 +1,8 @@
 :root{
-    /* --navbar-color: #4172FF; */
-    --navbar-color: #6ABFE1;
-    /* --navbar-responsive-color: rgba(65, 114, 255, 0.75); */
-    --navbar-responsive-color: rgba(106, 191, 225, 0.85);
+    --navbar-color: #4172FF;
+    /* --navbar-color: #6ABFE1; */
+    --navbar-responsive-color: rgba(65, 114, 255, 0.75);
+    /* --navbar-responsive-color: rgba(106, 191, 225, 0.85); */
 
     --main-title-color: rgb(0, 105, 142);
 
@@ -19,4 +19,9 @@
     --white: #FFF;
 
     --result-text-card: #6F6F6F;
+}
+
+.high-contrast {
+    filter: invert(200%);
+    margin: 0;
 }

@@ -1,0 +1,29 @@
+.icon-layout-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+
+    transition: transform .25s ease;
+}
+.icon-layout-container:hover {
+    transform: scale(1.15);
+}
+.icon-layout-container svg {
+    width: 30px;
+    height: 30px;
+    fill: var(--icon-colors);
+    opacity: .75;
+}
+
+.icon-layout-container p {
+    color: var(--white);
+
+    text-decoration: none;
+    font-style: italic;
+}

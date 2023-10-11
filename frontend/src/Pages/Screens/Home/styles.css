@@ -1,5 +1,6 @@
 .home-container {
     margin-top: var(--navbar-height);
+    padding-bottom: 50px;
 
     box-sizing: border-box;
     width: 100%;

@@ -9,9 +9,9 @@
     gap: 10px;
 }
 
-.map-an-results-container {
+.map-and-results-container {
     display: grid;
-    grid-template-rows: 3fr 2fr;
+    grid-template-rows: auto 3fr 2fr;
     place-content: center;
     gap: 15px;
 }

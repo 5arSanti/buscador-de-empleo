@@ -4,6 +4,7 @@ import { BrowserRouter, useLocation, useRoutes } from "react-router-dom";
 
 //App
 import './App.css'
+import "./App.css"
 
 //Context
 import { AppProvider } from "../../Context";
@@ -13,6 +14,7 @@ import { AppProvider } from "../../Context";
 import { Home } from "../Screens/Home";
 import { Navbar } from "../components/nabvar";
 import { NavBarResponsive } from "../components/NavBarResponsive";
+import { Footer } from "../components/Footer";
 
 
 const Wrapper = ({children}) => {
@@ -38,9 +40,12 @@ const App = () => {
         <AppProvider>
             <BrowserRouter>
                 <Wrapper>
-                    <Navbar/>
-                    <NavBarResponsive/>
-                    <AppRoutes/>
+                    {/* <div className="high-contrast"> */}
+                        <Navbar/>
+                        <NavBarResponsive/>
+                        <AppRoutes/>
+                        <Footer/>
+                    {/* </div> */}
                 </Wrapper>
             </BrowserRouter>
         </AppProvider>
@@ -48,3 +53,4 @@ const App = () => {
 }
 
 export default App;
+

@@ -6,8 +6,8 @@ const Home = () => {
     return (
         <div className="home-container">
             <Title
-                color={"#000"}
-                borderColor={"#000"}
+                color={"#00698E"}
+                borderColor={"#00698E"}
             >
                 Bolsa Única de Empleo del SPE.
             </Title>

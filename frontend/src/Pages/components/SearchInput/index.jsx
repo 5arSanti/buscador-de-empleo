@@ -1,18 +1,10 @@
 import { FiltersWrapper } from "../FiltersWrapper";
-import { Title } from "../Title";
 
 import "./styles.css";
 
 const SearchInput = () => {
     return(
         <>
-            <Title 
-                color={"#00698E"}
-                borderColor={"#00698E"}
-            >
-                Buscador de Empleo
-            </Title>
-
             <FiltersWrapper 
                 flexDirection={"column"}
                 padding={25}

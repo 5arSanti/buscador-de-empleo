@@ -13,7 +13,7 @@ const NavBarResponsive = () => {
             return(
                 <div className="navbar-responsive-container">
                     <NavIcons
-                        direction={"column"}
+                        flexDirection={"column"}
                     />
                     <div className="navbar-responsive-text-container">
                         <a href="https://www.youtube.com/user/ServiciodEmpleo" title="YouTube - Servicio Publico de Empleo" target="__blank" rel="noopener noreferrer">
