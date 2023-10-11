@@ -24,7 +24,17 @@ const AppProvider = ({children}) => {
     const [toggleNavBarResponsive, setToggleNavBarResponsive] = React.useState(false);
 
 
+    //ToolTipMap
+    const [tooltipContent, setTooltipContent] = React.useState('');
 
+    const handleMapMouseEnter = (event, department) => {
+        setTooltipContent(department.properties.NOMBRE_DPT);
+        // setTooltipPosition({ x: event.pageX, y: event.pageY });
+        };
+    
+        const handleMapMouseLeave = () => {
+        setTooltipContent('');
+        };
 
 
 
@@ -35,7 +45,14 @@ const AppProvider = ({children}) => {
                 toggleNavBarResponsive,
                 setToggleNavBarResponsive,
                 windowWidth,
-                setWindowWidth
+                setWindowWidth,
+
+                tooltipContent,
+                setTooltipContent,
+                handleMapMouseEnter,
+                handleMapMouseLeave,
+
+
             }}
         >
             {children}

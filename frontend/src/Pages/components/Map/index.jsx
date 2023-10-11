@@ -1,24 +1,31 @@
+import React from "react";
+
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
 import "./styles.css";
+import { AppContext } from "../../../Context";
+import { ToolTipMap } from "../ToolTipMap";
+
 
 const Map = () => {
+    const context = React.useContext(AppContext);
+
     const geoUrl = "/colombia.geo.json";
     const sanAndresURl = "/san-andres.geo.json";
 
-    const scale = 250000;
+    const sanAndresScale = 280000;
 
     const projectionConfig = {
-        scale: 2700,
+        scale: 2900,
         center: [-74.297333, 4.570868],
     };
     const sanAndresConfig = {
         center: [-81.70639, 12.58317],
-        scale: scale,
+        scale: sanAndresScale,
     }
     const providenciaConfig = {
         center: [-81.37472222, 13.34888889],
-        scale: scale,
+        scale: sanAndresScale,
     }
 
     const departmentColors = {
@@ -58,8 +65,11 @@ const Map = () => {
     }
 
 
+
     return(
-        <div className="map-container">
+        <div className="map-container">                   
+            <ToolTipMap content={context.tooltipContent} />
+
             <ComposableMap
                 projectionConfig={projectionConfig}
                 projection="geoMercator"
@@ -77,11 +87,14 @@ const Map = () => {
                             geography={geo}
                             fill={departmentColors[geo.properties.NOMBRE_DPT]}
                             stroke="#FFF"
+                            onMouseEnter={(event) => {context.handleMapMouseEnter(event, geo)}}
+                            onMouseLeave={context.handleMapMouseLeave}
                         />
                     ))
                     )}
                 </Geographies>
             </ComposableMap>
+
 
             <div className="san-andres-container">
                 <ComposableMap
@@ -101,6 +114,8 @@ const Map = () => {
                                 geography={geo}
                                 fill={"#F312E2"}
                                 stroke="#FFF"
+                                onMouseEnter={(event) => {context.handleMapMouseEnter(event, geo)}}
+                                onMouseLeave={context.handleMapMouseLeave}
                             />
                         ))
                         )}
@@ -123,6 +138,8 @@ const Map = () => {
                                 geography={geo}
                                 fill={"#F312E2"}
                                 stroke="#FFF"
+                                onMouseEnter={(event) => {context.handleMapMouseEnter(event, geo)}}
+                                onMouseLeave={context.handleMapMouseLeave}
                             />
                         ))
                         )}

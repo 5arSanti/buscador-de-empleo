@@ -2,6 +2,7 @@
     width: 100%;
     height: 160px;
     box-sizing: border-box;
+    border-right: 5px solid var(--white);
 
     padding: 10px 15px;
 
@@ -12,6 +13,11 @@
 
     background-color: var(--white);
     border-radius: 10px;
+
+    transition: border .25s ease;
+}
+.results-card-container:hover {
+    border-right: 5px solid #f312e2;
 }
 
 .results-card-container img {
@@ -104,7 +110,7 @@
 
 @media (max-width: 650px) {
     .results-card-container {
-        grid-template-columns: 1fr 2.5fr 0.75fr;
+        grid-template-columns: 1fr 2.5fr;
     }
     .results-card-container img {
         display: none;
@@ -126,13 +132,45 @@
     }
     .results-card-secondary-description {   
         font-size: 12px;
+        max-height: 60px;
     }
 
 
+    .results-card-complementary-info {
+        grid-column: span 2;
+        flex-direction: row;
+        justify-content: space-around;
+    }
     .results-card-complementary-info div .mini-title {
         font-size: 11px;
     }
     .results-card-complementary-info div p:nth-child(2) {
         font-size: 12px;
+    }
+}
+
+@media (max-width: 450px) {
+    .results-card-main-info p:nth-child(1) {
+        font-size: 12px;
+    }
+    .results-card-main-info p:nth-child(2),
+    .results-card-main-info p:nth-child(3) {
+        font-size: 10px;
+    }
+
+
+    .results-card-secondary-info p:nth-child(1){
+        font-size: 11px;
+    }
+    .results-card-secondary-description {
+        font-size: 11px;
+    }
+
+
+    .results-card-complementary-info div .mini-title {
+        font-size: 9px;
+    }
+    .results-card-complementary-info div p:nth-child(2) {
+        font-size: 9px;
     }
 }

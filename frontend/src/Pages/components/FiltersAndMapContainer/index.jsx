@@ -8,8 +8,11 @@ import { FiltersInputs } from "../FiltersInputs";
 import { Map } from "../Map";
 import { ResultsGrid } from "../ResultsGrid";
 import { Title } from "../Title";
+import { AppContext } from "../../../Context";
+import React from "react";
 
 const FiltersAndMapContainer = () => {
+    const context = React.useContext(AppContext);
     
     return(
         <div className="filters-and-map-container">
