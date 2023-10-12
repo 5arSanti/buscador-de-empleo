@@ -1,7 +1,6 @@
 //Dependencies
 import React from "react";
 import { BrowserRouter, useLocation, useRoutes } from "react-router-dom";
-import 'react-tooltip/dist/react-tooltip.css';
 
 //App
 import './App.css'

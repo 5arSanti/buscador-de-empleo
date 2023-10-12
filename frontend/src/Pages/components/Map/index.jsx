@@ -16,7 +16,7 @@ const Map = () => {
     const sanAndresScale = 280000;
 
     const projectionConfig = {
-        scale: 2900,
+        scale: 2250,
         center: [-74.297333, 4.570868],
     };
     const sanAndresConfig = {
