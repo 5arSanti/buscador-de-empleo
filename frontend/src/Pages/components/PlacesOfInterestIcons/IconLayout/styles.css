@@ -15,8 +15,8 @@
     transform: scale(1.15);
 }
 .icon-layout-container svg {
-    width: 30px;
-    height: 30px;
+    width: 60px;
+    height: 60px;
     fill: var(--icon-colors);
     opacity: .75;
 }
