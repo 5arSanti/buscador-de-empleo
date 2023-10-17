@@ -9,6 +9,28 @@ const AppProvider = ({children}) => {
         children: PropTypes.node.isRequired,
     }
 
+    // API
+    const [api, setApi] = React.useState({});
+
+    React.useEffect(() => {
+        const fetchData = async () =>{
+            try{
+                const response = await fetch("http://localhost:3080/api/v1/oferts");
+                const data = await response.json();
+                setApi(data);
+                // await setTimeout(() =>{
+                //     setLoading(false);
+                // }, 1000) 
+            }
+            catch (err){
+                alert(err)
+                // setError(true)
+                // setLoading(false);
+            }
+        }
+        fetchData()
+    }, []);
+
     // Screen Width
     const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
     React.useEffect(() => {
@@ -29,7 +51,6 @@ const AppProvider = ({children}) => {
 
     const handleMapMouseEnter = (event, department) => {
         setTooltipContent(department.properties.NOMBRE_DPT);
-        // setTooltipPosition({ x: event.pageX, y: event.pageY });
         };
     
         const handleMapMouseLeave = () => {
@@ -51,6 +72,8 @@ const AppProvider = ({children}) => {
                 setTooltipContent,
                 handleMapMouseEnter,
                 handleMapMouseLeave,
+                api, 
+                setApi,
 
 
             }}

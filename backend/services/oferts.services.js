@@ -1,3 +1,5 @@
+const boom = require("@hapi/boom");
+
 class OfertsServices {
 	constructor() {
 		this.oferts = [];
@@ -7,7 +9,7 @@ class OfertsServices {
     async generate() {
         for (let i = 0; i < 100; i++) {
             this.oferts.push({
-                id: `${i}`,
+                id: i,
                 name: `Name ${i}`,
                 price: i * 10,
                 image: `placeholder ${i}`,
@@ -20,11 +22,17 @@ class OfertsServices {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve(this.oferts);
-            }, 5000)
+            }, 1000)
         });
     }
     async findOne(id) {
-        return this.oferts.find(item => item.id === id);
+        const ofert = this.oferts.find(item => item.id == id);
+        if (!ofert) {
+            throw boom.notFound("Ofert not Found");
+        }
+        else {
+            return ofert;
+        }
     }
 }
 

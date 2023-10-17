@@ -1,10 +1,24 @@
 const express = require("express");
+const cors = require("cors");
+
 const routerApi = require("./routes");
+const { logErrors, boomErrorHandler, errorHandler } = require("./middlewares/error.handler");
 
 const app = express();
 const port = 3080;
 
 app.use(express.json());
+const whiteList = ["http://localhost:5173", "https://buscadordeempleo.gov.co/"];
+const options = {
+    origin: (origin, callback) => {
+        if(whiteList.includes(origin) || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error("No permitido"));
+        }
+    }
+}
+app.use(cors(options));
 
 
 app.get("/", (request, response) => {
@@ -12,6 +26,10 @@ app.get("/", (request, response) => {
 });
 
 routerApi(app);
+
+app.use(logErrors);
+app.use(boomErrorHandler);
+app.use(errorHandler);
 
 app.listen(port, () => {
     console.log("Mi port es: " + port);
