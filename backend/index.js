@@ -4,6 +4,9 @@ const routerApi = require("./routes");
 const app = express();
 const port = 3080;
 
+app.use(express.json());
+
+
 app.get("/", (request, response) => {
     response.send("Hola mi server backend para Buscador de Empleo");
 });
