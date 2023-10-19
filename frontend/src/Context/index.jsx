@@ -15,7 +15,7 @@ const AppProvider = ({children}) => {
     React.useEffect(() => {
         const fetchData = async () =>{
             try{
-                const response = await fetch("http://localhost:3080/api/v1/oferts");
+                const response = await fetch("http://localhost:3080/oferts");
                 const data = await response.json();
                 setApi(data);
                 // await setTimeout(() =>{
@@ -44,7 +44,6 @@ const AppProvider = ({children}) => {
 
 
     const [toggleNavBarResponsive, setToggleNavBarResponsive] = React.useState(false);
-
 
     //ToolTipMap
     const [tooltipContent, setTooltipContent] = React.useState('');

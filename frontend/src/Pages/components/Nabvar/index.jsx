@@ -19,7 +19,10 @@ const Navbar = () => {
             </a>    
 
             {context.windowWidth <= 800 ?
-                <button className="close-open-button" onClick={() => { context.setToggleNavBarResponsive(!context.toggleNavBarResponsive) }}>
+                <button className="close-open-button" onClick={() => { 
+                        context.setToggleNavBarResponsive(!context.toggleNavBarResponsive);
+                        console.log(context.api)
+                     }}>
                     {context.toggleNavBarResponsive ? <AiOutlineClose /> : <AiOutlineBars/> }
                 </button>
                 :
