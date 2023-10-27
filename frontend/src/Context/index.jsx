@@ -10,22 +10,24 @@ const AppProvider = ({children}) => {
     }
 
     // API
-    const [api, setApi] = React.useState({});
+    //API -- Cambiar el valor de la variable api segun la infraestructura de produccion
+	const api = "http://localhost:3080/api/v1";
 
+	//-------------------------------------
+    const [apiUri, setApiUri] = React.useState(api);
+
+
+    // VACANTES:
+    const [vacantesData, setVacantesData] = React.useState([]);
     React.useEffect(() => {
         const fetchData = async () =>{
             try{
-                const response = await fetch("http://localhost:3080/oferts");
+                const response = await fetch(`${apiUri}/vacantes`);
                 const data = await response.json();
-                setApi(data);
-                // await setTimeout(() =>{
-                //     setLoading(false);
-                // }, 1000) 
+                setVacantesData(data);
             }
             catch (err){
                 alert(err)
-                // setError(true)
-                // setLoading(false);
             }
         }
         fetchData()
@@ -62,17 +64,26 @@ const AppProvider = ({children}) => {
     return (
         <AppContext.Provider
             value={{
+                //VACANTES
+                vacantesData,
+                setVacantesData,
+
+                //NavBar Responsive
                 toggleNavBarResponsive,
                 setToggleNavBarResponsive,
+
+                //Tamaño de la pantalla
                 windowWidth,
                 setWindowWidth,
 
+                //Eventos del Mapa
                 tooltipContent,
                 setTooltipContent,
                 handleMapMouseEnter,
                 handleMapMouseLeave,
-                api, 
-                setApi,
+
+
+
 
 
             }}

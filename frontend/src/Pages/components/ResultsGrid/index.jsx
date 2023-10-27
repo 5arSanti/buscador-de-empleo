@@ -1,3 +1,6 @@
+import React from "react";
+
+import { AppContext } from "../../../Context";
 import { FiltersWrapper } from "../FiltersWrapper";
 import { ScrollableWrapper } from "../ScrollableWrapper";
 import { SubTitle } from "../SubTitle";
@@ -6,6 +9,8 @@ import { ResultsCard } from "./ResultsCard";
 import "./styles.css";
 
 const ResultsGrid = () => {
+    const context = React.useContext(AppContext);
+
     return (
         <FiltersWrapper
             flexDirection={"column"}
@@ -23,13 +28,14 @@ const ResultsGrid = () => {
                 maxHeight={450}
                 gap={10}
             >
-                <ResultsCard/>
-                <ResultsCard/>
-                <ResultsCard/>
-                <ResultsCard/>
-                <ResultsCard/>
-                <ResultsCard/>
+                {context.vacantesData?.map((item, index) => (
+                    <ResultsCard
+                        key={index}
+                        data={item}
+                    />
+                ))
 
+                }
             </ScrollableWrapper>
         </FiltersWrapper>
     );
