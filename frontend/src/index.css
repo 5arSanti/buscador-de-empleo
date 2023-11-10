@@ -13,3 +13,6 @@ a {
     text-decoration: none;
     color: transparent;
 }
+button {
+    border: none;
+}

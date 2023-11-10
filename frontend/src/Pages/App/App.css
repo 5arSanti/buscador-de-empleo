@@ -18,6 +18,9 @@
     --filters-input-color: #FFF;
 
     --white: rgba(255,255,255,1);
+    --white-025: rgba(255,255,255,.25);
+    --white-05: rgba(255,255,255,.5);
+    --white-075: rgba(255,255,255,.75);
 
 
     --result-text-card: #7B7B7B;

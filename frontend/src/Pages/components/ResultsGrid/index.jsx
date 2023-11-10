@@ -6,10 +6,48 @@ import { ScrollableWrapper } from "../ScrollableWrapper";
 import { SubTitle } from "../SubTitle";
 import { ResultsCard } from "./ResultsCard";
 
+import { FiSkipBack, FiSkipForward } from "react-icons/fi";
+
 import "./styles.css";
 
 const ResultsGrid = () => {
     const context = React.useContext(AppContext);
+
+    const [currentPage, setCurrentPage] = React.useState(1);
+    const [totalPages, setTotalPages] = React.useState(1);
+    const [results, setResults] = React.useState([]);
+  
+    const fetchResults = async (page) => {
+        console.log("Entra fetch")
+        try {
+            const response = await fetch(`${context.apiUri}/vacantes/resultados?page=${page}`);
+            console.log(response);
+            const data = await response.json();
+            console.log(data);
+
+            setResults(data.resultados);
+            setTotalPages(data.totalPages);
+        } catch (error) {
+            console.error(error);
+            console.error('Error fetching results:', error.message);
+        }
+    };
+  
+    React.useEffect(() => {
+        fetchResults(currentPage);
+    }, [currentPage]);
+  
+    const handleSkipBack = () => {
+        console.log("atras")
+        // setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+        setCurrentPage(currentPage - 1)
+    };
+  
+    const handleSkipForward = () => {
+        console.log("avanza")
+        // setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+        setCurrentPage(currentPage + 1)
+    };
 
     return (
         <FiltersWrapper
@@ -34,9 +72,27 @@ const ResultsGrid = () => {
                         data={item}
                     />
                 ))
-
                 }
+                {/* {results?.resultados?.map((item, index) => (
+                    <ResultsCard
+                        key={index}
+                        data={item}
+                    />
+                ))
+                } */}
             </ScrollableWrapper>
+            <div className="pagination-buttons-container">
+                <button
+                    onClick={() => handleSkipBack()}
+                >
+                    <FiSkipBack/>
+                </button>
+                <button
+                    onClick={() => handleSkipForward()}
+                >
+                    <FiSkipForward/>
+                </button>
+            </div>
         </FiltersWrapper>
     );
 }

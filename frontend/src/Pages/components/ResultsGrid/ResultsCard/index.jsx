@@ -6,13 +6,20 @@ import PropTypes from "prop-types";
 import { AppContext } from "../../../../Context";
 
 const ResultsCard = ({data}) => {
-    const context = React.useContext(AppContext);
-
     ResultsCard.propTypes = {
         data: PropTypes.node.isRequired,
     }
 
+    const context = React.useContext(AppContext);
+
     const [hovered, setHovered] = React.useState(null);
+
+    const fechaDesdeBaseDeDatos = data.FECHA_CREACION;
+    const fechaFormateada = new Date(fechaDesdeBaseDeDatos).toLocaleDateString({
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+    });
 
     return(
         <div className="results-card-container"
@@ -38,13 +45,10 @@ const ResultsCard = ({data}) => {
             </div>
             {context.windowWidth < 550 &&
                 <a href={data.URL_DETALLE_VACANTE} rel="noopener noreferrer" target="_blank" >
-                    {/* {hovered && */}
-                        <div>
-                            <FiExternalLink/>
-                        </div>
-                    {/* } */}
+                    <div>
+                        <FiExternalLink/>
+                    </div>
                     <img src="/icon.png" alt="Colsubsidio" />
-    
                 </a>
             }
             <div className="results-card-secondary-info">
@@ -58,7 +62,7 @@ const ResultsCard = ({data}) => {
                 </div>
                 <div>
                     <p className="mini-title">Publicacion</p>
-                    <p>{data.FECHA_PUBLICACION}</p>
+                    <p>{fechaFormateada}</p>
                 </div>
             </div>
         </div>

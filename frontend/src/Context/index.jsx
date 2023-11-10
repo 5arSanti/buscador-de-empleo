@@ -9,7 +9,6 @@ const AppProvider = ({children}) => {
         children: PropTypes.node.isRequired,
     }
 
-    // API
     //API -- Cambiar el valor de la variable api segun la infraestructura de produccion
 	const api = "http://localhost:3080/api/v1";
 
@@ -38,7 +37,7 @@ const AppProvider = ({children}) => {
 
     const endpoints = [
         "vacantes/total", 
-        "vacantes/resultados", 
+        "vacantes/resultados?page=1", 
         /* otros endpoints */
     ];
 
