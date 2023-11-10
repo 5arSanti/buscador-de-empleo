@@ -1,19 +1,52 @@
+import React from "react";
+import { FiExternalLink } from "react-icons/fi";
+
 import "./styles.css";
 import PropTypes from "prop-types";
+import { AppContext } from "../../../../Context";
 
 const ResultsCard = ({data}) => {
+    const context = React.useContext(AppContext);
+
     ResultsCard.propTypes = {
         data: PropTypes.node.isRequired,
     }
 
+    const [hovered, setHovered] = React.useState(null);
+
     return(
-        <div className="results-card-container">
-            <img src="/icon.png" alt="Colsubsidio" />
+        <div className="results-card-container"
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(null)}
+        >
+            {context.windowWidth > 650 &&
+                <a href={data.URL_DETALLE_VACANTE} rel="noopener noreferrer" target="_blank" >
+                    {hovered &&
+                        <div>
+                            <FiExternalLink/>
+                        </div>
+                    }
+                    <img src="/icon.png" alt="Colsubsidio" />
+    
+                </a>
+            }
+
             <div className="results-card-main-info">
                 <p>{data.EMPLEADOR}</p>
                 <p>{data.RANGO_SALARIAL}</p>
                 <p>{data.MUNICIPIO}</p>
             </div>
+            {context.windowWidth < 550 &&
+                <a href={data.URL_DETALLE_VACANTE} rel="noopener noreferrer" target="_blank" >
+                    {/* {hovered && */}
+                        <div>
+                            <FiExternalLink/>
+                        </div>
+                    {/* } */}
+                    <img src="/icon.png" alt="Colsubsidio" />
+    
+                </a>
+            }
             <div className="results-card-secondary-info">
                 <p>{data.TITULO_VACANTE}</p>
                 <p className="results-card-secondary-description">{data.DESCRIPCION_VACANTE}</p>
