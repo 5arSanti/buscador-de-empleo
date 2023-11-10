@@ -28,7 +28,7 @@ const ResultsGrid = () => {
                 maxHeight={450}
                 gap={10}
             >
-                {context.vacantesData?.map((item, index) => (
+                {context.vacantesData?.resultados?.map((item, index) => (
                     <ResultsCard
                         key={index}
                         data={item}

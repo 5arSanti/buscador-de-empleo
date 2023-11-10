@@ -17,21 +17,53 @@ const AppProvider = ({children}) => {
     const [apiUri, setApiUri] = React.useState(api);
 
 
+
+
     // VACANTES:
-    const [vacantesData, setVacantesData] = React.useState([]);
-    React.useEffect(() => {
-        const fetchData = async () =>{
-            try{
-                const response = await fetch(`${apiUri}/vacantes`);
-                const data = await response.json();
-                setVacantesData(data);
+    const fetchData = async (endpoint) => {
+        try {
+            const response = await fetch(`${apiUri}/${endpoint}`);
+            
+            if (!response.status === 200) {
+                throw new Error(`Error fetching ${endpoint}: ${response.statusText}`);
             }
-            catch (err){
-                alert(err)
-            }
+    
+            return await response.json();
+
         }
-        fetchData()
+        catch (err) {
+            throw new Error(`Error fetching ${endpoint}: ${err.message}`);
+        }
+    };
+
+    const endpoints = [
+        "vacantes/total", 
+        "vacantes/resultados", 
+        /* otros endpoints */
+    ];
+
+    const [vacantesData, setVacantesData] = React.useState({});
+    React.useEffect(() => {
+        const fetchAllData = async () => {
+            try {
+                // Realizar todas las solicitudes en paralelo
+                const resultsArray = await Promise.all(endpoints.map(fetchData));
+
+                const combinedResults = resultsArray.reduce((acc, result) => {
+                    return { ...acc, ...result };
+                }, {});
+
+                setVacantesData(combinedResults);
+                console.log(vacantesData);
+
+            } catch (err) {
+                alert(err.message);
+            }
+        };
+        fetchAllData();
     }, []);
+
+
 
     // Screen Width
     const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
