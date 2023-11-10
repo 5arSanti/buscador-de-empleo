@@ -22,7 +22,7 @@ const AppProvider = ({children}) => {
     const fetchData = async (endpoint) => {
         try {
             const response = await fetch(`${apiUri}/${endpoint}`);
-            
+
             if (!response.status === 200) {
                 throw new Error(`Error fetching ${endpoint}: ${response.statusText}`);
             }
@@ -95,6 +95,8 @@ const AppProvider = ({children}) => {
     return (
         <AppContext.Provider
             value={{
+                apiUri,
+
                 //VACANTES
                 vacantesData,
                 setVacantesData,

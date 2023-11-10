@@ -18,10 +18,8 @@ const ResultsGrid = () => {
     const [results, setResults] = React.useState([]);
   
     const fetchResults = async (page) => {
-        console.log("Entra fetch")
         try {
             const response = await fetch(`${context.apiUri}/vacantes/resultados?page=${page}`);
-            console.log(response);
             const data = await response.json();
             console.log(data);
 
@@ -38,15 +36,11 @@ const ResultsGrid = () => {
     }, [currentPage]);
   
     const handleSkipBack = () => {
-        console.log("atras")
-        // setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
-        setCurrentPage(currentPage - 1)
+        setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
     };
   
     const handleSkipForward = () => {
-        console.log("avanza")
-        // setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
-        setCurrentPage(currentPage + 1)
+        setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
     };
 
     return (
@@ -66,20 +60,20 @@ const ResultsGrid = () => {
                 maxHeight={450}
                 gap={10}
             >
-                {context.vacantesData?.resultados?.map((item, index) => (
-                    <ResultsCard
-                        key={index}
-                        data={item}
-                    />
-                ))
-                }
-                {/* {results?.resultados?.map((item, index) => (
+                {/* {context.vacantesData?.resultados?.map((item, index) => (
                     <ResultsCard
                         key={index}
                         data={item}
                     />
                 ))
                 } */}
+                {results?.map((item, index) => (
+                    <ResultsCard
+                        key={index}
+                        data={item}
+                    />
+                ))
+                }
             </ScrollableWrapper>
             <div className="pagination-buttons-container">
                 <button

@@ -33,7 +33,6 @@ router.get("/total", (request, response) => {
 const PAGE_SIZE = 50; // Número de resultados por página
 
 router.get("/resultados", async (request, response) => {
-	console.log("Entra")
 	try {
 		const page = parseInt(request.query.page, 10) || 1;
 		const offset = (page - 1) * PAGE_SIZE;
@@ -51,8 +50,6 @@ router.get("/resultados", async (request, response) => {
 
 		const totalPages = Math.ceil(totalResults / PAGE_SIZE);
 
-		console.log(totalPages, page)
-		console.log("ENTRA RETURN");
 		return response.status(200).json({
 			resultados: resultsQuery.recordset,
 			totalPages,
