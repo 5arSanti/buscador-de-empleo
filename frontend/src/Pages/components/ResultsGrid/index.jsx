@@ -14,8 +14,6 @@ import "./styles.css";
 const ResultsGrid = () => {
     const context = React.useContext(AppContext);
 
-    const [inputPage, setInputPage] = React.useState(context.vacantesData?.currentPage?.toString());
-
     return (
         <FiltersWrapper
             flexDirection={"column"}
@@ -25,7 +23,7 @@ const ResultsGrid = () => {
                 text={"Resultados"}
             />
             <div className="info-container">
-                <p>Seleccione la oferta de su interés dando clic en cualquier parte de la vacante, esto lo llevará directamente a la página donde se encuentra publicada.</p>
+                <p>Seleccione la oferta de su interés dando clic en el logo de la vacante, esto lo llevará directamente a la página donde se encuentra publicada.</p>
                 <p>Los logos corresponden a los prestadores autorizados que tienen dicha vacante registrada. Seleccione el de su preferencia.</p>
             </div>
 

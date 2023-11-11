@@ -44,7 +44,8 @@ const AppProvider = ({children}) => {
     const fetchAllData = async (page) => {
         const endpoints = [
             "vacantes/total",
-            `vacantes/resultados?page=${page}`
+            `vacantes/resultados?page=${page}`,
+            "departamentos/total"
             /* otros endpoints */
         ];
 
@@ -57,6 +58,7 @@ const AppProvider = ({children}) => {
             }, {});
 
             setVacantesData(combinedResults);
+            console.log(combinedResults);
             setTotalPages(combinedResults.totalPages);
 
         } catch (err) {

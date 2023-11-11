@@ -1,9 +1,15 @@
+import React from "react";
+import { AppContext } from "../../../Context";
 import { FiltersWrapper } from "../FiltersWrapper";
 import { ScrollableWrapper } from "../ScrollableWrapper";
 import { SubTitle } from "../SubTitle";
 import { MunicipalityCard } from "./MunicipalityCard";
 
 const MunicipalityGrid = () => {
+    const context = React.useContext(AppContext);
+
+    const sortedTotalDepartments = context.vacantesData?.total_departments?.sort((a, b) => b.total - a.total);
+
     return(
         <FiltersWrapper
             flexDirection={"column"}
@@ -13,45 +19,16 @@ const MunicipalityGrid = () => {
             <SubTitle text="Municipios"/>
 
             <ScrollableWrapper
-                maxHeight={250}
+                maxHeight={350}
             >
-                {/* TEST */}
-                <MunicipalityCard
-                    text={"Bogotá"}
-                    value={147561}
-                />
-                <MunicipalityCard
-                    text={"Medellin"}
-                    value={1234}
-                />
-                <MunicipalityCard
-                    text={"Cali"}
-                    value={6234653}
-                />
-                <MunicipalityCard
-                    text={"Bucaramanga"}
-                    value={745643}
-                />
-                <MunicipalityCard
-                    text={"Barranquilla"}
-                    value={15231}
-                />
-                <MunicipalityCard
-                    text={"Pereira"}
-                    value={2352}
-                />
-                <MunicipalityCard
-                    text={"Bucaramanga"}
-                    value={745643}
-                />
-                <MunicipalityCard
-                    text={"Barranquilla"}
-                    value={15231}
-                />
-                <MunicipalityCard
-                    text={"Pereira"}
-                    value={2352}
-                />                
+                {sortedTotalDepartments?.map((item, index) => (
+                    <MunicipalityCard
+                        key={index}
+                        text={item.department}
+                        value={item.total}
+                    />   
+                ))}
+
             </ScrollableWrapper>
         </FiltersWrapper>
     );

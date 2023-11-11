@@ -7,7 +7,7 @@ import { AppContext } from "../../../../Context";
 
 const ResultsCard = ({data}) => {
     ResultsCard.propTypes = {
-        data: PropTypes.node.isRequired,
+        data: PropTypes.object.isRequired,
     }
 
     const context = React.useContext(AppContext);
@@ -41,7 +41,7 @@ const ResultsCard = ({data}) => {
             <div className="results-card-main-info">
                 <p>{data.EMPLEADOR}</p>
                 <p>{data.RANGO_SALARIAL}</p>
-                <p>{data.MUNICIPIO}</p>
+                <p>{data.DEPARTAMENTO}</p>
             </div>
             {context.windowWidth < 550 &&
                 <a href={data.URL_DETALLE_VACANTE} rel="noopener noreferrer" target="_blank" >
