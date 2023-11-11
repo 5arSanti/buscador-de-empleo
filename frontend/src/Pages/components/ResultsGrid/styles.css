@@ -45,6 +45,10 @@
 
     transition: all 0.2s ease;
 }
+.pagination-buttons-container p input:focus{
+    background-color: var(--white-025);
+    border: 1px solid var(--navbar-color);
+}
 .pagination-buttons-container p input:hover{
     background-color: var(--white-025);
 }
