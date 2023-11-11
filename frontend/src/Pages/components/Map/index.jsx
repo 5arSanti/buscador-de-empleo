@@ -20,27 +20,27 @@ const Map = () => {
         center: [-74.297333, 4.570868],
     };
     const sanAndresConfig = {
-        center: [-81.70639, 12.58317],
         scale: sanAndresScale,
+        center: [-81.70639, 12.58317],
     }
     const providenciaConfig = {
-        center: [-81.37472222, 13.34888889],
         scale: sanAndresScale,
+        center: [-81.37472222, 13.34888889],
     }
 
     const departmentColors = {
         "ANTIOQUIA": "#00FF74",
-        "ATLANTICO": "#00D8FF",
-        "SANTAFE DE BOGOTA D.C": "#F02B76",
-        "BOLIVAR": "#F0B12B",
-        "BOYACA": "#BF4BDC",
+        "ATLÁNTICO": "#00D8FF",
+        "BOGOTÁ, D.C.": "#F02B76",
+        "BOLÍVAR": "#F0B12B",
+        "DPTO. BOYACÁ": "#BF4BDC",
         "CALDAS": "#AF22CE",
-        "CAQUETA": "#23FF00",
+        "CAQUETÁ": "#23FF00",
         "CAUCA": "#4BBFDC",
         "CESAR": "#C820A7",
-        "CORDOBA": "#FF0000",
+        "CÓRDOBA": "#FF0000",
         "CUNDINAMARCA": "#00FFAE",
-        "CHOCO": "#4F1FE4",
+        "CHOCÓ": "#4F1FE4",
         "HUILA": "#7800FF",
         "LA GUAJIRA": "#FFFF00",
         "MAGDALENA": "#055B2F",
@@ -57,11 +57,11 @@ const Map = () => {
         "CASANARE": "#6BEFE7",
         "PUTUMAYO": "#ADAD38",
         "AMAZONAS": "#76E6A4",
-        "GUAINIA": "#001F93",
+        "GUAINÍA": "#001F93",
         "GUAVIARE": "#6F2E78",
-        "VAUPES": "#B03804",
+        "VAUPÉS": "#B03804",
         "VICHADA": "#76B8AD",
-        "ARCHIPIELAGO DE SAN ANDRES PROVIDENCIA Y SANTA CATALINA": "#F312E2",
+        "ARCHIPIÉLAGO DE SAN ANDRÉS, PROVIDENCIA Y SANTA CATALINA": "#F312E2",
     }
 
 

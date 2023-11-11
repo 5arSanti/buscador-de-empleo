@@ -99,12 +99,24 @@ const AppProvider = ({children}) => {
     const [tooltipContent, setTooltipContent] = React.useState('');
 
     const handleMapMouseEnter = (event, department) => {
-        setTooltipContent(department.properties.NOMBRE_DPT);
-        };
+        const departmentData = vacantesData?.total_departments?.find((data) => data.department === department.properties.NOMBRE_DPT);
+
+        if (departmentData) {
+            setTooltipContent({
+                department: department.properties.NOMBRE_DPT,
+                totalVacantes: departmentData.total,
+            });
+        } else {
+            setTooltipContent({
+                department: department.properties.NOMBRE_DPT,
+                totalVacantes: 0,
+            });
+        }
+    };
     
-        const handleMapMouseLeave = () => {
+    const handleMapMouseLeave = () => {
         setTooltipContent('');
-        };
+    };
 
 
 

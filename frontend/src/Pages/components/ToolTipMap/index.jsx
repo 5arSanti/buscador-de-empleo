@@ -11,12 +11,12 @@ const ToolTipMap = ({ content }) => {
             />
             <div className="tool-tip-info-container">
                 <p>Departamento:</p>
-                <p>{content}</p>
+                <p>{content.department}</p>
             </div>
 
             <div className="tool-tip-info-container">
-                <p>Ofertas: </p>
-                <p>250894</p>
+                <p>Vacantes: </p>
+                <p>{content.totalVacantes}</p>
             </div>
 
         </div>
