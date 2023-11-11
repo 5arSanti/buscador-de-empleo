@@ -19,6 +19,12 @@ const AppProvider = ({children}) => {
 
 
     // VACANTES:
+    const [vacantesData, setVacantesData] = React.useState({});
+
+    const [currentPage, setCurrentPage] = React.useState(1);
+    const [totalPages, setTotalPages] = React.useState(1);
+    const [results, setResults] = React.useState([]);
+
     const fetchData = async (endpoint) => {
         try {
             const response = await fetch(`${apiUri}/${endpoint}`);
@@ -35,33 +41,42 @@ const AppProvider = ({children}) => {
         }
     };
 
-    const endpoints = [
-        "vacantes/total", 
-        "vacantes/resultados?page=1", 
-        /* otros endpoints */
-    ];
+    const fetchAllData = async (page) => {
+        const endpoints = [
+            "vacantes/total",
+            `vacantes/resultados?page=${page}`
+            /* otros endpoints */
+        ];
 
-    const [vacantesData, setVacantesData] = React.useState({});
+        try {
+            // Realizar todas las solicitudes en paralelo
+            const resultsArray = await Promise.all(endpoints.map(fetchData));
+
+            const combinedResults = resultsArray.reduce((acc, result) => {
+                return { ...acc, ...result };
+            }, {});
+
+            setVacantesData(combinedResults);
+            setTotalPages(combinedResults.totalPages);
+
+        } catch (err) {
+            alert(err.message);
+        }
+    };
+
     React.useEffect(() => {
-        const fetchAllData = async () => {
-            try {
-                // Realizar todas las solicitudes en paralelo
-                const resultsArray = await Promise.all(endpoints.map(fetchData));
-
-                const combinedResults = resultsArray.reduce((acc, result) => {
-                    return { ...acc, ...result };
-                }, {});
-
-                setVacantesData(combinedResults);
-                console.log(vacantesData);
-
-            } catch (err) {
-                alert(err.message);
-            }
-        };
-        fetchAllData();
-    }, []);
-
+        fetchAllData(currentPage);
+    }, [currentPage]);
+  
+        //Pagination Controllers
+    const handlePagination = (type) => {
+        if (type === 1) 
+            setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+        else if (type == 2)
+            setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
+        else
+            setCurrentPage(1);
+    }
 
 
     // Screen Width
@@ -115,9 +130,8 @@ const AppProvider = ({children}) => {
                 handleMapMouseEnter,
                 handleMapMouseLeave,
 
-
-
-
+                handlePagination,
+                setCurrentPage
 
             }}
         >

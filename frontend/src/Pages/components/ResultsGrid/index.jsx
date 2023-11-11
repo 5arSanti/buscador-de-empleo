@@ -7,41 +7,14 @@ import { SubTitle } from "../SubTitle";
 import { ResultsCard } from "./ResultsCard";
 
 import { FiSkipBack, FiSkipForward } from "react-icons/fi";
+import { AiOutlineHome } from "react-icons/ai";
 
 import "./styles.css";
 
 const ResultsGrid = () => {
     const context = React.useContext(AppContext);
 
-    const [currentPage, setCurrentPage] = React.useState(1);
-    const [totalPages, setTotalPages] = React.useState(1);
-    const [results, setResults] = React.useState([]);
-  
-    const fetchResults = async (page) => {
-        try {
-            const response = await fetch(`${context.apiUri}/vacantes/resultados?page=${page}`);
-            const data = await response.json();
-            console.log(data);
-
-            setResults(data.resultados);
-            setTotalPages(data.totalPages);
-        } catch (error) {
-            console.error(error);
-            console.error('Error fetching results:', error.message);
-        }
-    };
-  
-    React.useEffect(() => {
-        fetchResults(currentPage);
-    }, [currentPage]);
-  
-    const handleSkipBack = () => {
-        setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
-    };
-  
-    const handleSkipForward = () => {
-        setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
-    };
+    const [inputPage, setInputPage] = React.useState(context.vacantesData?.currentPage?.toString());
 
     return (
         <FiltersWrapper
@@ -60,14 +33,7 @@ const ResultsGrid = () => {
                 maxHeight={450}
                 gap={10}
             >
-                {/* {context.vacantesData?.resultados?.map((item, index) => (
-                    <ResultsCard
-                        key={index}
-                        data={item}
-                    />
-                ))
-                } */}
-                {results?.map((item, index) => (
+                {context.vacantesData?.resultados?.map((item, index) => (
                     <ResultsCard
                         key={index}
                         data={item}
@@ -76,13 +42,37 @@ const ResultsGrid = () => {
                 }
             </ScrollableWrapper>
             <div className="pagination-buttons-container">
+                <p>Pagina 
+                    <input 
+                        type="text" 
+                        pattern="[0-9]"
+                        placeholder={context.vacantesData.currentPage}
+                        onKeyDown={(event) => {
+                            if (event.key === 'Enter') {
+                                const pageNumber = parseInt(event.target.value);
+                                if (!isNaN(pageNumber) && pageNumber >= 1 && pageNumber <= context.vacantesData.totalPages) {
+                                    context.setCurrentPage(pageNumber);
+                                    event.target.value = "";
+                                } else {
+                                    event.target.value = "";
+                                }
+                            }
+                        }}
+                    />
+                    de {context.vacantesData.totalPages}
+                </p>
                 <button
-                    onClick={() => handleSkipBack()}
+                    onClick={() => context.handlePagination()}
+                >
+                    <AiOutlineHome/>
+                </button>
+                <button
+                    onClick={() => context.handlePagination(1)}
                 >
                     <FiSkipBack/>
                 </button>
                 <button
-                    onClick={() => handleSkipForward()}
+                    onClick={() => context.handlePagination(2)}
                 >
                     <FiSkipForward/>
                 </button>

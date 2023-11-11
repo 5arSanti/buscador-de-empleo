@@ -19,6 +19,39 @@
     padding: 0 15px;
     box-sizing: border-box;
 }
+.pagination-buttons-container p{
+    color: var(--white);
+    font-size: 15px;
+    margin-right: 10px;
+
+    display: flex;
+    align-items: center;
+}
+.pagination-buttons-container p input{
+    width: 40px;
+    max-width: 100px;
+
+    text-align: center;
+    padding: 5px 0px;
+    margin: 0 5px;
+
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--navbar-color);
+
+    color: var(--white);
+    font-weight: bold;
+    outline: none;  
+
+    transition: all 0.2s ease;
+}
+.pagination-buttons-container p input:hover{
+    background-color: var(--white-025);
+}
+.pagination-buttons-container p input::placeholder{
+    color: var(--white);
+    font-weight: bold;
+}
 .pagination-buttons-container button {
     padding: 5px;
     border-radius: 5px;
