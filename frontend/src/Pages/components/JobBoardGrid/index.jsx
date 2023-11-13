@@ -1,3 +1,5 @@
+import React from "react";
+
 import { MdElderly } from "react-icons/md";
 import { FiltersWrapper } from "../FiltersWrapper";
 import { JobBoardCard } from "./JobBoardCard";
@@ -8,7 +10,11 @@ import { PiGasCanFill } from "react-icons/pi";
 import { SubTitle } from "../SubTitle";
 
 import "./styles.css";
+import { AppContext } from "../../../Context";
+
 const JobBoardGrid = () => {
+    const context = React.useContext(AppContext);
+
     return(
         <FiltersWrapper
             flexDirection={"column"}
@@ -22,10 +28,12 @@ const JobBoardGrid = () => {
             <JobBoardCard
                 icon={<BsFillBuildingFill/>}
                 text={"Plaza de Prácticas"}
+                onCLick={() => context.handleFilterChange("HIDROCARBUROS", "")}
             />
             <JobBoardCard
                 icon={<PiGasCanFill/>}
                 text={"Hidrocarburos"}
+                onCLick={() => context.handleFilterChange("HIDROCARBUROS", 1)}
             />
             <JobBoardCard
                 icon={<BsFillPersonFill/>}

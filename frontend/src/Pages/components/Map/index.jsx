@@ -89,6 +89,7 @@ const Map = () => {
                             stroke="#FFF"
                             onMouseEnter={(event) => {context.handleMapMouseEnter(event, geo)}}
                             onMouseLeave={context.handleMapMouseLeave}
+                            onClick={() => {context.handleFilterChange("DEPARTAMENTO", geo.properties.NOMBRE_DPT)}}
                         />
                     ))
                     )}
@@ -116,6 +117,7 @@ const Map = () => {
                                 stroke="#FFF"
                                 onMouseEnter={(event) => {context.handleMapMouseEnter(event, geo)}}
                                 onMouseLeave={context.handleMapMouseLeave}
+                                onClick={() => {context.handleFilterChange("DEPARTAMENTO", geo.properties.NOMBRE_DPT)}}
                             />
                         ))
                         )}

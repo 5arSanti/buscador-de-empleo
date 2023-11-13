@@ -14,6 +14,7 @@
     --all-info-container-color: #DCF6FF;
 
     --input-and-info-container-color: #6ABFE1;
+    --municipios-and-result-border-clicked: #5D59DC;
 
     --filters-input-color: #FFF;
 
@@ -21,10 +22,12 @@
     --white-025: rgba(255,255,255,.25);
     --white-05: rgba(255,255,255,.5);
     --white-075: rgba(255,255,255,.75);
+    --white-095: rgba(255,255,255,0.95);
 
 
     --result-text-card: #7B7B7B;
     --results-card-hover: rgba(250,250, 250);
+    --municipio-card-clicked: #F2F2F2;
     --results-image-hover: rgba(0,0,0, 0.20);
 }
 

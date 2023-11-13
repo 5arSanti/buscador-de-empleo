@@ -30,6 +30,8 @@ const AppProvider = ({children}) => {
         TELETRABAJO: "",
         TIPO_CONTRATO: "",
         NIVEL_ESTUDIOS: "",
+        DEPARTAMENTO: "",
+        HIDROCARBUROS: "",
     });
 
     const handleFilterChange = (filterName, value) => {
@@ -57,8 +59,6 @@ const AppProvider = ({children}) => {
             const filterParams = new URLSearchParams(filters);
 
             const endpoints = [
-                // "vacantes/total" + filterParams.toString(),
-                "vacantes/total",
                 `vacantes/resultados?page=${page}&${filterParams.toString()}`,
                 "departamentos/total",
                 "filters"
