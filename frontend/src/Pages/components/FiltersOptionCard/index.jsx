@@ -1,16 +1,21 @@
 import PropTypes from "prop-types";
 
-const FiltersOptionCard = ({id, title, array}) => {
+const FiltersOptionCard = ({id, title, array, onChange}) => {
     FiltersOptionCard.propTypes = {
         id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         array: PropTypes.array.isRequired,
+        onChange: PropTypes.func.isRequired,
     }
 
     return(
         <>
             <label htmlFor={id}>{title}</label>
-            <select name={id} id={id}>
+            <select 
+                name={id} 
+                id={id}
+                onChange={(event) => {onChange(event.target.value)}}
+            >
                 <option value="">
                     Todo
                 </option>

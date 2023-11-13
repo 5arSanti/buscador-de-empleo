@@ -37,18 +37,29 @@ router.get("/resultados", async (request, response) => {
 		const page = parseInt(request.query.page, 10) || 1;
 		const offset = (page - 1) * PAGE_SIZE;
 
-		const resultCountQuery = await sql.query("SELECT COUNT(*) AS total FROM Vacantes_Vigentes_Completo");
+		const filterConditions = Object.keys(request.query)
+            .filter((key) => key !== "page" && request.query[key] !== "") // Excluir el parámetro de página
+            .map((key) => `${key} = '${request.query[key]}'`)
+            .join(" AND ");
+
+		const baseQuery = `
+            SELECT *
+            FROM Vacantes_Vigentes_Completo
+            ${filterConditions ? `WHERE ${filterConditions}` : ""}
+            ORDER BY CODIGO_VACANTE DESC
+            OFFSET ${offset} ROWS
+            FETCH NEXT ${PAGE_SIZE} ROWS ONLY
+        `;
+
+
+        const resultCountQuery = await sql.query(`
+			SELECT COUNT(*) AS total
+			FROM Vacantes_Vigentes_Completo ${filterConditions ? `WHERE ${filterConditions}` : ""}`
+		);
 		const totalResults = resultCountQuery.recordset[0].total;
 
-		const resultsQuery = await sql.query(`
-			SELECT *
-			FROM Vacantes_Vigentes_Completo
-			ORDER BY CODIGO_VACANTE DESC
-			OFFSET ${offset} ROWS
-			FETCH NEXT ${PAGE_SIZE} ROWS ONLY
-		`);
-
-		const totalPages = Math.ceil(totalResults / PAGE_SIZE);
+		const resultsQuery = await sql.query(baseQuery);
+        const totalPages = Math.ceil(totalResults / PAGE_SIZE);
 
 		return response.status(200).json({
 			resultados: resultsQuery.recordset,

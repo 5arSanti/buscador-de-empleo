@@ -23,7 +23,18 @@ const AppProvider = ({children}) => {
 
     const [currentPage, setCurrentPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(1);
-    const [results, setResults] = React.useState([]);
+
+    const [filters, setFilters] = React.useState({
+        RANGO_SALARIAL: "",
+        NOMBRE_PRESTADOR: "",
+        TELETRABAJO: "",
+        TIPO_CONTRATO: "",
+        NIVEL_ESTUDIOS: "",
+    });
+
+    const handleFilterChange = (filterName, value) => {
+        setFilters((prevFilters) => ({ ...prevFilters, [filterName]: value }));
+    };
 
     const fetchData = async (endpoint) => {
         try {
@@ -42,15 +53,18 @@ const AppProvider = ({children}) => {
     };
 
     const fetchAllData = async (page) => {
-        const endpoints = [
-            "vacantes/total",
-            `vacantes/resultados?page=${page}`,
-            "departamentos/total",
-            "filters"
-            /* otros endpoints */
-        ];
-
         try {
+            const filterParams = new URLSearchParams(filters);
+
+            const endpoints = [
+                // "vacantes/total" + filterParams.toString(),
+                "vacantes/total",
+                `vacantes/resultados?page=${page}&${filterParams.toString()}`,
+                "departamentos/total",
+                "filters"
+                /* otros endpoints */
+            ];
+
             // Realizar todas las solicitudes en paralelo
             const resultsArray = await Promise.all(endpoints.map(fetchData));
 
@@ -69,7 +83,7 @@ const AppProvider = ({children}) => {
 
     React.useEffect(() => {
         fetchAllData(currentPage);
-    }, [currentPage]);
+    }, [currentPage, filters]);
   
         //Pagination Controllers
     const handlePagination = (type) => {
@@ -145,6 +159,9 @@ const AppProvider = ({children}) => {
                 handleMapMouseEnter,
                 handleMapMouseLeave,
 
+                //Filtros y paginacion
+                setFilters,
+                handleFilterChange,
                 handlePagination,
                 setCurrentPage
 
