@@ -45,7 +45,8 @@ const AppProvider = ({children}) => {
         const endpoints = [
             "vacantes/total",
             `vacantes/resultados?page=${page}`,
-            "departamentos/total"
+            "departamentos/total",
+            "filters"
             /* otros endpoints */
         ];
 

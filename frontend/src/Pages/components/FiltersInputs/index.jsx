@@ -1,40 +1,50 @@
+import React from "react";
 import { FiltersWrapper } from "../FiltersWrapper";
+import { AppContext } from "../../../Context";
+
+import { FiltersOptionCard } from "../FiltersOptionCard";
 
 import "./styles.css";
 
 const FiltersInputs = () => {
+    const context = React.useContext(AppContext);
+
     return(
         <FiltersWrapper
             flexDirection={"column"}
             padding={20}
             gap={5}
         >
+            <FiltersOptionCard
+                id={"salary-range"}
+                title={"Rango Salarial"}
+                array={context.vacantesData?.filters?.rangoSalarial}
+            />
 
-            <label htmlFor="salary-range">Rango Salarial</label>
-            <select name="salary-range" id="salary-range">
-
-            </select>
-
-            <label htmlFor="provider">Prestador</label>
-            <select name="provider" id="provider">
-
-            </select>
+            <FiltersOptionCard
+                id={"provider"}
+                title={"Prestador"}
+                array={context.vacantesData?.filters?.prestador}
+            />
 
             <label htmlFor="telecommuting">Teletrabajo</label>
             <select name="telecommuting" id="telecommuting">
-
+                <option value="">Todo</option>
+                <option value="">Si</option>
+                <option value="">No</option>
             </select>
 
-            <label htmlFor="type-of-contract">Tipo Contrato</label>
-            <select name="type-of-contract" id="type-of-contract">
+            <FiltersOptionCard
+                id={"type-of-contract"}
+                title={"Tipo Contrato"}
+                array={context.vacantesData?.filters?.tipoContrato}
+            />
 
-            </select>
-
-            <label htmlFor="educational-level">Nivel de Estudios</label>
-            <select name="educational-level" id="educational-level">
-
-            </select>
-
+            <FiltersOptionCard
+                id={"educational-level"}
+                title={"Nivel de Estudios"}
+                array={context.vacantesData?.filters?.nivelDeEstudios}
+            />
         </FiltersWrapper>
     );
 }

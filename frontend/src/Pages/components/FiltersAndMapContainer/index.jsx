@@ -1,4 +1,5 @@
-import "./styles.css";
+import React from "react";
+import { AppContext } from "../../../Context";
 
 import { SearchInput } from "../SearchInput";
 import { JobBoardGrid } from "../JobBoardGrid";
@@ -8,8 +9,9 @@ import { FiltersInputs } from "../FiltersInputs";
 import { Map } from "../Map";
 import { ResultsGrid } from "../ResultsGrid";
 import { Title } from "../Title";
-import { AppContext } from "../../../Context";
-import React from "react";
+
+import "./styles.css";
+
 
 const FiltersAndMapContainer = () => {
     const context = React.useContext(AppContext);
