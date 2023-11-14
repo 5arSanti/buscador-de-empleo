@@ -20,7 +20,7 @@
     transition: all .25s ease;
 }
 .results-card-container:hover {
-    border-right: 5px solid #f312e2;
+    border-right: 5px solid var(--municipios-and-result-border-clicked);
     background-color: var(--results-card-hover);
 }
 

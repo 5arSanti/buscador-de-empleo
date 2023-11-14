@@ -1,10 +1,12 @@
 import "./styles.css";
 
-const JobBoardCard = ({icon, text, onClick}) => {
+const JobBoardCard = ({icon, text, onClick, isActive}) => {
     return(
         <button 
-            className="job-board-container"
-            onClick={() => onClick()}
+            className={`job-board-container ${isActive ? "job-board-active" : ""}`}
+            onClick={() => {
+                onClick();
+            }}
         >
             {icon}
             <p>{text}</p>

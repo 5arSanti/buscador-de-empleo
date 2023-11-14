@@ -32,6 +32,7 @@ const AppProvider = ({children}) => {
         NIVEL_ESTUDIOS: "",
         DEPARTAMENTO: "",
         HIDROCARBUROS: "",
+        PLAZA_PRACTICA: "",
     });
 
     const handleFilterChange = (filterName, value) => {
@@ -96,7 +97,10 @@ const AppProvider = ({children}) => {
     }
 
     //CAMBIO DE COLORES
+    const [activeButton, setActiveButton] = React.useState(1);
+
     const handleColorsByFilters = (type) => {
+        setActiveButton(type);
         const root = document.documentElement;
         
         switch (type) {
@@ -110,6 +114,15 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--municipios-and-result-border-clicked', '#5D59DC');
             break;
             case 2:
+                root.style.setProperty("--navbar-color", "#9C0000");
+                root.style.setProperty("--navbar-responsive-color", "rgba(255, 14, 14, 0.75)");
+                root.style.setProperty("--main-body-color", "#FFEEEE");
+                root.style.setProperty('--main-title-color', 'rgb(142, 0, 0)');
+                root.style.setProperty('--all-info-container-color', '#FFDCDC');
+                root.style.setProperty('--input-and-info-container-color', '#E16A6A');
+                root.style.setProperty('--municipios-and-result-border-clicked', '#DC5959');
+            break;
+            case 3:
                 root.style.setProperty("--navbar-color", "#009C5F");
                 root.style.setProperty("--navbar-responsive-color", "rgba(35, 223, 129, 0.75)");
                 root.style.setProperty("--main-body-color", "#EEFFF5");
@@ -118,7 +131,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--input-and-info-container-color', '#6AE197');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#4BC472');
             break;
-            case 3:
+            case 4:
                 root.style.setProperty("--navbar-color", "#9C7B00");
                 root.style.setProperty("--navbar-responsive-color", "rgba(255, 223, 65, 0.75)");
                 root.style.setProperty("--main-body-color", "#FFFCEE");
@@ -127,7 +140,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--input-and-info-container-color', '#E1CA6A');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#C4A34B');
             break;
-            case 4:
+            case 5:
                 root.style.setProperty("--navbar-color", "#23009C");
                 root.style.setProperty("--navbar-responsive-color", "rgba(111, 65, 255, 0.75)");
                 root.style.setProperty("--main-body-color", "#F2EEFF");
@@ -136,7 +149,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--input-and-info-container-color', '#816AE1');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#684BC4');
             break;
-            case 5:
+            case 6:
                 root.style.setProperty("--navbar-color", "#9C0055");
                 root.style.setProperty("--navbar-responsive-color", "rgba(255, 65, 166, 0.75)");
                 root.style.setProperty("--main-body-color", "#FFEEF6");
@@ -223,6 +236,8 @@ const AppProvider = ({children}) => {
 
                 //COLORES POR FILTRO
                 handleColorsByFilters,
+                activeButton,
+                setActiveButton,
             }}
         >
             {children}

@@ -16,7 +16,8 @@
     font-size: 14px;
     font-weight: lighter;
 
-    transition: transform 0.25s ease;
+    transition: all 0.25s ease;
+    box-sizing: border-box;
 }
 .job-board-container:hover {
     transform: scaleX(1.05);
@@ -25,4 +26,14 @@
     width: 25px;
     height: 25px;
     fill: #000;
+}
+
+.job-board-active {
+    background: var(--municipios-and-result-border-clicked)
+}
+.job-board-active p {
+    color: var(--white);
+}
+.job-board-active svg {
+    fill: var(--white);
 }
