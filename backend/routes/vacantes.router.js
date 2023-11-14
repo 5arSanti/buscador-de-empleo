@@ -32,6 +32,7 @@ router.get("/resultados", async (request, response) => {
             OFFSET ${offset} ROWS
             FETCH NEXT ${PAGE_SIZE} ROWS ONLY
         `;
+		console.log(baseQuery)
 
 		// TOTAL REGISTROS SEGUN BUSQUUEDA
         const resultCountQuery = await sql.query(`
@@ -44,6 +45,18 @@ router.get("/resultados", async (request, response) => {
 		const totalRegistrosQuery = await sql.query(`SELECT COUNT(*) AS total FROM Vacantes_Vigentes_Completo`);
 		const total = totalRegistrosQuery.recordset[0].total;
 
+		// TOTAL VACANTES EN DEPARTAMENTOS
+        const resultsCountQuery = await sql.query(`
+            SELECT DEPARTAMENTO, COUNT(*) AS total_vacantes
+            FROM Vacantes_Vigentes_Completo
+			${filterConditions ? `WHERE ${filterConditions}` : ""}
+            GROUP BY DEPARTAMENTO
+        `);
+        const total_departments = resultsCountQuery.recordset.map(row => ({
+            department: row.DEPARTAMENTO,
+            total: row.total_vacantes
+        }));
+
 		const resultsQuery = await sql.query(baseQuery);
         const totalPages = Math.ceil(total_registros / PAGE_SIZE);
 
@@ -52,7 +65,8 @@ router.get("/resultados", async (request, response) => {
 			totalPages,
 			currentPage: page,
 			total_registros,
-			total
+			total,
+			total_departments
 		});
 	}
 	catch (err) {

@@ -24,14 +24,18 @@ const MunicipalityGrid = () => {
                 <MunicipalityCard
                     text={"Todo"}
                     value={context.vacantesData?.total}
-                    onClick={() => context.handleFilterChange("DEPARTAMENTO", "")}
+                    onClick={() => {
+                        context.handleFilterChange("DEPARTAMENTO", "")
+                    }}
                 />
                 {sortedTotalDepartments?.map((item, index) => (
                     <MunicipalityCard
                         key={index}
                         text={item.department}
                         value={item.total}
-                        onClick={(value) => context.handleFilterChange("DEPARTAMENTO", value)}
+                        onClick={(value) => {
+                            context.handleFilterChange("DEPARTAMENTO", value)
+                        }}
                     />   
                 ))}
 

@@ -28,24 +28,42 @@ const JobBoardGrid = () => {
             <JobBoardCard
                 icon={<BsFillBuildingFill/>}
                 text={"Plaza de Prácticas"}
-                onCLick={() => context.handleFilterChange("HIDROCARBUROS", "")}
+                onClick={() => {
+                    context.handleFilterChange("HIDROCARBUROS", "");
+                    context.handleColorsByFilters(1);
+                }}
             />
             <JobBoardCard
                 icon={<PiGasCanFill/>}
                 text={"Hidrocarburos"}
-                onCLick={() => context.handleFilterChange("HIDROCARBUROS", 1)}
+                onClick={() => {
+                    context.handleFilterChange("HIDROCARBUROS", 1)
+                    context.handleColorsByFilters(2);
+                }}
             />
             <JobBoardCard
                 icon={<BsFillPersonFill/>}
                 text={"Joven"}
+                onClick={() => {
+                    context.handleFilterChange("HIDROCARBUROS", "")
+                    context.handleColorsByFilters(3);
+                }}
             />
             <JobBoardCard
                 icon={<HiUserGroup/>}
                 text={"Jóvenes"}
+                onClick={() => {
+                    context.handleFilterChange("HIDROCARBUROS", "")
+                    context.handleColorsByFilters(4);
+                }}
             />
             <JobBoardCard
                 icon={<MdElderly/>}
                 text={"Adulto Mayor"}
+                onClick={() => {
+                    context.handleFilterChange("HIDROCARBUROS", "")
+                    context.handleColorsByFilters(5);
+                }}
             />
         </FiltersWrapper>
     );

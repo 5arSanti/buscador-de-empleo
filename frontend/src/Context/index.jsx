@@ -60,7 +60,7 @@ const AppProvider = ({children}) => {
 
             const endpoints = [
                 `vacantes/resultados?page=${page}&${filterParams.toString()}`,
-                "departamentos/total",
+                // "departamentos/total",
                 "filters"
                 /* otros endpoints */
             ];
@@ -95,6 +95,64 @@ const AppProvider = ({children}) => {
             setCurrentPage(1);
     }
 
+        //CAMBIO DE COLORES
+        const handleColorsByFilters = (type) => {
+            // Obtén el elemento que contiene las variables CSS
+            const root = document.documentElement;
+        
+            // Realiza el cambio en función de los parámetros recibidos
+            switch (type) {
+                case 1:
+                    root.style.setProperty("--navbar-color", "#00589c");
+                    root.style.setProperty("--navbar-responsive-color", "rgba(65, 114, 255, 0.75)");
+                    root.style.setProperty("--main-body-color", "#EEFAFF");
+                    root.style.setProperty('--main-title-color', 'rgb(0, 105, 142)');
+                    root.style.setProperty('--all-info-container-color', '#DCF6FF');
+                    root.style.setProperty('--input-and-info-container-color', '#6ABFE1');
+                    root.style.setProperty('--municipios-and-result-border-clicked', '#5D59DC');
+                break;
+                case 2:
+                    root.style.setProperty("--navbar-color", "#009C5F");
+                    root.style.setProperty("--navbar-responsive-color", "rgba(35, 223, 129, 0.75)");
+                    root.style.setProperty("--main-body-color", "#EEFFF5");
+                    root.style.setProperty('--main-title-color', 'rgb(0, 105, 77)');
+                    root.style.setProperty('--all-info-container-color', '#DCFFEC');
+                    root.style.setProperty('--input-and-info-container-color', '#6AE197');
+                    root.style.setProperty('--municipios-and-result-border-clicked', '#4BC472');
+                break;
+                case 3:
+                    root.style.setProperty("--navbar-color", "#9C7B00");
+                    root.style.setProperty("--navbar-responsive-color", "rgba(255, 223, 65, 0.75)");
+                    root.style.setProperty("--main-body-color", "#FFFCEE");
+                    root.style.setProperty('--main-title-color', 'rgb(105, 77, 0)');
+                    root.style.setProperty('--all-info-container-color', '#FFF8DC');
+                    root.style.setProperty('--input-and-info-container-color', '#E1CA6A');
+                    root.style.setProperty('--municipios-and-result-border-clicked', '#C4A34B');
+                break;
+                case 4:
+                    root.style.setProperty("--navbar-color", "#23009C");
+                    root.style.setProperty("--navbar-responsive-color", "rgba(111, 65, 255, 0.75)");
+                    root.style.setProperty("--main-body-color", "#F2EEFF");
+                    root.style.setProperty('--main-title-color', 'rgb(22, 0, 105)');
+                    root.style.setProperty('--all-info-container-color', '#E3DCFF');
+                    root.style.setProperty('--input-and-info-container-color', '#816AE1');
+                    root.style.setProperty('--municipios-and-result-border-clicked', '#684BC4');
+                break;
+                case 5:
+                    root.style.setProperty("--navbar-color", "#9C0055");
+                    root.style.setProperty("--navbar-responsive-color", "rgba(255, 65, 166, 0.75)");
+                    root.style.setProperty("--main-body-color", "#FFEEF6");
+                    root.style.setProperty('--main-title-color', 'rgb(142, 0, 73)');
+                    root.style.setProperty('--all-info-container-color', '#FFDCEE');
+                    root.style.setProperty('--input-and-info-container-color', '#E16AA9');
+                    root.style.setProperty('--municipios-and-result-border-clicked', '#C44B8B');
+                break;
+                // Agrega más casos según sea necesario
+        
+                default:
+                    break;
+            }
+        }
 
     // Screen Width
     const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
@@ -163,8 +221,10 @@ const AppProvider = ({children}) => {
                 setFilters,
                 handleFilterChange,
                 handlePagination,
-                setCurrentPage
+                setCurrentPage,
 
+                //COLORES POR FILTRO
+                handleColorsByFilters,
             }}
         >
             {children}
