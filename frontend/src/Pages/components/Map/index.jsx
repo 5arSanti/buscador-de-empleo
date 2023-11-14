@@ -64,6 +64,12 @@ const Map = () => {
         "ARCHIPIÉLAGO DE SAN ANDRÉS, PROVIDENCIA Y SANTA CATALINA": "#F312E2",
     }
 
+    const departmentColorSelect = (item) => {
+        let color = context.selectedDepartment ? 
+            (context.selectedDepartment === item.properties.NOMBRE_DPT ? departmentColors[item.properties.NOMBRE_DPT] : "#D3D3D3") : 
+                departmentColors[item.properties.NOMBRE_DPT]
+        return color;
+    }
 
 
     return(
@@ -81,17 +87,17 @@ const Map = () => {
             >
                 <Geographies geography={geoUrl}>
                     {({ geographies }) => (
-                    geographies.map((geo) => (
-                        <Geography
-                            key={geo.properties.ID}
-                            geography={geo}
-                            fill={departmentColors[geo.properties.NOMBRE_DPT]}
-                            stroke="#FFF"
-                            onMouseEnter={(event) => {context.handleMapMouseEnter(event, geo)}}
-                            onMouseLeave={context.handleMapMouseLeave}
-                            onClick={() => {context.handleFilterChange("DEPARTAMENTO", geo.properties.NOMBRE_DPT)}}
-                        />
-                    ))
+                        geographies.map((geo) => (
+                            <Geography
+                                key={geo.properties.ID}
+                                geography={geo}
+                                fill={departmentColorSelect(geo)}
+                                stroke="#FFF"
+                                onMouseEnter={(event) => {context.handleMapMouseEnter(event, geo)}}
+                                onMouseLeave={context.handleMapMouseLeave}
+                                onClick={() => context.saveSelectedDepartment(geo.properties.NOMBRE_DPT)}
+                            />
+                        ))
                     )}
                 </Geographies>
             </ComposableMap>
@@ -109,17 +115,17 @@ const Map = () => {
                 >
                     <Geographies geography={sanAndresURl}>
                         {({ geographies }) => (
-                        geographies.map((geo) => (
-                            <Geography
-                                key={geo.properties.ID}
-                                geography={geo}
-                                fill={"#F312E2"}
-                                stroke="#FFF"
-                                onMouseEnter={(event) => {context.handleMapMouseEnter(event, geo)}}
-                                onMouseLeave={context.handleMapMouseLeave}
-                                onClick={() => {context.handleFilterChange("DEPARTAMENTO", geo.properties.NOMBRE_DPT)}}
-                            />
-                        ))
+                            geographies.map((geo) => (
+                                <Geography
+                                    key={geo.properties.ID}
+                                    geography={geo}
+                                    fill={departmentColorSelect(geo)}
+                                    stroke="#FFF"
+                                    onMouseEnter={(event) => {context.handleMapMouseEnter(event, geo)}}
+                                    onMouseLeave={context.handleMapMouseLeave}
+                                    onClick={() => context.saveSelectedDepartment(geo.properties.NOMBRE_DPT)}
+                                />
+                            ))
                         )}
                     </Geographies>
                 </ComposableMap>
@@ -134,16 +140,17 @@ const Map = () => {
                 >
                     <Geographies geography={sanAndresURl}>
                         {({ geographies }) => (
-                        geographies.map((geo) => (
-                            <Geography
-                                key={geo.properties.ID}
-                                geography={geo}
-                                fill={"#F312E2"}
-                                stroke="#FFF"
-                                onMouseEnter={(event) => {context.handleMapMouseEnter(event, geo)}}
-                                onMouseLeave={context.handleMapMouseLeave}
-                            />
-                        ))
+                            geographies.map((geo) => (
+                                <Geography
+                                    key={geo.properties.ID}
+                                    geography={geo}
+                                    fill={departmentColorSelect(geo)}
+                                    stroke="#FFF"
+                                    onMouseEnter={(event) => {context.handleMapMouseEnter(event, geo)}}
+                                    onMouseLeave={context.handleMapMouseLeave}
+                                    onClick={() => context.saveSelectedDepartment(geo.properties.NOMBRE_DPT)}
+                                />
+                            ))
                         )}
                     </Geographies>
                 </ComposableMap>

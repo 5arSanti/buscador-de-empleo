@@ -3,7 +3,7 @@
 
     z-index: 1;
     width: 250px;
-    height: 150px;
+    min-height: 150px;
 
     position: absolute;
     top: 130px;
@@ -42,6 +42,20 @@
     font-style: italic;
 }
 
+.tool-tip-container button {
+    border-radius: 5px;
+    color: var(--white);
+    cursor: pointer;
+
+    padding: 5px;
+    background-color: var(--delete-selection-button-color);
+    opacity: .8;
+
+    transition: all 0.2s ease;
+}
+.tool-tip-container button:hover {
+    opacity: 1;
+}
 
 
 @media (max-width: 1100px) {

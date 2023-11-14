@@ -19,13 +19,13 @@ const MunicipalityGrid = () => {
             <SubTitle text="Municipios"/>
 
             <ScrollableWrapper
-                maxHeight={350}
+                maxHeight={295}
             >
                 <MunicipalityCard
                     text={"Todo"}
                     value={context.vacantesData?.total}
                     onClick={() => {
-                        context.handleFilterChange("DEPARTAMENTO", "")
+                        context.clearSelectedDepartment();
                     }}
                 />
                 {sortedTotalDepartments?.map((item, index) => (
@@ -33,9 +33,7 @@ const MunicipalityGrid = () => {
                         key={index}
                         text={item.department}
                         value={item.total}
-                        onClick={(value) => {
-                            context.handleFilterChange("DEPARTAMENTO", value)
-                        }}
+                        onClick={(value) => context.saveSelectedDepartment(value)}
                     />   
                 ))}
 

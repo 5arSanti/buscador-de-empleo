@@ -180,7 +180,17 @@ const AppProvider = ({children}) => {
     const [toggleNavBarResponsive, setToggleNavBarResponsive] = React.useState(false);
 
     //ToolTipMap
+    const [selectedDepartment, setSelectedDepartment] = React.useState(null);
     const [tooltipContent, setTooltipContent] = React.useState('');
+
+    const saveSelectedDepartment = (name) => {
+        handleFilterChange("DEPARTAMENTO", name)
+        setSelectedDepartment(name);
+    }
+    const clearSelectedDepartment = () => {
+        handleFilterChange("DEPARTAMENTO", "")
+        setSelectedDepartment(null);
+    }
 
     const handleMapMouseEnter = (event, department) => {
         const departmentData = vacantesData?.total_departments?.find((data) => data.department === department.properties.NOMBRE_DPT);
@@ -223,6 +233,11 @@ const AppProvider = ({children}) => {
                 setWindowWidth,
 
                 //Eventos del Mapa
+                saveSelectedDepartment,
+                clearSelectedDepartment,
+
+                selectedDepartment,
+                setSelectedDepartment,
                 tooltipContent,
                 setTooltipContent,
                 handleMapMouseEnter,

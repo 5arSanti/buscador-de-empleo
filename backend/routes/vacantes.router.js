@@ -32,7 +32,6 @@ router.get("/resultados", async (request, response) => {
             OFFSET ${offset} ROWS
             FETCH NEXT ${PAGE_SIZE} ROWS ONLY
         `;
-		console.log(baseQuery)
 
 		// TOTAL REGISTROS SEGUN BUSQUUEDA
         const resultCountQuery = await sql.query(`

@@ -28,6 +28,8 @@
     --results-card-hover: rgba(250,250, 250);
     --municipio-card-clicked: #F2F2F2;
     --results-image-hover: rgba(0,0,0, 0.20);
+
+    --delete-selection-button-color: #DA4F6A;
 }
 
 .high-contrast {
