@@ -12,6 +12,8 @@
 
     background-color: var(--navbar-color);
     padding-right: 40px;
+
+    transition: all 0.2s ease;
 }
 
 .banner-image {

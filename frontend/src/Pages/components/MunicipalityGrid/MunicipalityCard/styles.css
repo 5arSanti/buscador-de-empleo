@@ -15,9 +15,11 @@
     cursor: pointer;
     box-sizing: border-box;
     border-left: 5px solid var(--white);
+    transition: all 0.2s ease;
 }
 .municipality-card-container:hover{
     background-color: var(--white);
+    border-left: 5px solid var(--municipios-and-result-border-clicked);
 }
 
 .municipality-card-container p {
@@ -33,9 +35,4 @@
 }
 .municipality-card-container p:nth-child(2) {
     font-family: 'Courier New', Courier, monospace;
-}
-
-.municipality-card-container-clicked {
-    background-color: var(--white);
-    border-left: 5px solid var(--municipios-and-result-border-clicked);
 }

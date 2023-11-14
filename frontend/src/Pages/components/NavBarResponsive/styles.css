@@ -13,6 +13,8 @@
 
     background: var(--navbar-responsive-color);
     gap: 10px;
+
+    transition: all 0.2s ease;
 }
 
 .navbar-responsive-text-container {
