@@ -21,13 +21,15 @@ const MunicipalityGrid = () => {
             <ScrollableWrapper
                 maxHeight={295}
             >
-                <MunicipalityCard
-                    text={"Todo"}
-                    value={context.vacantesData?.total}
-                    onClick={() => {
-                        context.clearSelectedDepartment();
-                    }}
-                />
+                {context.vacantesData?.total_departments?.length === 1 &&
+                    <MunicipalityCard
+                        text={"Todos los Departamentos"}
+                        value={null}
+                        onClick={() => {
+                            context.clearSelectedDepartment();
+                        }}
+                    />
+                }
                 {sortedTotalDepartments?.map((item, index) => (
                     <MunicipalityCard
                         key={index}
