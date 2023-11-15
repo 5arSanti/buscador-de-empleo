@@ -32,9 +32,7 @@ const MunicipalityGrid = () => {
                 <LoadingCardSmall/>
                 <LoadingCardSmall/>
 
-                {(context.vacantesData?.total_departments?.length === 1 && !context.loading) ||
-                (context.vacantesData?.total_departments?.length === 0 && !context.loading)
-                &&
+                {context.vacantesData?.total_departments?.length <= 1 && !context.loading &&
                     <MunicipalityCard
                         text={"Todos los Departamentos"}
                         value={null}

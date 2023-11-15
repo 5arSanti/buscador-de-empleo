@@ -22,8 +22,12 @@ const ToolTipMap = ({ content }) => {
 
             <div className="tool-tip-info-container">
                 <p>Vacantes: </p>
-                {context.selectedDepartment && context.vacantesData.total_departments.length === 1 ?
-                    <p>{context.vacantesData?.total_departments[0]?.total}</p> : <p>{content.totalVacantes}</p>
+                {context.selectedDepartment && context.vacantesData.total_departments.length <= 1 ?
+                    <p>{
+                        context.vacantesData?.total_departments[0]?.total || 
+                        context.vacantesData?.total_registros}
+                    </p> : 
+                    <p>{content.totalVacantes}</p>
                 }
             </div>
             {context.selectedDepartment &&
