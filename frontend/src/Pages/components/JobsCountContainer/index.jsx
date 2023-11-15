@@ -17,7 +17,7 @@ const JobsCountContainer = () => {
             <SubTitle fontSize={16} text={"Número total de ofertas de empleo hoy de acuerdo a su búsqueda."}/>
 
             <div className="count-container">
-                <p>{context.vacantesData.total_registros}</p>
+                <p>{context.vacantesData?.total_registros}</p>
             </div>
         </FiltersWrapper>
     );

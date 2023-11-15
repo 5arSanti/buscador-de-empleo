@@ -25,7 +25,9 @@ const FiltersAndMapContainer = () => {
                 >
                     Buscador de Empleo
                 </Title>
-                <SearchInput/>
+                <SearchInput
+                    onSearch={context.handleSearch}
+                />
                 
                 <FiltersInputs/>
 

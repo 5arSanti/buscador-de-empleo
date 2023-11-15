@@ -4,6 +4,7 @@ import { FiltersWrapper } from "../FiltersWrapper";
 import { ScrollableWrapper } from "../ScrollableWrapper";
 import { SubTitle } from "../SubTitle";
 import { MunicipalityCard } from "./MunicipalityCard";
+import { LoadingCardSmall } from "../LoadingCard";
 
 const MunicipalityGrid = () => {
     const context = React.useContext(AppContext);
@@ -21,7 +22,19 @@ const MunicipalityGrid = () => {
             <ScrollableWrapper
                 maxHeight={295}
             >
-                {context.vacantesData?.total_departments?.length === 1 &&
+                <LoadingCardSmall/>
+                <LoadingCardSmall/>
+                <LoadingCardSmall/>
+                <LoadingCardSmall/>
+                <LoadingCardSmall/>
+                <LoadingCardSmall/>
+                <LoadingCardSmall/>
+                <LoadingCardSmall/>
+                <LoadingCardSmall/>
+
+                {(context.vacantesData?.total_departments?.length === 1 && !context.loading) ||
+                (context.vacantesData?.total_departments?.length === 0 && !context.loading)
+                &&
                     <MunicipalityCard
                         text={"Todos los Departamentos"}
                         value={null}
@@ -30,7 +43,7 @@ const MunicipalityGrid = () => {
                         }}
                     />
                 }
-                {sortedTotalDepartments?.map((item, index) => (
+                { !context.loading && sortedTotalDepartments?.map((item, index) => (
                     <MunicipalityCard
                         key={index}
                         text={item.department}

@@ -39,7 +39,7 @@ const JobBoardGrid = () => {
                 icon={<BsFillBuildingFill/>}
                 text={"Plaza de Prácticas"}
                 onClick={() => {
-                    context.handleFilterChange("HIDROCARBUROS", 1)
+                    context.handleFilterChange("HIDROCARBUROS", "")
                     context.handleFilterChange("PLAZA_PRACTICA", 1);
                     context.handleColorsByFilters(2);
                 }}

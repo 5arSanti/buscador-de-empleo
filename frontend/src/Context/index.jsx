@@ -15,7 +15,8 @@ const AppProvider = ({children}) => {
 	//-------------------------------------
     const [apiUri, setApiUri] = React.useState(api);
 
-
+    //LOADING, ERROR
+    const [loading, setLoading] = React.useState(null);
 
 
     // VACANTES:
@@ -23,6 +24,8 @@ const AppProvider = ({children}) => {
 
     const [currentPage, setCurrentPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(1);
+
+    const [searchValue, setSearchValue] = React.useState("");
 
     const [filters, setFilters] = React.useState({
         RANGO_SALARIAL: "",
@@ -33,10 +36,15 @@ const AppProvider = ({children}) => {
         DEPARTAMENTO: "",
         HIDROCARBUROS: "",
         PLAZA_PRACTICA: "",
+        BUSQUEDA: "",
     });
 
     const handleFilterChange = (filterName, value) => {
         setFilters((prevFilters) => ({ ...prevFilters, [filterName]: value }));
+    };
+
+    const handleSearch = (searchValue) => {
+        handleFilterChange("BUSQUEDA", searchValue);
     };
 
     const fetchData = async (endpoint) => {
@@ -57,11 +65,11 @@ const AppProvider = ({children}) => {
 
     const fetchAllData = async (page) => {
         try {
+            setLoading(true);
             const filterParams = new URLSearchParams(filters);
 
             const endpoints = [
                 `vacantes/resultados?page=${page}&${filterParams.toString()}`,
-                // "departamentos/total",
                 "filters"
                 /* otros endpoints */
             ];
@@ -74,11 +82,13 @@ const AppProvider = ({children}) => {
             }, {});
 
             setVacantesData(combinedResults);
-            console.log(combinedResults);
             setTotalPages(combinedResults.totalPages);
 
         } catch (err) {
             alert(err.message);
+        }
+        finally {
+            setLoading(false);
         }
     };
 
@@ -95,6 +105,8 @@ const AppProvider = ({children}) => {
         else
             setCurrentPage(1);
     }
+
+
 
     //CAMBIO DE COLORES
     const [activeButton, setActiveButton] = React.useState(1);
@@ -157,13 +169,19 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--all-info-container-color', '#FFDCEE');
                 root.style.setProperty('--input-and-info-container-color', '#E16AA9');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#C44B8B');
-            break;
-            // Agrega más casos según sea necesario
-    
+            break;    
             default:
-                break;
+                root.style.setProperty("--navbar-color", "#00589c");
+                root.style.setProperty("--navbar-responsive-color", "rgba(65, 114, 255, 0.75)");
+                root.style.setProperty("--main-body-color", "#EEFAFF");
+                root.style.setProperty('--main-title-color', 'rgb(0, 105, 142)');
+                root.style.setProperty('--all-info-container-color', '#DCF6FF');
+                root.style.setProperty('--input-and-info-container-color', '#6ABFE1');
+                root.style.setProperty('--municipios-and-result-border-clicked', '#5D59DC');
+            break;
         }
     }
+
 
     // Screen Width
     const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
@@ -178,6 +196,7 @@ const AppProvider = ({children}) => {
 
 
     const [toggleNavBarResponsive, setToggleNavBarResponsive] = React.useState(false);
+
 
     //ToolTipMap
     const [selectedDepartment, setSelectedDepartment] = React.useState(null);
@@ -219,6 +238,8 @@ const AppProvider = ({children}) => {
         <AppContext.Provider
             value={{
                 apiUri,
+                loading,
+                setLoading,
 
                 //VACANTES
                 vacantesData,
@@ -248,6 +269,9 @@ const AppProvider = ({children}) => {
                 handleFilterChange,
                 handlePagination,
                 setCurrentPage,
+                searchValue,
+                setSearchValue,
+                handleSearch,
 
                 //COLORES POR FILTRO
                 handleColorsByFilters,
