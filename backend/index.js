@@ -13,6 +13,7 @@ const port = 3080;
 app.use(express.json());
 const whiteList = [
 	"http://localhost:5173",
+	"http://127.0.0.1:5173",
 	"https://buscadordeempleo.gov.co/"
 ];
 const options = {

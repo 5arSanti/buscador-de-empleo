@@ -41,6 +41,7 @@ const AppProvider = ({children}) => {
 
     const handleFilterChange = (filterName, value) => {
         setFilters((prevFilters) => ({ ...prevFilters, [filterName]: value }));
+        setCurrentPage(1);
     };
 
     const handleSearch = (searchValue) => {
