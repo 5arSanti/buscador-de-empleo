@@ -1,6 +1,6 @@
 //Dependencies
 import React from "react";
-import { BrowserRouter, useLocation, useRoutes } from "react-router-dom";
+import { BrowserRouter, Navigate, useLocation, useRoutes } from "react-router-dom";
 
 //App
 import './App.css'
@@ -29,6 +29,7 @@ const Wrapper = ({children}) => {
 const AppRoutes = () => {
     let routes = useRoutes([
         {path: "/", element: <Home/>},
+        {path: "/*", element: <Navigate to={"/"}/>},
     ]);
     
     return routes;

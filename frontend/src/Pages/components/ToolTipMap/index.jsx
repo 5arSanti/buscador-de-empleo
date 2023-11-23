@@ -11,7 +11,7 @@ const ToolTipMap = ({ content }) => {
             <SubTitle
                 text={"Pase el cursor por encima o dele click al departamento para ver mas opciones"}
                 fontSize={11}
-                color="#7B7B7B"
+                color={context.activeHighContrast ? "#FFFFFF" : "#7B7B7B"}
             />
             <div className="tool-tip-info-container">
                 <p>Departamento:</p>

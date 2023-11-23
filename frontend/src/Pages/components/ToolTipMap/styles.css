@@ -36,7 +36,7 @@
     font-style: italic;
 }
 .tool-tip-info-container p:nth-child(2) {
-    color: var(--result-text-card);
+    color: var(--tool-tip-map-text-color);
     font-size: 13px;
     font-weight: bold;
     font-style: italic;

@@ -37,7 +37,7 @@
 
     background-color: transparent;
     border: none;
-    border-bottom: 1px solid var(--navbar-color);
+    border-bottom: 1px solid var(--municipios-and-result-border-clicked);
 
     color: var(--white);
     font-weight: bold;
@@ -47,7 +47,7 @@
 }
 .pagination-buttons-container p input:focus{
     background-color: var(--white-025);
-    border: 1px solid var(--navbar-color);
+    border: 1px solid var(--municipios-and-result-border-clicked);
 }
 .pagination-buttons-container p input:hover{
     background-color: var(--white-025);

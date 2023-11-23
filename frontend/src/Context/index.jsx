@@ -111,11 +111,29 @@ const AppProvider = ({children}) => {
 
     //CAMBIO DE COLORES
     const [activeButton, setActiveButton] = React.useState(1);
+    const [activeHighContrast, setActiveHighContrast] = React.useState(false);
 
-    const handleColorsByFilters = (type) => {
+    React.useEffect(() => {
+        handleColorsByFilters();
+    }, [activeHighContrast])
+
+    const handleColorsByFilters = (type = activeButton) => {
         setActiveButton(type);
-        const root = document.documentElement;
-        
+        const root = document.documentElement;        
+
+        console.log(activeHighContrast);
+        if(activeHighContrast) {
+            root.style.setProperty("--navbar-color", "#000000");
+            root.style.setProperty("--navbar-responsive-color", "rgba(0, 0, 0, 0.75)");
+            root.style.setProperty("--main-body-color", "#434343");
+            root.style.setProperty('--main-title-color', 'rgb(255, 255, 255)');
+            root.style.setProperty('--all-info-container-color', '#353535');
+            root.style.setProperty('--input-and-info-container-color', '#000000');
+            root.style.setProperty('--municipios-and-result-border-clicked', '#434343');
+            root.style.setProperty("--tool-tip-map-text-color", "#FFFFFF");
+            return;
+        }
+
         switch (type) {
             case 1:
                 root.style.setProperty("--navbar-color", "#00589c");
@@ -179,6 +197,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--all-info-container-color', '#DCF6FF');
                 root.style.setProperty('--input-and-info-container-color', '#6ABFE1');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#5D59DC');
+                root.style.setProperty("--tool-tip-map-text-color", "#7B7B7B")
             break;
         }
     }
@@ -278,6 +297,8 @@ const AppProvider = ({children}) => {
                 handleColorsByFilters,
                 activeButton,
                 setActiveButton,
+                activeHighContrast,
+                setActiveHighContrast,
             }}
         >
             {children}

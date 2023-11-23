@@ -1,11 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-const sql = require("mssql");
 
 const routerApi = require("./routes");
-
-
-const { logErrors, boomErrorHandler, errorHandler } = require("./middlewares/error.handler");
 
 const app = express();
 const port = 3080;
@@ -34,10 +30,6 @@ app.get("/", (request, response) => {
 });
 
 routerApi(app);
-
-app.use(logErrors);
-app.use(boomErrorHandler);
-app.use(errorHandler);
 
 app.listen(port, () => {
     console.log("Escuchando en el puerto: " + port);

@@ -65,10 +65,24 @@ const Map = () => {
     }
 
     const departmentColorSelect = (item) => {
-        let color = context.selectedDepartment ? 
-            (context.selectedDepartment === item.properties.NOMBRE_DPT ? departmentColors[item.properties.NOMBRE_DPT] : "#D3D3D3") : 
-                departmentColors[item.properties.NOMBRE_DPT]
-        return color;
+        // let color = context.selectedDepartment ? 
+        //     (context.selectedDepartment === item.properties.NOMBRE_DPT ? departmentColors[item.properties.NOMBRE_DPT] : "#D3D3D3") : 
+        //         departmentColors[item.properties.NOMBRE_DPT]
+        // return color;
+
+        if (context.activeHighContrast) {
+            // return item.stroke === "#000" ? "#FFF" : "#000";
+            return context.selectedDepartment ? 
+                context.selectedDepartment === item.properties.NOMBRE_DPT ? 
+                "#FFF" : "#000" : "#000";
+          }
+        else {
+            return context.selectedDepartment ? 
+                context.selectedDepartment === item.properties.NOMBRE_DPT ? 
+                departmentColors[item.properties.NOMBRE_DPT] :
+                "#D3D3D3" : 
+                departmentColors[item.properties.NOMBRE_DPT];
+          }
     }
 
 
@@ -92,7 +106,7 @@ const Map = () => {
                                 key={geo.properties.ID}
                                 geography={geo}
                                 fill={departmentColorSelect(geo)}
-                                stroke="#FFF"
+                                stroke={"#FFF"}
                                 onMouseEnter={(event) => {context.handleMapMouseEnter(event, geo)}}
                                 onMouseLeave={context.handleMapMouseLeave}
                                 onClick={() => context.saveSelectedDepartment(geo.properties.NOMBRE_DPT)}

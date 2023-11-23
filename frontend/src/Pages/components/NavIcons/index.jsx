@@ -6,8 +6,12 @@ import { FaHandsAslInterpreting } from "react-icons/fa6";
 import { ImBrightnessContrast } from "react-icons/im";
 
 import "./styles.css";
+import React from "react";
+import { AppContext } from "../../../Context";
 
 const NavIcons = ({flexDirection}) => {
+    const context = React.useContext(AppContext);
+
     return (
         <div className="nav-icons-container" style={{
             flexDirection: flexDirection,
@@ -27,7 +31,11 @@ const NavIcons = ({flexDirection}) => {
             <a href="https://www.youtube.com/playlist?list=PLR3vDr9Xh9bHEXggcO-0Bz1_UiaCCwqdh" title="Vídeos para la inclusión laboral de personas con discapacidad" target="__blank" rel="noopener noreferrer">
                 <FaHandsAslInterpreting/>
             </a>
-            <button title="Aplicar y quitar alto contraste para esta pagina">
+            <button title="Aplicar y quitar alto contraste para esta pagina"
+                onClick={() => {
+                    context.setActiveHighContrast(!context.activeHighContrast);
+                }}
+            >
                 <ImBrightnessContrast/>
             </button>
         </div>
