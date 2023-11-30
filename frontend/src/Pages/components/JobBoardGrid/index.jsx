@@ -31,6 +31,8 @@ const JobBoardGrid = () => {
                 onClick={() => {
                     context.handleFilterChange("HIDROCARBUROS", "")
                     context.handleFilterChange("PLAZA_PRACTICA", "");
+                    context.handleFilterChange("DESCRIPCION_VACANTE", "")
+
                     context.handleColorsByFilters(1);
                 }}
                 isActive={context.activeButton === 1}
@@ -40,7 +42,9 @@ const JobBoardGrid = () => {
                 text={"Plaza de Prácticas"}
                 onClick={() => {
                     context.handleFilterChange("HIDROCARBUROS", "")
+                    context.handleFilterChange("DESCRIPCION_VACANTE", "")
                     context.handleFilterChange("PLAZA_PRACTICA", 1);
+
                     context.handleColorsByFilters(2);
                 }}
                 isActive={context.activeButton === 2}
@@ -50,6 +54,8 @@ const JobBoardGrid = () => {
                 text={"Hidrocarburos"}
                 onClick={() => {
                     context.handleFilterChange("PLAZA_PRACTICA", "");
+                    context.handleFilterChange("DESCRIPCION_VACANTE", "")
+
                     context.handleFilterChange("HIDROCARBUROS", 1)
                     context.handleColorsByFilters(3);
                 }}
@@ -60,6 +66,9 @@ const JobBoardGrid = () => {
                 text={"Joven"}
                 onClick={() => {
                     context.handleFilterChange("HIDROCARBUROS", "")
+                    context.handleFilterChange("PLAZA_PRACTICA", "");
+
+                    context.handleFilterChange("DESCRIPCION_VACANTE", "Programa de gobierno: Empleo P")
                     context.handleColorsByFilters(4);
                 }}
                 isActive={context.activeButton === 4}
@@ -69,6 +78,9 @@ const JobBoardGrid = () => {
                 text={"Jóvenes"}
                 onClick={() => {
                     context.handleFilterChange("HIDROCARBUROS", "")
+                    context.handleFilterChange("PLAZA_PRACTICA", "");
+                    context.handleFilterChange("DESCRIPCION_VACANTE", "")
+
                     context.handleColorsByFilters(5);
                 }}
                 isActive={context.activeButton === 5}
@@ -78,6 +90,9 @@ const JobBoardGrid = () => {
                 text={"Adulto Mayor"}
                 onClick={() => {
                     context.handleFilterChange("HIDROCARBUROS", "")
+                    context.handleFilterChange("PLAZA_PRACTICA", "");
+                    
+                    context.handleFilterChange("DESCRIPCION_VACANTE", "Programa de gobierno: Empleo Adulto")
                     context.handleColorsByFilters(6);
                 }}
                 isActive={context.activeButton === 6}

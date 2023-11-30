@@ -20,9 +20,10 @@ router.get("/resultados", async (request, response) => {
         const offset = (page - 1) * PAGE_SIZE;
 
         const searchTerm = request.query.BUSQUEDA || '';
+		const descriptionFilter = request.query.DESCRIPCION_VACANTE || '';
 
         const filterConditions = Object.keys(request.query)
-            .filter((key) => key !== "page" && request.query[key] !== "" && key !== "BUSQUEDA")
+            .filter((key) => key !== "page" && request.query[key] !== "" && key !== "BUSQUEDA" && key !== "DESCRIPCION_VACANTE")
             .map((key) => `${key} = '${request.query[key]}'`)
             .join(" AND ");
 
@@ -31,6 +32,7 @@ router.get("/resultados", async (request, response) => {
             SELECT *
             FROM Vacantes_Vigentes_Completo
             WHERE LOWER(BUSQUEDA) LIKE LOWER('%${searchTerm}%')
+			AND (DESCRIPCION_VACANTE) LIKE ('%${descriptionFilter}%')
             ${filterConditions ? `AND ${filterConditions}` : ""}
             ORDER BY CODIGO_VACANTE DESC
             OFFSET ${offset} ROWS
@@ -42,6 +44,7 @@ router.get("/resultados", async (request, response) => {
             SELECT COUNT(*) AS total_registros
             FROM Vacantes_Vigentes_Completo
             WHERE LOWER(BUSQUEDA) LIKE LOWER('%${searchTerm}%')
+			AND (DESCRIPCION_VACANTE) LIKE ('%${descriptionFilter}%')
             ${filterConditions ? `AND ${filterConditions}` : ""}`
         );
         const total_registros = totalRecordsBySearchQuery.recordset[0].total_registros;
@@ -58,6 +61,7 @@ router.get("/resultados", async (request, response) => {
             SELECT DEPARTAMENTO, COUNT(*) AS total_vacantes
             FROM Vacantes_Vigentes_Completo
             WHERE LOWER(BUSQUEDA) LIKE LOWER('%${searchTerm}%')
+			AND (DESCRIPCION_VACANTE) LIKE ('%${descriptionFilter}%')
             ${filterConditions ? `AND ${filterConditions}` : ""}
             GROUP BY DEPARTAMENTO
         `);

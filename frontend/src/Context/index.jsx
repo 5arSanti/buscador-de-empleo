@@ -37,6 +37,7 @@ const AppProvider = ({children}) => {
         HIDROCARBUROS: "",
         PLAZA_PRACTICA: "",
         BUSQUEDA: "",
+        DESCRIPCION_VACANTE: "",
     });
 
     const handleFilterChange = (filterName, value) => {

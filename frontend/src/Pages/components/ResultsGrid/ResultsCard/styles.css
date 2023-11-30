@@ -1,7 +1,7 @@
 .results-card-container {
     width: 100%;
-    height: 160px;
-    min-height: 160px;
+    height: 170px;
+    min-height: 170px;
     box-sizing: border-box;
     border-right: 5px solid var(--white);
 
@@ -90,6 +90,8 @@
 }
 .results-card-secondary-info p:nth-child(1){
     font-weight: bold;
+    max-height: 40px;
+    overflow-y: scroll;
 }
 .results-card-secondary-description {   
     max-height: 100px;
@@ -100,17 +102,17 @@
     color: var(--result-text-card);
     font-style: italic;
 }
-.results-card-secondary-description::-webkit-scrollbar {
+.results-card-secondary-info p::-webkit-scrollbar {
     width: 10px;
 }
-.results-card-secondary-description::-webkit-scrollbar-track {
+.results-card-secondary-info p::-webkit-scrollbar-track {
     background: transparent;
 }
-.results-card-secondary-description::-webkit-scrollbar-thumb {
+.results-card-secondary-info p::-webkit-scrollbar-thumb {
     background: #DDDDDD;
     border-radius: 5px;
 }
-.results-card-secondary-description::-webkit-scrollbar-thumb:hover {
+.results-card-secondary-info p::-webkit-scrollbar-thumb:hover {
     background: #C5C5C5;
 }
 
