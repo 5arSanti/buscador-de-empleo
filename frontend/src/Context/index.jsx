@@ -10,7 +10,8 @@ const AppProvider = ({children}) => {
     }
 
     //API -- Cambiar el valor de la variable api segun la infraestructura de produccion
-	const api = "http://localhost:3080/api/v1";
+    const domain = "http://localhost:3080";
+	const api = `${domain}/api/v1`;
 
 	//-------------------------------------
     const [apiUri, setApiUri] = React.useState(api);
