@@ -33,7 +33,7 @@ const ResultsCard = ({data}) => {
                             <FiExternalLink/>
                         </div>
                     }
-                    <img src="/icon.png" alt="Colsubsidio" />
+                    <img src="/icon.png" alt="" />
     
                 </a>
             }

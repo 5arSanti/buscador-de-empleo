@@ -32,6 +32,7 @@ const JobBoardGrid = () => {
                     context.handleFilterChange("HIDROCARBUROS", "")
                     context.handleFilterChange("PLAZA_PRACTICA", "");
                     context.handleFilterChange("DESCRIPCION_VACANTE", "")
+                    context.handleFilterChange("MESES_EXPERIENCIA_CARGO", "")
 
                     context.handleColorsByFilters(1);
                 }}
@@ -43,6 +44,7 @@ const JobBoardGrid = () => {
                 onClick={() => {
                     context.handleFilterChange("HIDROCARBUROS", "")
                     context.handleFilterChange("DESCRIPCION_VACANTE", "")
+
                     context.handleFilterChange("PLAZA_PRACTICA", 1);
 
                     context.handleColorsByFilters(2);
@@ -81,6 +83,8 @@ const JobBoardGrid = () => {
                     context.handleFilterChange("PLAZA_PRACTICA", "");
                     context.handleFilterChange("DESCRIPCION_VACANTE", "")
 
+                    // context.handleFilterChange("MESES_EXPERIENCIA_CARGO", "0")
+
                     context.handleColorsByFilters(5);
                 }}
                 isActive={context.activeButton === 5}
@@ -91,8 +95,8 @@ const JobBoardGrid = () => {
                 onClick={() => {
                     context.handleFilterChange("HIDROCARBUROS", "")
                     context.handleFilterChange("PLAZA_PRACTICA", "");
-                    
                     context.handleFilterChange("DESCRIPCION_VACANTE", "Programa de gobierno: Empleo Adulto")
+                    
                     context.handleColorsByFilters(6);
                 }}
                 isActive={context.activeButton === 6}
