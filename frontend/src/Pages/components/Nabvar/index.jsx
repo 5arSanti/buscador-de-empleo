@@ -27,6 +27,7 @@ const Navbar = () => {
                 :
                 <NavIcons
                     direction={"row"}
+                    showButtons={true}
                 />
             }
 

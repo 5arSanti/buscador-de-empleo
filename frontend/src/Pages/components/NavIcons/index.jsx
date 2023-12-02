@@ -1,3 +1,5 @@
+import { NavLink, useLocation } from "react-router-dom";
+
 import { ImYoutube } from "react-icons/im";
 import { AiOutlineInstagram } from "react-icons/ai";
 import { FaXTwitter } from "react-icons/fa6";
@@ -9,8 +11,10 @@ import "./styles.css";
 import React from "react";
 import { AppContext } from "../../../Context";
 
-const NavIcons = ({flexDirection}) => {
+const NavIcons = ({flexDirection, showButtons = false}) => {
     const context = React.useContext(AppContext);
+
+    const location = useLocation();
 
     return (
         <div className="nav-icons-container" style={{
@@ -38,6 +42,16 @@ const NavIcons = ({flexDirection}) => {
             >
                 <ImBrightnessContrast/>
             </button>
+            {showButtons &&
+                <NavLink 
+                    to={location.pathname === "/analitica" ? "/" : "analitica"} 
+                    className="nav-link"
+                >
+                    <button className="nav-button">
+                        {location.pathname === "/analitica" ? "Home" : "Analítica"}
+                    </button>
+                </NavLink>
+            }
         </div>
     );
 
