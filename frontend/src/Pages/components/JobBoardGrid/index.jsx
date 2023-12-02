@@ -63,7 +63,7 @@ const JobBoardGrid = () => {
                 }}
                 isActive={context.activeButton === 3}
             />
-            <JobBoardCard
+            {/* <JobBoardCard
                 icon={<BsFillPersonFill/>}
                 text={"Joven"}
                 onClick={() => {
@@ -83,8 +83,6 @@ const JobBoardGrid = () => {
                     context.handleFilterChange("PLAZA_PRACTICA", "");
                     context.handleFilterChange("DESCRIPCION_VACANTE", "")
 
-                    // context.handleFilterChange("MESES_EXPERIENCIA_CARGO", "0")
-
                     context.handleColorsByFilters(5);
                 }}
                 isActive={context.activeButton === 5}
@@ -100,7 +98,7 @@ const JobBoardGrid = () => {
                     context.handleColorsByFilters(6);
                 }}
                 isActive={context.activeButton === 6}
-            />
+            /> */}
         </FiltersWrapper>
     );
 }
