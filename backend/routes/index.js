@@ -6,7 +6,7 @@ const filtersRouter = require("./filters.router")
 
 const routerApi = (app) => {
 	const router = express.Router();
-	app.use("/api/v1", router);
+	app.use("bue/api/v1", router);
 
 	// Routes
 	router.use("/vacantes", vacantesRouter);
