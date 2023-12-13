@@ -2,6 +2,8 @@ import React from "react";
 
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 
+import { colombiaGeo, sanAndresGeo } from "../../../assets";
+
 import "./styles.css";
 import { AppContext } from "../../../Context";
 import { ToolTipMap } from "../ToolTipMap";
@@ -10,8 +12,8 @@ import { ToolTipMap } from "../ToolTipMap";
 const Map = () => {
     const context = React.useContext(AppContext);
 
-    const geoUrl = "/colombia.geo.json";
-    const sanAndresURl = "/san-andres.geo.json";
+    const geoUrl = colombiaGeo;
+    const sanAndresURl = sanAndresGeo;
 
     const sanAndresScale = 280000;
 
