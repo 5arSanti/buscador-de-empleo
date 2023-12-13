@@ -4,7 +4,8 @@ const cors = require("cors");
 const routerApi = require("./routes");
 
 const app = express();
-const port = 3080;
+// const port = 3080;
+const port = 15105;
 
 app.use(express.json());
 const whiteList = [
@@ -12,7 +13,6 @@ const whiteList = [
 	"http://127.0.0.1:5173",
 	"https://buscadordeempleo.gov.co/",
 	"http://127.0.0.1:3090",
-    "http://10.140.0.16:15105/bue",
 ];
 const options = {
     origin: (origin, callback) => {
