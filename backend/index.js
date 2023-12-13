@@ -15,6 +15,7 @@ const whiteList = [
 	"https://buscadordeempleo.gov.co/",
 	"http://127.0.0.1:3090",
     "http://10.140.0.16:15105/bue",
+	"http://localhost",
 
 ];
 const options = {

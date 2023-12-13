@@ -1,6 +1,8 @@
 import React from "react";
 import { FiExternalLink } from "react-icons/fi";
 
+import { icon } from "../../../../assets";
+
 import "./styles.css";
 import PropTypes from "prop-types";
 import { AppContext } from "../../../../Context";
@@ -33,7 +35,7 @@ const ResultsCard = ({data}) => {
                             <FiExternalLink/>
                         </div>
                     }
-                    <img src="/icon.png" alt="" />
+                    <img src={icon} alt={`alt_${icon}`} />
     
                 </a>
             }
@@ -48,7 +50,7 @@ const ResultsCard = ({data}) => {
                     <div>
                         <FiExternalLink/>
                     </div>
-                    <img src="/icon.png" alt="Colsubsidio" />
+                    <img src={"/icon.png"} alt="Colsubsidio" />
                 </a>
             }
             <div className="results-card-secondary-info">
