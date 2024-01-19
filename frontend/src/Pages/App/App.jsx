@@ -12,6 +12,8 @@ import { AppProvider } from "../../Context";
 
 //Screens
 import { Home } from "../Screens/Home";
+import { Analytics } from "../Screens/Analytics";
+
 import { Navbar } from "../components/nabvar";
 import { NavBarResponsive } from "../components/NavBarResponsive";
 import { Footer } from "../components/Footer";
@@ -28,8 +30,8 @@ const Wrapper = ({children}) => {
 
 const AppRoutes = () => {
     let routes = useRoutes([
-        {path: "/home", element: <Home/>},
-        {path: "/*", element: <Navigate to={"/home"}/>},
+        {path: "/", element: <Home/>},
+        {path: "/*", element: <Navigate to={"/"}/>},
     ]);
     
     return routes;
