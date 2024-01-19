@@ -4,8 +4,7 @@ const cors = require("cors");
 const routerApi = require("./routes");
 
 const app = express();
-// const port = 3080;
-const port = 15106;
+const port = 3080;
 
 app.use(express.json());
 const whiteList = [
