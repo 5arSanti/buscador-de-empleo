@@ -1,0 +1,43 @@
+.notification-card-container {
+    /* width: 100%; */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+
+    padding: 10px 15px;
+    border-radius: 10px;
+
+    transition: all 0.2s ease;
+}
+
+.ok {
+    background-color: var(--confirm-color);
+}
+.err {
+    background-color: var(--cancel-color);
+}
+.time {
+    background-color: var(--time-color);
+}
+
+.notification-card-container svg{
+    fill: var(--white);
+    width: 20px;
+    height: 20px;
+}
+
+
+.notification-card-container p{
+    color: var(--white);
+    text-align: center;
+    font-weight: bold;
+
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}

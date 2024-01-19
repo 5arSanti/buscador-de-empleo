@@ -6,8 +6,12 @@ import { IconLayout } from "../PlacesOfInterestIcons/IconLayout";
 import "./styles.css";
 
 import { BsFillBuildingFill } from "react-icons/bs";
+import React from "react";
+import { AppContext } from "../../../Context";
 
 const Footer = () => {
+    const context = React.useContext(AppContext)
+
     return(
         <footer className="footer-container">
             <div className="footer-interest-and-about-container">
@@ -32,14 +36,26 @@ const Footer = () => {
                 </div>  
             </div>
 
-            <div className="footer-copy-container">
-                <div className="footer-icons">
-                    <NavIcons
-                        flexDirection={"row"}
-                    />
+
+            <div className="second-footer-container">
+                <div className="daily-and-date-container">
+                    <div>
+                        <p>Visitas Diarias: 1</p>
+                        <p>Visitas Totales: 10</p>
+                    </div>
+                    <p>{context.actualDate()}</p>
                 </div>
-                <p>&copy; 2023 Servicio Publico de Empleo</p>
+
+                <div className="footer-copy-container">
+                    <div className="footer-icons">
+                        <NavIcons
+                            flexDirection={"row"}
+                        />
+                    </div>
+                    <p>&copy; 2023 Servicio Publico de Empleo</p>
+                </div>
             </div>
+
         </footer>
     );
 }

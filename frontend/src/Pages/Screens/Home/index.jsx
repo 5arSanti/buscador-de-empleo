@@ -1,6 +1,7 @@
 import "./styles.css"
 import { Title } from "../../components/Title";
 import { AllInfoContainer } from "../../components/AllInfoContainer";
+import { FiltersAndMapContainer } from "../../components/FiltersAndMapContainer";
 
 const Home = () => {
     return (
@@ -11,7 +12,9 @@ const Home = () => {
             >
                 Bolsa Única de Empleo del SPE.
             </Title>
-            <AllInfoContainer/>
+            <AllInfoContainer>
+                <FiltersAndMapContainer/>
+            </AllInfoContainer>
         </div>
     );
 }

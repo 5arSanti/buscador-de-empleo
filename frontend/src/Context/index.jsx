@@ -21,6 +21,10 @@ const AppProvider = ({children}) => {
     //LOADING, ERROR
     const [loading, setLoading] = React.useState(null);
 
+    const [allOk, setAllOk] = React.useState(null);
+    const [error, setError] = React.useState(null);
+    const [time, setTime] = React.useState(null);
+
 
     // VACANTES:
     const [vacantesData, setVacantesData] = React.useState({});
@@ -69,8 +73,11 @@ const AppProvider = ({children}) => {
     };
 
     const fetchAllData = async (page) => {
+        setLoading(true);
+        const startTime = performance.now();
         try {
-            setLoading(true);
+
+
             const filterParams = new URLSearchParams(filters);
 
             const endpoints = [
@@ -90,9 +97,13 @@ const AppProvider = ({children}) => {
             setTotalPages(combinedResults.totalPages);
 
         } catch (err) {
-            alert(err.message);
+            handleNotifications("err", err.message);
         }
         finally {
+            const endTime = performance.now();
+            const duration = (endTime - startTime).toFixed(1);
+
+            handleNotifications("time", duration)
             setLoading(false);
         }
     };
@@ -135,6 +146,9 @@ const AppProvider = ({children}) => {
             root.style.setProperty('--input-and-info-container-color', '#000000');
             root.style.setProperty('--municipios-and-result-border-clicked', '#434343');
             root.style.setProperty("--tool-tip-map-text-color", "#FFFFFF");
+            root.style.setProperty("--confirm-color", "#434343");
+            root.style.setProperty("--cancel-color", "#434343");
+            root.style.setProperty("--time-color", "#434343");
             return;
         }
 
@@ -147,6 +161,9 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--all-info-container-color', '#DCF6FF');
                 root.style.setProperty('--input-and-info-container-color', '#6ABFE1');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#5D59DC');
+                root.style.setProperty("--confirm-color", "#74C59A");
+                root.style.setProperty("--cancel-color", "#DA4F6A");
+                root.style.setProperty("--time-color", "#4172FF");
             break;
             case 2:
                 root.style.setProperty("--navbar-color", "#9C0000");
@@ -156,6 +173,9 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--all-info-container-color', '#FFDCDC');
                 root.style.setProperty('--input-and-info-container-color', '#E16A6A');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#DC5959');
+                root.style.setProperty("--confirm-color", "#74C59A");
+                root.style.setProperty("--cancel-color", "#DA4F6A");
+                root.style.setProperty("--time-color", "#4172FF");
             break;
             case 3:
                 root.style.setProperty("--navbar-color", "#009C5F");
@@ -165,6 +185,9 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--all-info-container-color', '#DCFFEC');
                 root.style.setProperty('--input-and-info-container-color', '#6AE197');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#4BC472');
+                root.style.setProperty("--confirm-color", "#74C59A");
+                root.style.setProperty("--cancel-color", "#DA4F6A");
+                root.style.setProperty("--time-color", "#4172FF");
             break;
             case 4:
                 root.style.setProperty("--navbar-color", "#9C7B00");
@@ -174,6 +197,9 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--all-info-container-color', '#FFF8DC');
                 root.style.setProperty('--input-and-info-container-color', '#E1CA6A');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#C4A34B');
+                root.style.setProperty("--confirm-color", "#74C59A");
+                root.style.setProperty("--cancel-color", "#DA4F6A");
+                root.style.setProperty("--time-color", "#4172FF");
             break;
             case 5:
                 root.style.setProperty("--navbar-color", "#23009C");
@@ -183,6 +209,9 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--all-info-container-color', '#E3DCFF');
                 root.style.setProperty('--input-and-info-container-color', '#816AE1');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#684BC4');
+                root.style.setProperty("--confirm-color", "#74C59A");
+                root.style.setProperty("--cancel-color", "#DA4F6A");
+                root.style.setProperty("--time-color", "#4172FF");
             break;
             case 6:
                 root.style.setProperty("--navbar-color", "#9C0055");
@@ -192,6 +221,9 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--all-info-container-color', '#FFDCEE');
                 root.style.setProperty('--input-and-info-container-color', '#E16AA9');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#C44B8B');
+                root.style.setProperty("--confirm-color", "#74C59A");
+                root.style.setProperty("--cancel-color", "#DA4F6A");
+                root.style.setProperty("--time-color", "#4172FF");
             break;    
             default:
                 root.style.setProperty("--navbar-color", "#00589c");
@@ -202,6 +234,9 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--input-and-info-container-color', '#6ABFE1');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#5D59DC');
                 root.style.setProperty("--tool-tip-map-text-color", "#7B7B7B")
+                root.style.setProperty("--confirm-color", "#434343");
+                root.style.setProperty("--cancel-color", "#434343");
+                root.style.setProperty("--time-color", "#434343");
             break;
         }
     }
@@ -256,6 +291,48 @@ const AppProvider = ({children}) => {
     };
 
 
+    const handleNotifications = (type = null, message) => {
+        switch(type) {
+            case "ok" : 
+                setAllOk({
+                    status: true,
+                    message: message
+                })
+                setTimeout(() => {
+                    setAllOk({
+                        status: false
+                    })
+                }, 4000);
+            break;
+            case "err" : 
+                setError({
+                    status: true,
+                    message: message
+                })
+                setTimeout(() => {
+                    setError({
+                        status: false
+                    })
+                }, 4000);
+            break;
+            case "time" : 
+                setTime(message)
+                setTimeout(() => {
+                    setTime(null)
+                }, 6000);
+            break;
+        }
+    }
+
+    const actualDate = () => {
+        const opciones = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+        const fecha = new Date();
+        const fechaFormateada = fecha.toLocaleDateString('es-ES', opciones);
+
+        const fechaCapitalizada = fechaFormateada.charAt(0).toUpperCase() + fechaFormateada.slice(1);
+      
+        return fechaCapitalizada;
+    }
 
 
     return (
@@ -264,6 +341,13 @@ const AppProvider = ({children}) => {
                 apiUri,
                 loading,
                 setLoading,
+
+                allOk,
+                setAllOk,
+                error,
+                setError,
+                time,
+                setTime,
 
                 //VACANTES
                 vacantesData,
@@ -303,6 +387,8 @@ const AppProvider = ({children}) => {
                 setActiveButton,
                 activeHighContrast,
                 setActiveHighContrast,
+
+                actualDate,
             }}
         >
             {children}

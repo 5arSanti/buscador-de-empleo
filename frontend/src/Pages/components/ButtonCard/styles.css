@@ -1,0 +1,23 @@
+.button-container {
+    width: 100%;
+    padding: 15px 25px;
+
+    box-sizing: border-box;
+
+    border-radius: 10px;
+    cursor: pointer;
+
+    background-color: var(--white);
+    color: var(--navbar-color);
+    border: 1px solid var(--navbar-color);
+    cursor: pointer;
+    font-weight: bold;
+
+    transition: all 0.2s ease;
+}
+
+.button-container:hover {
+    color: var(--white);
+    background: var(--municipios-and-result-border-clicked);
+    border: 1px solid var(--municipios-and-result-border-clicked);
+}

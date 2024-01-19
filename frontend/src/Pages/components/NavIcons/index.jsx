@@ -44,11 +44,11 @@ const NavIcons = ({flexDirection, showButtons = false}) => {
             </button>
             {showButtons &&
                 <NavLink 
-                    to={location.pathname === "/analitica" ? "/" : "analitica"} 
+                    to={location.pathname === "/subscription" ? "/" : "subscription"} 
                     className="nav-link"
                 >
                     <button className="nav-button">
-                        {location.pathname === "/analitica" ? "Home" : "Analítica"}
+                        {location.pathname === "/subscription" ? "Home" : "Suscribirse"}
                     </button>
                 </NavLink>
             }

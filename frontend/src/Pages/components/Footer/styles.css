@@ -6,7 +6,7 @@
     padding: 50px 150px;
 
     display: flex;
-    gap: 100px;
+    gap: 50px;
     flex-direction: column;
     align-items: center;
 
@@ -39,14 +39,37 @@
 }
 
 
+.second-footer-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    opacity: 0.75;
+}
+.second-footer-container p{
+    color: white;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.daily-and-date-container {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
 .footer-copy-container{
     width: 100%;
-    padding: 0 20px;
+
+    box-sizing: border-box;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
-    opacity: 0.75;
 }
 .footer-copy-container > p{
     color: white;

@@ -1,10 +1,9 @@
-import { FiltersAndMapContainer } from "../FiltersAndMapContainer";
 import "./styles.css";
 
-const AllInfoContainer = () => {
+const AllInfoContainer = ({children}) => {
     return(
         <div className="all-info-container">
-            <FiltersAndMapContainer/>
+            {children}
         </div>
     );
 }

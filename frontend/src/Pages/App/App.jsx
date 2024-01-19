@@ -12,11 +12,12 @@ import { AppProvider } from "../../Context";
 
 //Screens
 import { Home } from "../Screens/Home";
-import { Analytics } from "../Screens/Analytics";
+import { SubscriptionScreen } from "../Screens/SubscriptionScreen";
 
 import { Navbar } from "../components/nabvar";
 import { NavBarResponsive } from "../components/NavBarResponsive";
 import { Footer } from "../components/Footer";
+import { NotificationsContainer } from "../components/NotificationsContainer";
 
 
 const Wrapper = ({children}) => {
@@ -30,8 +31,9 @@ const Wrapper = ({children}) => {
 
 const AppRoutes = () => {
     let routes = useRoutes([
-        {path: "/", element: <Home/>},
-        {path: "/*", element: <Navigate to={"/"}/>},
+        {path: "/home", element: <Home/>},
+        {path: "/subscription", element: <SubscriptionScreen/>},
+        {path: "/*", element: <Navigate to={"/home"}/>},
     ]);
     
     return routes;
@@ -43,13 +45,12 @@ const App = () => {
         <AppProvider>
             <BrowserRouter>
                 <Wrapper>
-                    {/* <div className="high-contrast"> */}
-                        <Navbar/>
-                        <NavBarResponsive/>
-                        <AppRoutes/>
-                        <Footer/>
-                    {/* </div> */}
-                </Wrapper>
+                    <Navbar/>
+                    <NavBarResponsive/>
+                    <AppRoutes/>
+                    <NotificationsContainer/>
+                    <Footer/>
+            </Wrapper>
             </BrowserRouter>
         </AppProvider>
     );

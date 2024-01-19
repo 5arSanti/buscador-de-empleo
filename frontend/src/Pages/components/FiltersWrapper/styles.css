@@ -1,4 +1,6 @@
 .filters-wrapper {
+    width: 100%;
+
     background-color: var(--input-and-info-container-color);
     border-radius: 20px;
 
