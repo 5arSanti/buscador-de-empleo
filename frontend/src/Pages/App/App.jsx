@@ -28,8 +28,8 @@ const Wrapper = ({children}) => {
 
 const AppRoutes = () => {
     let routes = useRoutes([
-        {path: "/", element: <Home/>},
-        {path: "/*", element: <Navigate to={"/"}/>},
+        {path: "/home", element: <Home/>},
+        {path: "/*", element: <Navigate to={"/home"}/>},
     ]);
     
     return routes;

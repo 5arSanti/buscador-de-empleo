@@ -1,0 +1,36 @@
+Navegar al directorio donde esta el dockerfile:
+	cd /_data/bue
+
+
+Construye la imagen del Docker:
+Al realizar cualquier cambio en el codigo, es necesario volver a ejecutar este comando
+Ejecuta el siguiente comando para construir la imagen del Docker.
+
+	docker build -t consolidainfoarchivos_apache .
+
+
+Ejecuta el contenedor:
+Después de construir la imagen, puedes ejecutar un contenedor basado en esa imagen.
+
+	docker run --name pr_buscadordeempleo -p 15106:3080 buscadordeempleo_apache
+
+
+Detener y eliminar el contenedor:
+Cuando hayas terminado de probar, puedes detener el contenedor con el siguiente comando:
+
+	docker stop pr_buscadordeempleo 
+
+Y para eliminar el contenedor:
+
+	docker rm pr_buscadordeempleo 
+
+
+
+Para reiniciar:
+
+Detener el contenedor:
+	docker stop pr_buscadordeempleo
+
+Iniciar el contenedor
+	docker start pr_buscadordeempleo
+
