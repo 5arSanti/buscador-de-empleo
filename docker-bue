@@ -1,0 +1,20 @@
+EN la direccion /etc/contenedores/pr_buscadordeempleo
+
+Se realizaron cambios en el archivo docker-compose.yml cambiando la imagen y directorio raiz por el archivo Dockerfile dentro de la carpeta backend.
+
+
+EN la direccion: /etc/contenedores/pr_buscadordeempleo en Putty ejecutar:
+
+    docker-compose stop
+    docker-compose build
+    docker-compose up -d
+
+Validar que el contenedor este arriba (Up)
+
+    docker-compose ps
+    La columna status debe decir "Up"
+
+
+Dirigirse a: http://10.140.0.16:15105/api/v1/vacantes/resultados
+
+Y verificar que trae informacion
