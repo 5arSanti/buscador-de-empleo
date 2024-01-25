@@ -10,9 +10,8 @@ const AppProvider = ({children}) => {
     }
 
     //API -- Cambiar el valor de la variable api segun la infraestructura de produccion
-    // const domain = "http://localhost:15106";
-    const domain = "http://localhost:3080";
-    // const domain = "http://10.140.0.16:15106";
+    // const domain = "http://localhost:3080";
+    const domain = "http://10.140.0.16:15105";
 	const api = `${domain}/api/v1`;
 
 	//-------------------------------------
