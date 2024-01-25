@@ -53,6 +53,13 @@ const FiltersInputs = () => {
                 array={context.vacantesData?.filters?.nivelDeEstudios}
                 onChange={(value) => context.handleFilterChange("NIVEL_ESTUDIOS", value)}
             />
+
+            <FiltersOptionCard
+                id={"foreigner"}
+                title={"Vacantes del Extranjero"}
+                array={["SI"]}
+                onChange={(value) => context.saveSelectedDepartment(value == "SI" ? "VACANTES PARA TODO EL TERRITORIO" : "")}
+            />
         </FiltersWrapper>
     );
 }

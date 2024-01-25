@@ -46,6 +46,7 @@ const SubscriptionScreen = () => {
                                 />
                                 <TextInputCard name={"Nombre"}/>
                                 <TextInputCard name={"Correo"}/>
+                                <TextInputCard name={"Numero"}/>
                                 <ButtonCard text="Suscribirse"/>
                             </FiltersWrapper>
 
