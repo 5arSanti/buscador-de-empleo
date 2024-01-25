@@ -1,0 +1,42 @@
+version: '3.9'
+services:
+ buscadordeempleo_apache:
+  build:
+   context: /var/lib/docker/volumes/pr_buscadordeempleo_documentroot/_data/bue/backend
+   dockerfile: Dockerfile
+  image: buscadordeempleo_apache:latest
+  container_name: buscadordeempleo_apache
+  hostname: buscadordeempleodocker
+  restart: always
+  privileged: true
+  volumes:
+    - type: volume
+      source: documentroot
+      target: /var/www/html
+    - type: volume
+      source: apacheconfig
+      target: /etc/httpd
+    - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    - /etc/localtime:/etc/localtime:ro
+  networks:
+    buscadordeempleo:
+     ipv4_address: 192.168.250.42
+  ports:
+   - "15105:3080"
+  expose:
+   - 15105
+
+volumes:
+ documentroot:
+ apacheconfig:
+
+networks:
+  buscadordeempleo:
+    name: buscadordeempleo
+    driver: bridge
+    enable_ipv6: false
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.250.40/29 
+          gateway: 192.168.250.41
