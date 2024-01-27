@@ -1,20 +1,34 @@
 const sql = require("mssql");
 
+// DEV
 const sqlConfig = {
-	user: "Userdesarrollo",
-	password: "D3s4Rr0lLo",
+	user: "root",
+	password: "1234",
 	database: "PRUEBAS",
-	server: "10.140.0.22",
-	pool: {
-		max: 10,
-		min: 0,
-		idleTimeoutMillis: 30000
-	},
+	server: "localhost",
+
 	options: {
+		trustedConnection: true,
 		trustServerCertificate: true,
-		encrypt: false
-	}
+	},
 }
+
+// PRUEBAS
+// const sqlConfig = {
+// 	user: "Userdesarrollo",
+// 	password: "D3s4Rr0lLo",
+// 	database: "PRUEBAS",
+// 	server: "10.140.0.22",
+// 	pool: {
+// 		max: 10,
+// 		min: 0,
+// 		idleTimeoutMillis: 30000
+// 	},
+// 	options: {
+// 		trustServerCertificate: true,
+// 		encrypt: false
+// 	}
+// }
 
 sql.connect(sqlConfig, (err) => {
 	if (err) {

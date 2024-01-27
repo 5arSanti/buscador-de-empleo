@@ -2,8 +2,8 @@ version: '3.9'
 services:
  buscadordeempleo_apache:
   build:
-   context: /var/lib/docker/volumes/pr_buscadordeempleo_documentroot/_data/bue/backend
-   dockerfile: Dockerfile
+   context: .
+   dockerfile: Dockerfile_apache
   image: buscadordeempleo_apache:latest
   container_name: buscadordeempleo_apache
   hostname: buscadordeempleodocker
@@ -22,7 +22,7 @@ services:
     buscadordeempleo:
      ipv4_address: 192.168.250.42
   ports:
-   - "15105:3080"
+   - "15105:80"
   expose:
    - 15105
 

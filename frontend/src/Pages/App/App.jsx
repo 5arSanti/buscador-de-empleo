@@ -43,7 +43,7 @@ const App = () => {
 
     return (
         <AppProvider>
-            <BrowserRouter>
+            <BrowserRouter basename="/bue">
                 <Wrapper>
                     <Navbar/>
                     <NavBarResponsive/>
