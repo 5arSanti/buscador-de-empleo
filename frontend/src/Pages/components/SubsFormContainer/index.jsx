@@ -14,33 +14,42 @@ const SubsFormContainer = () => {
         Numero: ''
     });
 
-    const handleInputChange = (value, name) => {
+    const handleSubscribeInputChange = (value, name) => {
         setFormData({
             ...formData,
             [name]: value
         });
     };
 
-    const handleSubscribeClick = async () => {
+    const handleDeleteInputChange = (value, name) => {
+        setFormData({
+            [name]: value
+        });
+    };
+
+    const handleSubscribeClick = async (endpoint, form) => {
         context.setLoading(true);
         const startTime = performance.now();
 
         try {
-            const response = await fetch(`${context.apiUri}/subscription/add`, {
+            const response = await fetch(`${context.apiUri}/subscription/${endpoint}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify(form),
             })
+
+            const data = await response.json();
+
             if (response.status == 200) {
-                context.handleNotifications("ok", "Se suscribió Correctamente")
+                context.handleNotifications("ok", data.message)
             } else {
-                throw new Error;
+                context.handleNotifications("err", data.message)
             }
         } 
         catch (err) {
-            context.handleNotifications("error", err.message)
+            context.handleNotifications("err", err)
         } 
         finally {
             const endTime = performance.now();
@@ -61,11 +70,14 @@ const SubsFormContainer = () => {
                     text={"Suscribirse a la BUE"}
                 />
 
-                <TextInputCard name="Nombre" onInputChange={handleInputChange} />
-                <TextInputCard name="Correo" type="email" onInputChange={handleInputChange} />
-                <TextInputCard name="Numero" type="number" onInputChange={handleInputChange} />
-
-                <ButtonCard text="Suscribirse" onClick={handleSubscribeClick} />
+                <TextInputCard name="Nombre" onInputChange={handleSubscribeInputChange} />
+                <TextInputCard name="Correo" type="email" onInputChange={handleSubscribeInputChange} />
+                <TextInputCard name="Numero" necessary={false} type="number" onInputChange={handleSubscribeInputChange} />
+                
+                <div className="info-container">
+                    <p>Los campos con (*) son obligatorios.</p>
+                </div>
+                <ButtonCard text="Suscribirse" onClick={() => handleSubscribeClick("add", formData)} />
             </FiltersWrapper>
 
             <FiltersWrapper
@@ -75,8 +87,12 @@ const SubsFormContainer = () => {
                 <SubTitle 
                     text={"Darse de baja de la BUE"}
                 />
-                <TextInputCard name={"Correo"}/>
-                <ButtonCard text="Darse de Baja"/>
+
+                <TextInputCard name={"Correo"} type="email" onInputChange={handleDeleteInputChange}/>
+                <div className="info-container">
+                    <p>Los campos con (*) son obligatorios.</p>
+                </div>
+                <ButtonCard text="Darse de Baja" onClick={() => handleSubscribeClick("delete", formData)}/>
 
             </FiltersWrapper>
         </div>

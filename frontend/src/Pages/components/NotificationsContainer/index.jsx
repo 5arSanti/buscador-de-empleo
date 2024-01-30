@@ -15,9 +15,9 @@ const NotificationsContainer = () => {
     return(
         <div className="notifications-container">
 
-            {context.setAllOk?.status &&
+            {context.allOk?.status &&
                 <NotificationCard
-                    text={context.setAllOk?.message}
+                    text={context.allOk?.message}
                     type={"ok"}
                     icon={<MdOutlineDone/>}
                 />

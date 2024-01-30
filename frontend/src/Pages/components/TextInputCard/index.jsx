@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 
-const TextInputCard = ({state, name, type="text", onInputChange}) => {
+const TextInputCard = ({necessary=true, name, type="text", onInputChange}) => {
     const [inputValue, setInputValue] = React.useState('');
 
     const handleInputChange = (event) => {
@@ -17,7 +17,7 @@ const TextInputCard = ({state, name, type="text", onInputChange}) => {
 
     return(
         <div className="input-container">
-            <label htmlFor={`${name}-input`}>{name}:</label>
+            <label htmlFor={`${name}-input`}>{name}: {necessary && "*"}</label>
             <input 
                 type={type} 
                 name={`${name}-input`}

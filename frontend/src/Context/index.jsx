@@ -293,6 +293,7 @@ const AppProvider = ({children}) => {
     const handleNotifications = (type = null, message) => {
         switch(type) {
             case "ok" : 
+                console.log("Entra")
                 setAllOk({
                     status: true,
                     message: message
@@ -302,6 +303,7 @@ const AppProvider = ({children}) => {
                         status: false
                     })
                 }, 4000);
+                console.log(allOk);
             break;
             case "err" : 
                 setError({
