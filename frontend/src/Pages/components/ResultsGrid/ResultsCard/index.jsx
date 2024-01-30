@@ -6,6 +6,7 @@ import { icon } from "../../../../assets";
 import "./styles.css";
 import PropTypes from "prop-types";
 import { AppContext } from "../../../../Context";
+import { prestadorImagenes } from "../../../../utils/images";
 
 const ResultsCard = ({data}) => {
     ResultsCard.propTypes = {
@@ -23,6 +24,9 @@ const ResultsCard = ({data}) => {
         year: 'numeric',
     });
 
+    const nombrePrestador = data.NOMBRE_PRESTADOR;
+    const imagenRuta = prestadorImagenes[nombrePrestador] || icon;
+
     return(
         <div className="results-card-container"
             onMouseEnter={() => setHovered(true)}
@@ -35,13 +39,13 @@ const ResultsCard = ({data}) => {
                             <FiExternalLink/>
                         </div>
                     }
-                    <img src={icon} alt={`alt_${icon}`} />
+                    <img src={imagenRuta} alt={`alt_${imagenRuta}`} />
     
                 </a>
             }
 
             <div className="results-card-main-info">
-                <p>{data.EMPLEADOR}</p>
+                <p>{data.NOMBRE_PRESTADOR}</p>
                 <p>{data.RANGO_SALARIAL}</p>
                 <p>{data.DEPARTAMENTO}</p>
             </div>
@@ -50,7 +54,7 @@ const ResultsCard = ({data}) => {
                     <div>
                         <FiExternalLink/>
                     </div>
-                    <img src={"/icon.png"} alt="Colsubsidio" />
+                    <img src={imagenRuta} alt={`alt_${imagenRuta}`} />
                 </a>
             }
             <div className="results-card-secondary-info">

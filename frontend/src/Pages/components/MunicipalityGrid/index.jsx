@@ -31,6 +31,10 @@ const MunicipalityGrid = () => {
                 <LoadingCardSmall/>
                 <LoadingCardSmall/>
                 <LoadingCardSmall/>
+                <LoadingCardSmall/>
+                <LoadingCardSmall/>
+                <LoadingCardSmall/>
+                <LoadingCardSmall/>
 
                 {context.vacantesData?.total_departments?.length <= 1 && !context.loading &&
                     <MunicipalityCard

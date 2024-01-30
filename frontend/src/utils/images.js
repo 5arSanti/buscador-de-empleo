@@ -1,0 +1,188 @@
+import { Alentti } from "../assets/index.js";
+import { autonomic } from "../assets/index.js";
+import { cc_lgbt } from "../assets/index.js";
+import { egon } from "../assets/index.js";
+import { ithunters } from "../assets/index.js";
+import { ITM } from "../assets/index.js";
+import { laborintos } from "../assets/index.js";
+import { latinamericanresources } from "../assets/index.js";
+import { logo_adecco } from "../assets/index.js";
+import { logo_elempleo } from "../assets/index.js";
+import { logo_lared } from "../assets/index.js";
+import { logo_legislacionlaboral } from "../assets/index.js";
+import { logo_proa } from "../assets/index.js";
+import { logo_sena } from "../assets/index.js";
+import { logo_spe } from "../assets/index.js";
+import { logo_trabajando } from "../assets/index.js";
+import { magneto } from "../assets/index.js";
+import { pascualbravo } from "../assets/index.js";
+import { politecnicojic } from "../assets/index.js";
+import { realcur } from "../assets/index.js";
+import { SOCIO_EMPLEO } from "../assets/index.js";
+import { SOCIO_EMPLEO_1 } from "../assets/index.js";
+import { suestrategia } from "../assets/index.js";
+import { Talentop } from "../assets/index.js";
+import { ticjob } from "../assets/index.js";
+import { zonafranca } from "../assets/index.js";
+
+
+const prestadorImagenes = {
+    "ACIERTA HEADHUNTER S.A.S": "",
+    "ADECCO.": logo_adecco,
+    "ALCALDÍA DE BARBOSA": "",
+    "ALCALDÍA DE BELLO": "",
+    "ALCALDÍA DE CALDAS": "",
+    "ALCALDÍA DE ENVIGADO": "",
+    "ALCALDIA DE FACATATIVÁ": "",
+    "ALCALDÍA DE GUAMAL": "",
+    "ALCALDÍA DE LA ESTRELLA": "",
+    "ALCALDÍA DE MEDELLÍN": "",
+    "ALCALDIA DE PEREIRA": "",
+    "ALCALDÍA DE SABANETA": "",
+    "ALCALDÍA DE TOCANCIPÁ": "",
+    "ALCALDIA DE VILLAVICENCIO": "",
+    "ALCALDIA DISTRITAL DE BARRANQUILLA": "",
+    "ALCALDÍA MUNICIPIO PUERTO GAITÁN": "",
+    "ALCALDÍA DE ACACIAS": "",
+    "ALCALDÍA DE CASTILLA LA NUEVA": "",
+    "ANDI MÁS EMPLEO SAS": "",
+    "ÁREA METROPOLITANA DE BARRANQUILLA ": "",
+    "ASOCIACION DE EGRESADOS  DE LA UNIVERSIDAD  DE LOS ANDES": "",
+    "Asociación Nacional de Entidades de Educación para el Trabajo y el Desarrollo Humano - ASENOF": "",
+    "BOGOTÁ DISTRITO CAPITAL": "",
+    "CAJA COLOMBIANA DE SUBSIDIO FAMILIAR- COLSUBSIDIO": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR  COMFENALCO SANTANDER": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR  DE FENALCO DEL TOLIMA - COMFENALCO TOLIMA": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR  DEL MAGDALENA - CAJAMAG": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR ANDI COMFENALCO CARTAGENA": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR CAFAM": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR CAJACOPI ATLÁNTICO": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR COMFAMILIAR ATLANTICO": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR COMFENALCO ANTIOQUIA": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR COMFENALCO QUINDIO": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR COMPENSAR": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DE ANTIOQUIA -COMFAMA": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DE ARAUCA -COMFIAR": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DE BARRANCABERMEJA -CAFABA": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DE BARRANQUILLA - COMBARRANQUILLA": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DE BOYACA- COMFABOY": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DE CALDAS - CONFAMILIARES CALDAS": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DE CARTAGENA - COMFAMILIAR CARTAGENA": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DE CÓRDOBA -COMFACOR": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DE CUNDINAMARCA -COMFACUNDI": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DE LA GUAJIRA - COMFAGUAJIRA": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DE NARIÑO - COMFAMILIAR NARIÑO": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DE RISARALDA - COMFAMILIAR RISARALDA": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DE SAN ANDRÉS - CAJASAI": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DE SUCRE -COMFASUCRE": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DEL CAQUETÁ - COMFACA": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DEL CASANARE - COMFACASANARE": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DEL CAUCA -COMFACAUCA": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DEL CESAR -COMFACESAR": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DEL CHOCO -COMFACHOCO": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DEL HUILA - COMFAMILIAR HUILA": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DEL NORTE DE SANTANDER -COMFANORTE": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DEL ORIENTE COLOMBIANO - COMFAORIENTE": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DEL PUTUMAYO -COMFAPUTUMAYO": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DEL TOLIMA -COMFATOLIMA": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DEL VALLE DEL CAUCA - COMFANDI": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR DEL VALLE DEL CAUCA COMFENALCO VALLE DELAGENTE": "",
+    "CAJA DE COMPENSACIÓN FAMILIAR REGIONAL DEL META-COFREM": "",
+    "CAJA SANTANDEREANA DE SUBSIDIO FAMILIAR -CAJASAN": "",
+    "CAMARA DE COMERCIANTES LGBT DE COLOMBIA": "",
+    "COLEGIO DE ESTUDIOS SUPERIORES DE ADMINISTRACIÓN-CESA": logo_elempleo,
+    "COLEGIO MAYOR DE NUESTRA SEÑORA DEL ROSARIO": logo_elempleo,
+    "COMCAJA": "",
+    "Competencia Humana SAS": "",
+    "CORPORACIÓN EL MINUTO DE DIOS": "",
+    "Corporación Industrial el Minuto de Dios": "",
+    "CORPORACIÓN UNIVERSITARIA AMERICANA": "",
+    "CORPORACION UNIVERSITARIA ANTONIO JOSÉ DE SUCRE": "",
+    "CORPORACIÓN UNIVERSITARIA DEL CARIBE - CECAR": "",
+    "CORPORACIÓN UNIVERSITARIA IBEROAMERICANA": "", // Falta imagen
+    "CORPORACIÓN UNIVERSITARIA MINUTO DE DIOS-UNIMINUTO": "", // Falta imagen
+    "CORPORACIÓN VOLVER A LA GENTE": "",
+    "CRISTINA HERRERA TALENTI SAS": "",
+    "DGNET COLOMBIA": "", // Falta imagen
+    "ESCUELA COLOMBIANA DE CARRERAS INDUSTRIALES - ECCI": logo_elempleo, // Falta imagen
+    "ESCUELA COLOMBIANA DE REHABILITACIÓN": "", // Falta imagen
+    "ESCUELA TECNOLÓGICA INSTITUTO TÉCNICO CENTRAL - ETITC": Talentop,
+    "FUNDACIÓN ACADEMIA SINÚ": "",
+    "FUNDACIÓN ARQUIDIOCESANA PARA LA FORMACIÓN Y EL EMPLEO APOYE FUNDACIÓN APOYE": "",
+    "FUNDACION INTERNACIONAL FUNINDEM": "",
+    "FUNDACIÓN UNIVERSIDAD DE AMÉRICA": logo_elempleo,
+    "FUNDACION UNIVERSIDAD DE BOGOTÁ JORGE TADEO LOZANO": "",
+    "FUNDACIÓN UNIVERSITARIA ANTONIO DE ARÉVALO - UNITECNAR": "",
+    "FUNDACIÓN UNIVERSITARIA DE SAN GIL": logo_elempleo,
+    "FUNDACIÓN UNIVERSITARIA DEL ÁREA ANDINA": logo_elempleo,
+    "FUNDACION UNIVERSITARIA KONRAD LORENZ": logo_elempleo,
+    "FUNDACIÓN UNIVERSITARIA LOS LIBERTADORES": "",
+    "FUNDACIÓN UNIVERSITARIA SANITAS": logo_elempleo,
+    "FUNDANCIÓN UNIVERSITARIA EMPRESARIAL DE LA CAMARA DE COMERCIO DE BOGOTÁ -UNIEMPRESARIAL": "",
+    "GENTE COMPETENTE": "",
+    "GENTE ESTRATEGICA DE FORMACIÓN PARA EL TRABAJO SAS": "",
+    "GESTION COMPETITIVA S.A.S": "",
+    "GESTIÓN ESTRATÉGICA DEL TALENTO HUMANO SAS": "",
+    "GOBERNACIÓN DE CUNDINAMARCA": "",
+    "INSTITUCIÓN UNIVERSITAR COLEGIO MAYOR DE ANTIOQUIA": "",
+    "INSTITUCIÓN UNIVERSITARIA COLOMBO AMERICANA-ÚNICA": logo_elempleo,
+    "INSTITUCIÓN UNIVERSITARIA SALAZAR Y HERRERA": "", // Falta imagen
+    "INSTITUTO MUNICIAPL DE EMPLEO Y FOMENTO EMPRESARIAL DE BUCARAMANGA -IMEBU": "",
+    "Instituto Municipal de Educación para el Trabajo y Desarrollo Humano de Yumbo - IMETY": "",
+    "INSTITUTO TECNOLÓGICO METROPOLITANO": ITM,
+    "LEADERSEARCH SAS": "",
+    "LINAJJE S.A.S": "",
+    "LOGISTIC CHAIN & FINANCIAL SOLUTIONS SAS": ithunters,
+    "MUNICIPIO DE CHÍA": "",
+    "MUNICIPIO DE FUNZA": "", //Falta imagen
+    "MUNICIPIO DE RIONEGRO": "",
+    "POLITÉCNICO COLOMBIANO JAIME ISAZA CADAVID": "",
+    "POLITECNICO GRAN COLOMBIANO": logo_elempleo,
+    "POLITÉCNICO INTERNACIONAL INSTITUCIÓN DE EDUCACIÓN SUPERIOR": logo_elempleo,
+    "PONTIFICIA UNIVERSIDAD JAVERIANA": "", //Falta imagen
+    "PSYCONOMETRICS S.A.S.": "",
+    "SERES CONSULTING SAS": logo_elempleo,
+    "TALENTO VERDE S.A.S": logo_elempleo,
+    "TASA WORLDWIDE S.A.": logo_elempleo,
+    "Tecnológico de Antioquia Institución Universitaria": "",
+    "TICJOB S.A.S": "",
+    "Unidades Tecnológicas de Santander": "",
+    "UNIVERSIA COLOMBIA SAS": "", //Falta imagen
+    "UNIVERSIDAD AUTÓNOMA  DE OCCIDENTE": logo_elempleo,
+    "UNIVERSIDAD AUTÓNOMA DE BUCARAMANGA": "", //Falta imagen
+    "UNIVERSIDAD CATOLICA DE COLOMBIA": "", //Falta imagen
+    "UNIVERSIDAD CATÓLICA DE MANIZALES": "",
+    "UNIVERSIDAD CATOLICA DE ORIENTE": logo_elempleo,
+    "UNIVERSIDAD COOPERATIVA DE COLOMBIA": logo_elempleo,
+    "UNIVERSIDAD DE ANTIOQUIA": logo_elempleo,
+    "UNIVERSIDAD DE CARTAGENA": logo_elempleo,
+    "UNIVERSIDAD DE LA GUAJIRA": "",
+    "UNIVERSIDAD DE LA SABANA": "", //Falta imagen
+    "UNIVERSIDAD DE LOS ANDES": logo_elempleo,
+    "UNIVERSIDAD DE MANIZALES": "",
+    "UNIVERSIDAD DE SANTANDER": logo_elempleo,
+    "UNIVERSIDAD DEL ATLÁNTICO": "",
+    "UNIVERSIDAD DEL CAUCA": logo_elempleo,
+    "UNIVERSIDAD DEL NORTE": "",
+    "UNIVERSIDAD DEL QUINDÍO": "", //Falta imagen
+    "UNIVERSIDAD DEL TOLIMA": "",
+    "UNIVERSIDAD DEL VALLE": "", //Falta imagen
+    "UNIVERSIDAD EAN": logo_elempleo,
+    "UNIVERSIDAD EXTERNADO DE COLOMBIA": "", //Falta imagen
+    "UNIVERSIDAD ICESI": logo_elempleo,
+    "UNIVERSIDAD INDUSTRIAL DE SANTANDER": logo_elempleo,
+    "UNIVERSIDAD MARIANA": "", // Falta Imagen
+    "UNIVERSIDAD MILITAR NUEVA GRANADA": logo_elempleo,
+    "UNIVERSIDAD PEDAGOGICA Y TECNOLOGICA DE COLOMBIA": "",
+    "UNIVERSIDAD PILOTO DE COLOMBIA": logo_elempleo,
+    "UNIVERSIDAD PONTIFICIA BOLIVARIANA": "", //Falta imagen
+    "UNIVERSIDAD SAN BUENAVENTURA": "", //Falta imagen
+    "UNIVERSIDAD SANTO TOMÁS": "",
+    "UNIVERSIDAD SIMON BOLIVAR": logo_elempleo,
+    "UNIVERSIDAD TECNOLOGICA DE BOLIVAR": logo_elempleo,
+    "UNIVERSIDAD TECNOLÓGICA DE PEREIRA": "",
+    "UNIVERSITARIA AGUSTINIANA -UNIAGUSTINIANA": logo_elempleo,
+    "VINCU": logo_proa,
+};
+
+export { prestadorImagenes };

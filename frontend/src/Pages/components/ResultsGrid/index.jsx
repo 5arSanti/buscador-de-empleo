@@ -40,6 +40,7 @@ const ResultsGrid = () => {
                         <LoadingCardBig/>
                         <LoadingCardBig/>
                         <LoadingCardBig/>
+                        <LoadingCardBig/>
 
                         {!context.loading && context.vacantesData?.resultados?.map((item, index) => (
                             <ResultsCard
