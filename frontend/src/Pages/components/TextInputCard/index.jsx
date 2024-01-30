@@ -1,13 +1,17 @@
+import React from "react";
 import "./styles.css";
 
-const TextInputCard = ({state, name}) => {
+const TextInputCard = ({state, name, type="text", onInputChange}) => {
+    const [inputValue, setInputValue] = React.useState('');
+
     const handleInputChange = (event) => {
-        state(event.target.value);
+        setInputValue(event.target.value);
+        onInputChange(event.target.value, name);
     };
   
     const handleKeyPress = (event) => {
         if (event.code === "Enter") {
-            state(event.target.value);
+            onInputChange(inputValue, name);
         }
     };
 
@@ -15,10 +19,10 @@ const TextInputCard = ({state, name}) => {
         <div className="input-container">
             <label htmlFor={`${name}-input`}>{name}:</label>
             <input 
-                type="text" 
+                type={type} 
                 name={`${name}-input`}
                 placeholder={name}
-                value={""}
+                value={inputValue}
                 onChange={handleInputChange}
                 onKeyDown={handleKeyPress}
             />
@@ -26,4 +30,4 @@ const TextInputCard = ({state, name}) => {
     );
 }
 
-export { TextInputCard} ;
+export { TextInputCard } ;

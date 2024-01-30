@@ -1,9 +1,9 @@
 import "./styles.css";
 
-const ButtonCard = ({text="Placeholder", onClick}) => {
+const ButtonCard = ({ text="Placeholder", onClick }) => {
     return(
         <button
-            onClick={() => onClick}
+            onClick={onClick}
             className="button-container"
         >
             {text}

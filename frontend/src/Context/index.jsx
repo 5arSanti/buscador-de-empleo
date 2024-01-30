@@ -388,6 +388,8 @@ const AppProvider = ({children}) => {
                 setActiveHighContrast,
 
                 actualDate,
+
+                handleNotifications,
             }}
         >
             {children}

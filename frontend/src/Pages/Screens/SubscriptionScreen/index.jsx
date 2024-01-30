@@ -3,10 +3,8 @@ import { Title } from "../../components/Title";
 import { AllInfoContainer } from "../../components/AllInfoContainer";
 import { FiltersWrapper } from "../../components/FiltersWrapper";
 import { SubTitle } from "../../components/SubTitle";
-import { ScrollableWrapper } from "../../components/ScrollableWrapper";
-import { SubscriptionContainer } from "../../components/SubscriptionContainer";
-import { TextInputCard } from "../../components/TextInputCard";
-import { ButtonCard } from "../../components/ButtonCard";
+
+import { SubsFormContainer } from "../../components/SubsFormContainer";
 
 const SubscriptionScreen = () => {
     return (
@@ -36,32 +34,7 @@ const SubscriptionScreen = () => {
                             Suscribirse o darse de baja de la BUE
                         </Title>
 
-                        <div className="filters-container">
-                            <FiltersWrapper
-                                flexDirection="column"
-                                padding={25}
-                            >
-                                <SubTitle
-                                    text={"Suscribirse a la BUE"}
-                                />
-                                <TextInputCard name={"Nombre"}/>
-                                <TextInputCard name={"Correo"}/>
-                                <TextInputCard name={"Numero"}/>
-                                <ButtonCard text="Suscribirse"/>
-                            </FiltersWrapper>
-
-                            <FiltersWrapper
-                                flexDirection="column"
-                                padding={25}
-                            >
-                                <SubTitle 
-                                    text={"Darse de baja de la BUE"}
-                                />
-                                <TextInputCard name={"Correo"}/>
-                                <ButtonCard text="Darse de Baja"/>
-
-                            </FiltersWrapper>
-                        </div>
+                        <SubsFormContainer/>
                         
                     </div>
 
