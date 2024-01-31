@@ -18,3 +18,9 @@ Validar que el contenedor este arriba (Up)
 Dirigirse a: http://10.140.0.16:15105/api/v1/vacantes/resultados
 
 Y verificar que trae informacion
+
+
+
+Direcciones
+    Contenedor: /etc/contenedores/pr_buscadordeempleo
+    Archivos: /var/lib/docker/volumes/pr_buscadordeempleo_documentroot/_data/bue

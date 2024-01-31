@@ -43,14 +43,15 @@ const App = () => {
 
     return (
         <AppProvider>
-            <BrowserRouter basename="/bue">
+            {/* <BrowserRouter basename="/bue"> */}
+            <BrowserRouter>
                 <Wrapper>
                     <Navbar/>
                     <NavBarResponsive/>
                     <AppRoutes/>
                     <NotificationsContainer/>
                     <Footer/>
-            </Wrapper>
+                </Wrapper>
             </BrowserRouter>
         </AppProvider>
     );
