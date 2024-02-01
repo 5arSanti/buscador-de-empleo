@@ -42,7 +42,7 @@ const NavIcons = ({flexDirection, showButtons = false}) => {
             >
                 <ImBrightnessContrast/>
             </button>
-            {showButtons &&
+            {/* {showButtons &&
                 <NavLink 
                     to={location.pathname === "/subscription" ? "/" : "subscription"} 
                     className="nav-link"
@@ -51,7 +51,7 @@ const NavIcons = ({flexDirection, showButtons = false}) => {
                         {location.pathname === "/subscription" ? "Home" : "Suscribirse"}
                     </button>
                 </NavLink>
-            }
+            } */}
         </div>
     );
 
