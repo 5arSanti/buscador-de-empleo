@@ -24,6 +24,31 @@ const AppProvider = ({children}) => {
     const [error, setError] = React.useState(null);
     const [time, setTime] = React.useState(null);
 
+    //Visitas Diarias y totales
+    const [visits, setVisits] = React.useState(null)
+
+    const obtenerEstadisticas = async () => {
+        try {
+            const response = await fetch(`${apiUri}/estadisticas`, {
+                method: 'GET',
+            });
+    
+            if (response.ok) {
+                const estadisticas = await response.json();
+                setVisits(estadisticas);
+            } else {
+                throw new Error("Error registrando visita");
+            }
+        } 
+        catch (err) {
+            handleNotifications('err', err.message);
+        }
+    };
+
+    React.useEffect(() => {
+        obtenerEstadisticas();
+      }, []);
+
 
     // VACANTES:
     const [vacantesData, setVacantesData] = React.useState({});
@@ -135,7 +160,6 @@ const AppProvider = ({children}) => {
         setActiveButton(type);
         const root = document.documentElement;        
 
-        console.log(activeHighContrast);
         if(activeHighContrast) {
             root.style.setProperty("--navbar-color", "#000000");
             root.style.setProperty("--navbar-responsive-color", "rgba(0, 0, 0, 0.75)");
@@ -390,6 +414,7 @@ const AppProvider = ({children}) => {
                 setActiveHighContrast,
 
                 actualDate,
+                visits,
 
                 handleNotifications,
             }}
