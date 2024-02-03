@@ -9,7 +9,7 @@ router.get('/', async (request, response) => {
 		await registrarVisita(fechaHoy);
 
 
-		const estadisticas = await obtenerEstadisticas();
+		const estadisticas = await obtenerEstadisticas(fechaHoy);
 		response.json(estadisticas);
 	} catch (err) {
 		console.error('Error al registrar visitas:', err.message);

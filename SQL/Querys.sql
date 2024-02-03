@@ -35,3 +35,22 @@ VALUES ('PP202310-21',
 1,
 'PP202310-21 UNIVERSIDAD DEL VALLE TOMA DE MUESTRAS, PROCESOS DE ANÃ�LISIS, MANEJO DE EQUIPOS. PL- APRENDIZ'
 )
+
+
+
+-- Crear tabla de suscripciones
+
+CREATE TABLE Suscripciones (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Nombre NVARCHAR(255) NOT NULL,
+    Correo NVARCHAR(255) NOT NULL,
+    Celular NVARCHAR(20)
+);
+
+-- Crear tabla de Visitas
+
+CREATE TABLE Visitas (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Fecha DATE UNIQUE,
+    VisitasDiarias INT DEFAULT 0
+);
