@@ -29,7 +29,8 @@ const AppProvider = ({children}) => {
 
     const obtenerEstadisticas = async () => {
         try {
-            const response = await fetch(`${apiUri}/estadisticas`, {
+            setLoading(true);
+            const response = await fetch(`${apiUri}/estadisticas/visitas`, {
                 method: 'GET',
             });
     
@@ -42,6 +43,9 @@ const AppProvider = ({children}) => {
         } 
         catch (err) {
             handleNotifications('err', err.message);
+        }
+        finally {
+            setLoading(false);
         }
     };
 
@@ -106,7 +110,8 @@ const AppProvider = ({children}) => {
 
             const endpoints = [
                 `vacantes/resultados?page=${page}&${filterParams.toString()}`,
-                "filters"
+                "filters",
+                "estadisticas/vacantes/obtener"
                 /* otros endpoints */
             ];
 
@@ -118,6 +123,7 @@ const AppProvider = ({children}) => {
             }, {});
 
             setVacantesData(combinedResults);
+            console.log(combinedResults);
             setTotalPages(combinedResults.totalPages);
 
         } catch (err) {
@@ -317,7 +323,6 @@ const AppProvider = ({children}) => {
     const handleNotifications = (type = null, message) => {
         switch(type) {
             case "ok" : 
-                console.log("Entra")
                 setAllOk({
                     status: true,
                     message: message
@@ -327,7 +332,6 @@ const AppProvider = ({children}) => {
                         status: false
                     })
                 }, 4000);
-                console.log(allOk);
             break;
             case "err" : 
                 setError({

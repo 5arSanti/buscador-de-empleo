@@ -1,5 +1,5 @@
 import React from "react";
-import { FiExternalLink } from "react-icons/fi";
+import { FiExternalLink, FiNavigation } from "react-icons/fi";
 
 import { icon } from "../../../../assets";
 
@@ -27,13 +27,33 @@ const ResultsCard = ({data}) => {
     const nombrePrestador = data.NOMBRE_PRESTADOR;
     const imagenRuta = prestadorImagenes[nombrePrestador] || icon;
 
+    const handleClick = async (item) => {
+        try {
+            const codigoVacante = item.CODIGO_VACANTE;
+
+            const response = await fetch(`${context.apiUri}/estadisticas/vacantes/registrar`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({codigoVacante}),
+            })
+
+            if(!response.ok) {
+                throw new Error;
+            }
+        } catch (err) {
+            context.handleNotifications("err", err.message);
+        }
+    }
+
     return(
         <div className="results-card-container"
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(null)}
         >
             {context.windowWidth > 650 &&
-                <a href={data.URL_DETALLE_VACANTE} rel="noopener noreferrer" target="_blank" >
+                <a onClick={() => handleClick(data)} href={data.URL_DETALLE_VACANTE} rel="noopener noreferrer" target="_blank" >
                     {hovered &&
                         <div>
                             <FiExternalLink/>
@@ -50,7 +70,7 @@ const ResultsCard = ({data}) => {
                 <p>{data.DEPARTAMENTO}</p>
             </div>
             {context.windowWidth < 550 &&
-                <a href={data.URL_DETALLE_VACANTE} rel="noopener noreferrer" target="_blank" >
+                <a onClick={() => handleClick(data)} href={data.URL_DETALLE_VACANTE} rel="noopener noreferrer" target="_blank" >
                     <div>
                         <FiExternalLink/>
                     </div>

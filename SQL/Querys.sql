@@ -54,3 +54,11 @@ CREATE TABLE Visitas (
     Fecha DATE UNIQUE,
     VisitasDiarias INT DEFAULT 0
 );
+
+-- Crear tabla de Vacantes consultadas
+
+CREATE TABLE Vacantes_Consultadas (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    FechaHoraConsulta DATETIME NOT NULL,
+    CodigoVacante VARCHAR(255) NOT NULL
+);

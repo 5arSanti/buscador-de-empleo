@@ -1,6 +1,5 @@
 const { sql } = require("../database")
 
-
 const registrarVisita = async (fecha) => {
 
 	await sql.query`
@@ -24,14 +23,6 @@ const obtenerEstadisticas = async (fecha) => {
 	return result.recordset[0];
 }
 
-const obtenerFechaHoy = () => {
-	const fechaActual = new Date();
-	const anio = fechaActual.getFullYear();
-	const mes = String(fechaActual.getMonth() + 1).padStart(2, '0');
-	const dia = String(fechaActual.getDate()).padStart(2, '0');
 
-	return `${anio}-${mes}-${dia}`;
 
-  }
-
-module.exports = { registrarVisita, obtenerEstadisticas, obtenerFechaHoy };
+module.exports = { registrarVisita, obtenerEstadisticas };
