@@ -1,5 +1,4 @@
 import React from "react";
-import { FiExternalLink, FiNavigation } from "react-icons/fi";
 
 import { icon } from "../../../../assets";
 
@@ -7,6 +6,8 @@ import "./styles.css";
 import PropTypes from "prop-types";
 import { AppContext } from "../../../../Context";
 import { prestadorImagenes } from "../../../../utils/images";
+
+import { AnchorButton } from "./AnchorButton"
 
 const ResultsCard = ({data}) => {
     ResultsCard.propTypes = {
@@ -53,15 +54,13 @@ const ResultsCard = ({data}) => {
             onMouseLeave={() => setHovered(null)}
         >
             {context.windowWidth > 650 &&
-                <a onClick={() => handleClick(data)} href={data.URL_DETALLE_VACANTE} rel="noopener noreferrer" target="_blank" >
-                    {hovered &&
-                        <div>
-                            <FiExternalLink/>
-                        </div>
-                    }
-                    <img src={imagenRuta} alt={`alt_${imagenRuta}`} />
-    
-                </a>
+                <AnchorButton
+                    data={data}
+                    imagen={imagenRuta}
+                    handleClick={() => handleClick(data)}
+                    hovered={hovered}
+                    type={1}
+                />
             }
 
             <div className="results-card-main-info">
@@ -69,14 +68,16 @@ const ResultsCard = ({data}) => {
                 <p>{data.RANGO_SALARIAL}</p>
                 <p>{data.DEPARTAMENTO}</p>
             </div>
-            {context.windowWidth < 550 &&
-                <a onClick={() => handleClick(data)} href={data.URL_DETALLE_VACANTE} rel="noopener noreferrer" target="_blank" >
-                    <div>
-                        <FiExternalLink/>
-                    </div>
-                    <img src={imagenRuta} alt={`alt_${imagenRuta}`} />
-                </a>
+
+            {context.windowWidth < 650 &&
+                <AnchorButton
+                    data={data}
+                    imagen={imagenRuta}
+                    handleClick={() => handleClick(data)}
+                    hovered={hovered}
+                />
             }
+            
             <div className="results-card-secondary-info">
                 <p>{data.TITULO_VACANTE}</p>
                 <p className="results-card-secondary-description">{data.DESCRIPCION_VACANTE}</p>

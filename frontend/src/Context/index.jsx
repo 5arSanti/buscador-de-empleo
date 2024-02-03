@@ -123,7 +123,6 @@ const AppProvider = ({children}) => {
             }, {});
 
             setVacantesData(combinedResults);
-            console.log(combinedResults);
             setTotalPages(combinedResults.totalPages);
 
         } catch (err) {
@@ -190,6 +189,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--all-info-container-color', '#DCF6FF');
                 root.style.setProperty('--input-and-info-container-color', '#6ABFE1');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#5D59DC');
+                root.style.setProperty("--tool-tip-map-text-color", "#7B7B7B");
                 root.style.setProperty("--confirm-color", "#74C59A");
                 root.style.setProperty("--cancel-color", "#DA4F6A");
                 root.style.setProperty("--time-color", "#4172FF");
@@ -202,6 +202,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--all-info-container-color', '#FFDCDC');
                 root.style.setProperty('--input-and-info-container-color', '#E16A6A');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#DC5959');
+                root.style.setProperty("--tool-tip-map-text-color", "#7B7B7B");
                 root.style.setProperty("--confirm-color", "#74C59A");
                 root.style.setProperty("--cancel-color", "#DA4F6A");
                 root.style.setProperty("--time-color", "#4172FF");
@@ -214,6 +215,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--all-info-container-color', '#DCFFEC');
                 root.style.setProperty('--input-and-info-container-color', '#6AE197');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#4BC472');
+                root.style.setProperty("--tool-tip-map-text-color", "#7B7B7B");
                 root.style.setProperty("--confirm-color", "#74C59A");
                 root.style.setProperty("--cancel-color", "#DA4F6A");
                 root.style.setProperty("--time-color", "#4172FF");
@@ -226,6 +228,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--all-info-container-color', '#FFF8DC');
                 root.style.setProperty('--input-and-info-container-color', '#E1CA6A');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#C4A34B');
+                root.style.setProperty("--tool-tip-map-text-color", "#7B7B7B");
                 root.style.setProperty("--confirm-color", "#74C59A");
                 root.style.setProperty("--cancel-color", "#DA4F6A");
                 root.style.setProperty("--time-color", "#4172FF");
@@ -238,6 +241,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--all-info-container-color', '#E3DCFF');
                 root.style.setProperty('--input-and-info-container-color', '#816AE1');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#684BC4');
+                root.style.setProperty("--tool-tip-map-text-color", "#7B7B7B");
                 root.style.setProperty("--confirm-color", "#74C59A");
                 root.style.setProperty("--cancel-color", "#DA4F6A");
                 root.style.setProperty("--time-color", "#4172FF");
@@ -250,6 +254,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--all-info-container-color', '#FFDCEE');
                 root.style.setProperty('--input-and-info-container-color', '#E16AA9');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#C44B8B');
+                root.style.setProperty("--tool-tip-map-text-color", "#7B7B7B");
                 root.style.setProperty("--confirm-color", "#74C59A");
                 root.style.setProperty("--cancel-color", "#DA4F6A");
                 root.style.setProperty("--time-color", "#4172FF");

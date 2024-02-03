@@ -103,15 +103,15 @@ const Map = () => {
             >
                 <Geographies geography={geoUrl}>
                     {({ geographies }) => (
-                        geographies.map((geo) => (
+                        geographies.map((geo, index) => (
                             <Geography
-                                key={geo.properties.ID}
+                                key={index}
                                 geography={geo}
                                 fill={departmentColorSelect(geo)}
                                 stroke={"#FFF"}
                                 onMouseEnter={(event) => {context.handleMapMouseEnter(event, geo)}}
                                 onMouseLeave={context.handleMapMouseLeave}
-                                onClick={() => context.saveSelectedDepartment(geo.properties.NOMBRE_DPT)}
+                                onClick={() => {context.saveSelectedDepartment(geo.properties.NOMBRE_DPT)}}
                             />
                         ))
                     )}
@@ -131,9 +131,9 @@ const Map = () => {
                 >
                     <Geographies geography={sanAndresURl}>
                         {({ geographies }) => (
-                            geographies.map((geo) => (
+                            geographies.map((geo, index) => (
                                 <Geography
-                                    key={geo.properties.ID}
+                                    key={index}
                                     geography={geo}
                                     fill={departmentColorSelect(geo)}
                                     stroke="#FFF"
@@ -156,9 +156,9 @@ const Map = () => {
                 >
                     <Geographies geography={sanAndresURl}>
                         {({ geographies }) => (
-                            geographies.map((geo) => (
+                            geographies.map((geo, index) => (
                                 <Geography
-                                    key={geo.properties.ID}
+                                    key={index}
                                     geography={geo}
                                     fill={departmentColorSelect(geo)}
                                     stroke="#FFF"

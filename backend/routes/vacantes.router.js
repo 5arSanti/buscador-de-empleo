@@ -34,7 +34,7 @@ router.get("/resultados", async (request, response) => {
             WHERE LOWER(BUSQUEDA) LIKE LOWER('%${searchTerm}%')
 			AND (DESCRIPCION_VACANTE) LIKE ('%${descriptionFilter}%')
             ${filterConditions ? `AND ${filterConditions}` : ""}
-            ORDER BY CODIGO_VACANTE DESC
+            ORDER BY FECHA_CREACION DESC
             OFFSET ${offset} ROWS
             FETCH NEXT ${PAGE_SIZE} ROWS ONLY
         `;

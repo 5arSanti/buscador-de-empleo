@@ -44,7 +44,6 @@ router.post('/vacantes/registrar', async (request, response) => {
 		response.status(200).json({ message: 'Estadísticas registradas exitosamente.' });
 	}
 	catch (err) {
-		console.error('Error al procesar estadísticas:', err.message);
 		response.status(500).json({ message: 'Error guardando estadisticas' });
 	}
 });
