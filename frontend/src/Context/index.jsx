@@ -24,6 +24,35 @@ const AppProvider = ({children}) => {
     const [error, setError] = React.useState(null);
     const [time, setTime] = React.useState(null);
 
+    //Visitas Diarias y totales
+    const [visits, setVisits] = React.useState(null)
+
+    const obtenerEstadisticas = async () => {
+        try {
+            setLoading(true);
+            const response = await fetch(`${apiUri}/estadisticas/visitas`, {
+                method: 'GET',
+            });
+    
+            if (response.ok) {
+                const estadisticas = await response.json();
+                setVisits(estadisticas);
+            } else {
+                throw new Error("Error registrando visita");
+            }
+        } 
+        catch (err) {
+            handleNotifications('err', err.message);
+        }
+        finally {
+            setLoading(false);
+        }
+    };
+
+    React.useEffect(() => {
+        obtenerEstadisticas();
+      }, []);
+
 
     // VACANTES:
     const [vacantesData, setVacantesData] = React.useState({});
@@ -81,7 +110,8 @@ const AppProvider = ({children}) => {
 
             const endpoints = [
                 `vacantes/resultados?page=${page}&${filterParams.toString()}`,
-                "filters"
+                "filters",
+                "estadisticas/vacantes/obtener"
                 /* otros endpoints */
             ];
 
@@ -135,7 +165,6 @@ const AppProvider = ({children}) => {
         setActiveButton(type);
         const root = document.documentElement;        
 
-        console.log(activeHighContrast);
         if(activeHighContrast) {
             root.style.setProperty("--navbar-color", "#000000");
             root.style.setProperty("--navbar-responsive-color", "rgba(0, 0, 0, 0.75)");
@@ -160,6 +189,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--all-info-container-color', '#DCF6FF');
                 root.style.setProperty('--input-and-info-container-color', '#6ABFE1');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#5D59DC');
+                root.style.setProperty("--tool-tip-map-text-color", "#7B7B7B");
                 root.style.setProperty("--confirm-color", "#74C59A");
                 root.style.setProperty("--cancel-color", "#DA4F6A");
                 root.style.setProperty("--time-color", "#4172FF");
@@ -172,6 +202,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--all-info-container-color', '#FFDCDC');
                 root.style.setProperty('--input-and-info-container-color', '#E16A6A');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#DC5959');
+                root.style.setProperty("--tool-tip-map-text-color", "#7B7B7B");
                 root.style.setProperty("--confirm-color", "#74C59A");
                 root.style.setProperty("--cancel-color", "#DA4F6A");
                 root.style.setProperty("--time-color", "#4172FF");
@@ -184,6 +215,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--all-info-container-color', '#DCFFEC');
                 root.style.setProperty('--input-and-info-container-color', '#6AE197');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#4BC472');
+                root.style.setProperty("--tool-tip-map-text-color", "#7B7B7B");
                 root.style.setProperty("--confirm-color", "#74C59A");
                 root.style.setProperty("--cancel-color", "#DA4F6A");
                 root.style.setProperty("--time-color", "#4172FF");
@@ -196,6 +228,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--all-info-container-color', '#FFF8DC');
                 root.style.setProperty('--input-and-info-container-color', '#E1CA6A');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#C4A34B');
+                root.style.setProperty("--tool-tip-map-text-color", "#7B7B7B");
                 root.style.setProperty("--confirm-color", "#74C59A");
                 root.style.setProperty("--cancel-color", "#DA4F6A");
                 root.style.setProperty("--time-color", "#4172FF");
@@ -208,6 +241,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--all-info-container-color', '#E3DCFF');
                 root.style.setProperty('--input-and-info-container-color', '#816AE1');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#684BC4');
+                root.style.setProperty("--tool-tip-map-text-color", "#7B7B7B");
                 root.style.setProperty("--confirm-color", "#74C59A");
                 root.style.setProperty("--cancel-color", "#DA4F6A");
                 root.style.setProperty("--time-color", "#4172FF");
@@ -220,6 +254,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--all-info-container-color', '#FFDCEE');
                 root.style.setProperty('--input-and-info-container-color', '#E16AA9');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#C44B8B');
+                root.style.setProperty("--tool-tip-map-text-color", "#7B7B7B");
                 root.style.setProperty("--confirm-color", "#74C59A");
                 root.style.setProperty("--cancel-color", "#DA4F6A");
                 root.style.setProperty("--time-color", "#4172FF");
@@ -293,7 +328,6 @@ const AppProvider = ({children}) => {
     const handleNotifications = (type = null, message) => {
         switch(type) {
             case "ok" : 
-                console.log("Entra")
                 setAllOk({
                     status: true,
                     message: message
@@ -303,7 +337,6 @@ const AppProvider = ({children}) => {
                         status: false
                     })
                 }, 4000);
-                console.log(allOk);
             break;
             case "err" : 
                 setError({
@@ -390,6 +423,7 @@ const AppProvider = ({children}) => {
                 setActiveHighContrast,
 
                 actualDate,
+                visits,
 
                 handleNotifications,
             }}

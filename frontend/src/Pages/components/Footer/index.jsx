@@ -12,6 +12,9 @@ import { AppContext } from "../../../Context";
 const Footer = () => {
     const context = React.useContext(AppContext)
 
+    let date = new Date();
+    let year = date.getFullYear();
+
     return(
         <footer className="footer-container">
             <div className="footer-interest-and-about-container">
@@ -40,8 +43,8 @@ const Footer = () => {
             <div className="second-footer-container">
                 <div className="daily-and-date-container">
                     <div>
-                        <p>Visitas Diarias: 1</p>
-                        <p>Visitas Totales: 10</p>
+                        <p>Visitas Diarias: {context.visits?.TotalVisitasDiarias}</p>
+                        <p>Visitas Totales: {context.visits?.TotalVisitasTotales}</p>
                     </div>
                     <p>{context.actualDate()}</p>
                 </div>
@@ -52,7 +55,7 @@ const Footer = () => {
                             flexDirection={"row"}
                         />
                     </div>
-                    <p>&copy; 2023 Servicio Publico de Empleo</p>
+                    <p>&copy; {year} Servicio Publico de Empleo</p>
                 </div>
             </div>
 

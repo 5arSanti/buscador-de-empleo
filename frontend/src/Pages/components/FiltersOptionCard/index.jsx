@@ -1,10 +1,9 @@
 import PropTypes from "prop-types";
 
-const FiltersOptionCard = ({id, title, array, onChange}) => {
+const FiltersOptionCard = ({id, title, array=[], onChange}) => {
     FiltersOptionCard.propTypes = {
         id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
-        array: PropTypes.array.isRequired,
         onChange: PropTypes.func.isRequired,
     }
 

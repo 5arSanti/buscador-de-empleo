@@ -25,6 +25,43 @@
     border: 2px solid var(--navbar-color);
     outline: none;
 }
+
+.input-and-button-container {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr 0.1fr;
+    gap: 10px;
+    align-items: center;
+}
+.input-and-button-container button{
+    height: 100%;
+    width: 100%;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--municipios-and-result-border-clicked);
+    color: var(--white);
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+.input-and-button-container button svg{
+    height: 20px;
+    width: 20px;
+
+    transition: all 0.2s ease;
+}
+.input-and-button-container:hover button svg{
+    transform: scale(1.15);
+}
+
+
 .info-container {
     display: flex;
     flex-direction: column;

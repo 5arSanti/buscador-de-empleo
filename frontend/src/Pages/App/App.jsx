@@ -1,6 +1,6 @@
 //Dependencies
 import React from "react";
-import { BrowserRouter, Navigate, useLocation, useRoutes } from "react-router-dom";
+import { HashRouter, Navigate, useLocation, useRoutes } from "react-router-dom";
 
 //App
 import './App.css'
@@ -32,7 +32,7 @@ const Wrapper = ({children}) => {
 const AppRoutes = () => {
     let routes = useRoutes([
         {path: "/home", element: <Home/>},
-        {path: "/subscription", element: <SubscriptionScreen/>},
+        // {path: "/subscription", element: <SubscriptionScreen/>},
         {path: "/*", element: <Navigate to={"/home"}/>},
     ]);
     
@@ -43,8 +43,8 @@ const App = () => {
 
     return (
         <AppProvider>
-            {/* <BrowserRouter basename="/bue"> */}
-            <BrowserRouter>
+            <HashRouter>
+            {/* <BrowserRouter> */}
                 <Wrapper>
                     <Navbar/>
                     <NavBarResponsive/>
@@ -52,7 +52,7 @@ const App = () => {
                     <NotificationsContainer/>
                     <Footer/>
                 </Wrapper>
-            </BrowserRouter>
+            </HashRouter>
         </AppProvider>
     );
 }
