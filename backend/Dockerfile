@@ -1,8 +1,8 @@
 # Usa la imagen oficial de Node.js como base
-FROM node:latest
+FROM node:14
 
 # Establece el directorio de trabajo dentro del contenedor
-WORKDIR /_data/bue/backend
+WORKDIR /_data/consolidainfo/backend
 
 # Copia los archivos de la aplicación al contenedor
 COPY package*.json ./

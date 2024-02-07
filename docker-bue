@@ -1,12 +1,12 @@
-EN la direccion /etc/contenedores/pr_buscadordeempleo
+EN la direccion /etc/contenedores/pr_consolidainfoarchivos
 
 Se realizaron cambios en el archivo docker-compose.yml cambiando la imagen y directorio raiz por el archivo Dockerfile dentro de la carpeta backend.
 
 
-EN la direccion: /etc/contenedores/pr_buscadordeempleo en Putty ejecutar:
+EN la direccion: /etc/contenedores/pr_consolidainfoarchivos en Putty ejecutar:
 
     docker-compose stop
-    docker-compose build
+    docker-compose build --no-cache
     docker-compose up -d
 
 Validar que el contenedor este arriba (Up)
@@ -22,5 +22,16 @@ Y verificar que trae informacion
 
 
 Direcciones
-    Contenedor: /etc/contenedores/pr_buscadordeempleo
-    Archivos: /var/lib/docker/volumes/pr_buscadordeempleo_documentroot/_data/bue
+    Frontend:
+        Contenedor: /etc/contenedores/pr_buscadordeempleo
+        Archivos: /var/lib/docker/volumes/pr_buscadordeempleo_documentroot/_data/bue
+
+
+    Backend:
+        Contenedor: /etc/contenedores/pr_consolidainfoarchivos
+        Archivos: /var/lib/docker/volumes/pr_consolidainfoarchivos_documentroot/_data/consolidainfo
+
+
+
+Debug:
+    docker logs --tail 50 --follow --timestamps consolidainfoarchivos_apache
