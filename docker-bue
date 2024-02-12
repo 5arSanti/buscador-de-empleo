@@ -1,13 +1,13 @@
-EN la direccion /etc/contenedores/pr_consolidainfoarchivos
+EN la direccion /etc/contenedores/pr_buscadordeempleo
 
-Se realizaron cambios en el archivo docker-compose.yml cambiando la imagen y directorio raiz por el archivo Dockerfile dentro de la carpeta backend.
+Se realizaron cambios en el contenedor de buscadordeempleo_backend en el archivo docker-compose.yml cambiando el directorio raiz por el archivo Dockerfile dentro de la carpeta backend.
 
 
-EN la direccion: /etc/contenedores/pr_consolidainfoarchivos en Putty ejecutar:
+EN la direccion: /etc/contenedores/pr_buscadordeempleo en Putty ejecutar:
 
-    docker-compose stop
-    docker-compose build --no-cache
-    docker-compose up -d
+    docker-compose stop buscadordeempleo_backend
+    docker-compose build buscadordeempleo_backend
+    docker-compose up -d buscadordeempleo_backend
 
 Validar que el contenedor este arriba (Up)
 
@@ -15,7 +15,7 @@ Validar que el contenedor este arriba (Up)
     La columna status debe decir "Up"
 
 
-Dirigirse a: http://10.140.0.16:15105/api/v1/vacantes/resultados
+Dirigirse a: http://10.140.0.16:15108/api/v1/vacantes/resultados
 
 Y verificar que trae informacion
 
@@ -24,14 +24,16 @@ Y verificar que trae informacion
 Direcciones
     Frontend:
         Contenedor: /etc/contenedores/pr_buscadordeempleo
-        Archivos: /var/lib/docker/volumes/pr_buscadordeempleo_documentroot/_data/bue
+        Archivos: 
+            /var/lib/docker/volumes/pr_buscadordeempleo_documentroot/_data/bue
 
 
     Backend:
-        Contenedor: /etc/contenedores/pr_consolidainfoarchivos
-        Archivos: /var/lib/docker/volumes/pr_consolidainfoarchivos_documentroot/_data/consolidainfo
+        Contenedor: /etc/contenedores/pr_buscadordeempleo
+        Archivos: 
+            /var/lib/docker/volumes/pr_buscadordeempleo_documentrootbackend/_data/buebackend
 
 
 
 Debug:
-    docker logs --tail 50 --follow --timestamps consolidainfoarchivos_apache
+    docker logs --tail 50 --follow --timestamps buscadordeempleo_backend
