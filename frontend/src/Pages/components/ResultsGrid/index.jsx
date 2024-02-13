@@ -25,8 +25,8 @@ const ResultsGrid = () => {
                 text={"Resultados"}
             />
             <div className="info-container">
-                <p>Seleccione la oferta de su interés dando clic en el logo de la vacante, esto lo llevará directamente a la página donde se encuentra publicada.</p>
-                <p>Los logos corresponden a los prestadores autorizados que tienen dicha vacante registrada. Seleccione el de su preferencia.</p>
+                <p>Seleccione la oferta de su interés haciendo clic en Ir a la Oferta, esto lo llevará directamente a la página donde se encuentra publicada.</p>
+                {/* <p>Los logos corresponden a los prestadores autorizados que tienen dicha vacante registrada. Seleccione el de su preferencia.</p> */}
             </div>
 
             {!context.loading && context.vacantesData?.resultados?.length === 0 ?

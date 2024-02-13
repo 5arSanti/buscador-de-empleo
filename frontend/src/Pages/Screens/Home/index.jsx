@@ -10,7 +10,7 @@ const Home = () => {
                 color={"#00698E"}
                 borderColor={"#00698E"}
             >
-                Bolsa Única de Empleo del SPE.
+                Buscador Único de Empleo del SPE.
             </Title>
             <AllInfoContainer>
                 <FiltersAndMapContainer/>

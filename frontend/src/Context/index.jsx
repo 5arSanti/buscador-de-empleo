@@ -177,6 +177,7 @@ const AppProvider = ({children}) => {
             root.style.setProperty("--confirm-color", "#434343");
             root.style.setProperty("--cancel-color", "#434343");
             root.style.setProperty("--time-color", "#434343");
+            root.style.setProperty("--result-subtitle-card", "#000000")
             return;
         }
 
@@ -193,6 +194,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty("--confirm-color", "#74C59A");
                 root.style.setProperty("--cancel-color", "#DA4F6A");
                 root.style.setProperty("--time-color", "#4172FF");
+                root.style.setProperty("--result-subtitle-card", "rgb(0, 105, 142)");
             break;
             case 2:
                 root.style.setProperty("--navbar-color", "#9C0000");
@@ -206,6 +208,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty("--confirm-color", "#74C59A");
                 root.style.setProperty("--cancel-color", "#DA4F6A");
                 root.style.setProperty("--time-color", "#4172FF");
+                root.style.setProperty("--result-subtitle-card", "rgb(142, 0, 0)");
             break;
             case 3:
                 root.style.setProperty("--navbar-color", "#009C5F");
@@ -219,6 +222,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty("--confirm-color", "#74C59A");
                 root.style.setProperty("--cancel-color", "#DA4F6A");
                 root.style.setProperty("--time-color", "#4172FF");
+                root.style.setProperty("--result-subtitle-card", "rgb(0, 105, 77)");
             break;
             case 4:
                 root.style.setProperty("--navbar-color", "#9C7B00");
@@ -232,6 +236,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty("--confirm-color", "#74C59A");
                 root.style.setProperty("--cancel-color", "#DA4F6A");
                 root.style.setProperty("--time-color", "#4172FF");
+                root.style.setProperty("--result-subtitle-card", "rgb(105, 77, 0)");
             break;
             case 5:
                 root.style.setProperty("--navbar-color", "#23009C");
@@ -245,6 +250,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty("--confirm-color", "#74C59A");
                 root.style.setProperty("--cancel-color", "#DA4F6A");
                 root.style.setProperty("--time-color", "#4172FF");
+                root.style.setProperty("--result-subtitle-card", "rgb(22, 0, 105)");
             break;
             case 6:
                 root.style.setProperty("--navbar-color", "#9C0055");
@@ -258,6 +264,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty("--confirm-color", "#74C59A");
                 root.style.setProperty("--cancel-color", "#DA4F6A");
                 root.style.setProperty("--time-color", "#4172FF");
+                root.style.setProperty("--result-subtitle-card", "rgb(142, 0, 73)");
             break;    
             default:
                 root.style.setProperty("--navbar-color", "#00589c");
@@ -268,9 +275,10 @@ const AppProvider = ({children}) => {
                 root.style.setProperty('--input-and-info-container-color', '#6ABFE1');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#5D59DC');
                 root.style.setProperty("--tool-tip-map-text-color", "#7B7B7B")
-                root.style.setProperty("--confirm-color", "#434343");
-                root.style.setProperty("--cancel-color", "#434343");
-                root.style.setProperty("--time-color", "#434343");
+                root.style.setProperty("--confirm-color", "#74C59A");
+                root.style.setProperty("--cancel-color", "#DA4F6A");
+                root.style.setProperty("--time-color", "#4172FF");
+                root.style.setProperty("--result-subtitle-card", "rgb(0, 105, 142)");
             break;
         }
     }

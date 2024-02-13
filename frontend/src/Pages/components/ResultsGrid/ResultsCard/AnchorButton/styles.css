@@ -35,3 +35,23 @@
     width: 55px;
     margin: 2px;
 }
+.results-card-container a p {
+    color: var(--result-subtitle-card);
+    padding: 10px 10px;
+    text-align: center;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+@media (max-width: 650px) {
+    .results-card-container a p {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 450px) {
+    .results-card-container a p {
+        font-size: 10px;
+    }
+}

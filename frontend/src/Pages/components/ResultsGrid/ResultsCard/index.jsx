@@ -84,11 +84,11 @@ const ResultsCard = ({data}) => {
             </div>
             <div className="results-card-complementary-info">
                 <div>
-                    <p className="mini-title">Codigo</p>
+                    <p className="mini-title">Código Vacante</p>
                     <p>{data.CODIGO_VACANTE}</p>
                 </div>
                 <div>
-                    <p className="mini-title">Publicacion</p>
+                    <p className="mini-title">Fecha de Publicación</p>
                     <p>{fechaFormateada}</p>
                 </div>
             </div>

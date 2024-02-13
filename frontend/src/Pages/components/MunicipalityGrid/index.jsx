@@ -17,7 +17,7 @@ const MunicipalityGrid = () => {
             padding={25}
             gap={15}
         >
-            <SubTitle text="Municipios"/>
+            <SubTitle text="Departamentos"/>
 
             <ScrollableWrapper
                 maxHeight={325}

@@ -23,7 +23,7 @@ const JobBoardGrid = () => {
             gap={10}
         >
             
-            <SubTitle text={"Otras Bolsas"}/>
+            <SubTitle text={"Otros Filtros"}/>
 
             <JobBoardCard
                 icon={<FaHome/>}
