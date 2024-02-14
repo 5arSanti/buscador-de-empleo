@@ -20,8 +20,8 @@ const ResultsCard = ({data}) => {
 
     const fechaDesdeBaseDeDatos = data.FECHA_CREACION;
     const fechaFormateada = new Date(fechaDesdeBaseDeDatos).toLocaleDateString({
-        day: '2-digit',
-        month: '2-digit',
+        day: '2-digits',
+        month: '2-digits',
         year: 'numeric',
     });
 

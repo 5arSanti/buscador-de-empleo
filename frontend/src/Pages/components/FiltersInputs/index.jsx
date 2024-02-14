@@ -60,6 +60,12 @@ const FiltersInputs = () => {
                 array={["SI"]}
                 onChange={(value) => context.saveSelectedDepartment(value == "SI" ? "VACANTES PARA TODO EL TERRITORIO" : "")}
             />
+            <FiltersOptionCard
+                id={"foreigner"}
+                title={"Filtro por Fecha"}
+                array={["Hoy", "Última semana", "Último mes"]}
+                onChange={(value) => context.handleDateFilterChange(value)}
+            />
         </FiltersWrapper>
     );
 }

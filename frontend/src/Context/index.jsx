@@ -376,6 +376,32 @@ const AppProvider = ({children}) => {
         return fechaCapitalizada;
     }
 
+    const handleDateFilterChange = (value) => {
+        let dateFilter = "";
+    
+        // Lógica para determinar el filtro de fecha según la opción seleccionada
+        const today = new Date();
+        const oneWeekAgo = new Date((today.getTime() - 8 * 24 * 60 * 60 * 1000));
+        const oneMonthAgo = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
+    
+        switch(value) {
+            case "Hoy":
+                dateFilter = today.toISOString().split('T')[0];
+                break;
+            case "Última semana":
+                dateFilter = oneWeekAgo.toISOString().split('T')[0];
+                break;
+            case "Último mes":
+                dateFilter = oneMonthAgo.toISOString().split('T')[0];
+                break;
+            default:
+                dateFilter = "";
+        }
+    
+        // Actualizar los filtros
+        handleFilterChange("FECHA_CREACION", dateFilter);
+    };
+
 
     return (
         <AppContext.Provider
@@ -434,6 +460,7 @@ const AppProvider = ({children}) => {
                 visits,
 
                 handleNotifications,
+                handleDateFilterChange,
             }}
         >
             {children}

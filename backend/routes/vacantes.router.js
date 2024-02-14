@@ -1,5 +1,6 @@
 const express = require("express");
-const { sql } = require("../database")
+const { sql } = require("../database");
+const { filterDateCondition } = require("../functions/fecha");
 
 const router = express.Router();
 
@@ -21,9 +22,11 @@ router.get("/resultados", async (request, response) => {
 
         const searchTerm = request.query.BUSQUEDA || '';
 		const descriptionFilter = request.query.DESCRIPCION_VACANTE || '';
+		const fechaCreacion = request.query.FECHA_CREACION || "";
+
 
         const filterConditions = Object.keys(request.query)
-            .filter((key) => key !== "page" && request.query[key] !== "" && key !== "BUSQUEDA" && key !== "DESCRIPCION_VACANTE")
+            .filter((key) => key !== "page" && request.query[key] !== "" && key !== "FECHA_CREACION" && key !== "BUSQUEDA" && key !== "DESCRIPCION_VACANTE")
             .map((key) => `${key} = '${request.query[key]}'`)
             .join(" AND ");
 
@@ -34,6 +37,8 @@ router.get("/resultados", async (request, response) => {
             WHERE LOWER(BUSQUEDA) LIKE LOWER('%${searchTerm}%')
 			AND (DESCRIPCION_VACANTE) LIKE ('%${descriptionFilter}%')
             ${filterConditions ? `AND ${filterConditions}` : ""}
+			${filterDateCondition(fechaCreacion)}
+
             ORDER BY FECHA_CREACION DESC
             OFFSET ${offset} ROWS
             FETCH NEXT ${PAGE_SIZE} ROWS ONLY
@@ -45,7 +50,9 @@ router.get("/resultados", async (request, response) => {
             FROM Vacantes_Vigentes_Completo
             WHERE LOWER(BUSQUEDA) LIKE LOWER('%${searchTerm}%')
 			AND (DESCRIPCION_VACANTE) LIKE ('%${descriptionFilter}%')
-            ${filterConditions ? `AND ${filterConditions}` : ""}`
+            ${filterConditions ? `AND ${filterConditions}` : ""}
+			${filterDateCondition(request.query.FECHA_CREACION)}
+			`
         );
         const total_registros = totalRecordsBySearchQuery.recordset[0].total_registros;
 
@@ -63,6 +70,7 @@ router.get("/resultados", async (request, response) => {
             WHERE LOWER(BUSQUEDA) LIKE LOWER('%${searchTerm}%')
 			AND (DESCRIPCION_VACANTE) LIKE ('%${descriptionFilter}%')
             ${filterConditions ? `AND ${filterConditions}` : ""}
+			${filterDateCondition(request.query.FECHA_CREACION)}
             GROUP BY DEPARTAMENTO
         `);
         const total_departments = totalRecordsByDepartmentQuery.recordset.map(row => ({
