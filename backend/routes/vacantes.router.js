@@ -92,7 +92,6 @@ router.get("/resultados", async (request, response) => {
         });
     }
     catch (err) {
-        console.error('Error fetching results:', err);
         return response.status(500).json({ error: 'Internal Server Error' });
     }
 });
