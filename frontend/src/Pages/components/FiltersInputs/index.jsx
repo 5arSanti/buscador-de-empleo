@@ -62,7 +62,7 @@ const FiltersInputs = () => {
             />
             <FiltersOptionCard
                 id={"foreigner"}
-                title={"Filtro por Fecha"}
+                title={"Fecha de Publicación"}
                 array={["Hoy", "Última semana", "Último mes"]}
                 onChange={(value) => context.handleDateFilterChange(value)}
             />
