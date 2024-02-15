@@ -1,5 +1,5 @@
 # Usa la imagen oficial de Node.js como base
-FROM node:20
+FROM node:17
 
 # Establece el directorio de trabajo dentro del contenedor
 WORKDIR /_data/consolidainfo/backend
@@ -8,7 +8,7 @@ WORKDIR /_data/consolidainfo/backend
 COPY package*.json ./
 
 # Instala las dependencias
-# RUN npm install
+RUN npm install
 
 # Copia el resto de la aplicación al contenedor
 COPY . .

@@ -31,7 +31,7 @@ Direcciones
     Backend:
         Contenedor: /etc/contenedores/pr_buscadordeempleo
         Archivos: 
-            /var/lib/docker/volumes/pr_buscadordeempleo_documentrootbackend/_data/buebackend
+            /var/lib/docker/volumes/pr_buscadordeempleo_documentrootbackend/_data/buebackend/backend
 
 
 
