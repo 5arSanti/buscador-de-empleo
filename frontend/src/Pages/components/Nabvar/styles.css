@@ -40,7 +40,7 @@
     /* margin-right: 40px; */
 }
 
-@media (max-width: 450px) {
+@media (max-width: 600px) {
     :root{
         --navbar-height: 65px;
     }
