@@ -92,4 +92,10 @@
         justify-content: center;
         gap: 10px;
     }
+    .daily-and-date-container {
+        flex-direction: column;
+        justify-content: center;
+
+        gap: 20px;
+    }
 }
