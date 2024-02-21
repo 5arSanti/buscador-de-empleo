@@ -56,7 +56,7 @@ const FiltersInputs = () => {
 
             <FiltersOptionCard
                 id={"foreigner"}
-                title={"Vacantes del Extranjero"}
+                title={"Vacantes en el Extranjero"}
                 array={["SI"]}
                 onChange={(value) => context.saveSelectedDepartment(value == "SI" ? "VACANTES PARA TODO EL TERRITORIO" : "")}
             />

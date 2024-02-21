@@ -21,6 +21,11 @@
 .map-container svg g path{
     transition: all 0.2s ease;
     outline: none;
+    cursor: pointer;
+}
+.map-container svg g path:hover{
+    /* transform: scale(1.005); */
+    fill: var(--white-05);
 }
 
 @media (max-width: 800px) {

@@ -8,6 +8,29 @@
     text-align: center;
 }
 
+.titles-cards-container {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 0px 35px 0 25px;
+    margin-top: 10px;
+
+    display: grid;
+    grid-template-columns: auto 1fr 2.5fr 0.75fr;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    color: #FFF;
+    font-size: 14px;
+    text-align: center;
+
+    font-weight: bold;
+}
+.titles-cards-container p:nth-child(1) {
+    width: 119.59px;
+}
+
 .pagination-buttons-container {
     width: 100%;
 

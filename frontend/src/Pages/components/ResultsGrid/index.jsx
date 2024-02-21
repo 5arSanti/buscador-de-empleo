@@ -29,6 +29,16 @@ const ResultsGrid = () => {
                 {/* <p>Los logos corresponden a los prestadores autorizados que tienen dicha vacante registrada. Seleccione el de su preferencia.</p> */}
             </div>
 
+            {context.windowWidth > 750 && 
+                <div className="titles-cards-container">
+                    <p>Ir a la Oferta</p>
+                    <p>Prestador</p>
+                    <p>Descripción</p>
+                    <p>Detalles</p>
+                </div>
+            }
+
+
             {!context.loading && context.vacantesData?.resultados?.length === 0 ?
                 <RecordNotFoundCard/>
                 :
