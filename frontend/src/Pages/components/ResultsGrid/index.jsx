@@ -39,7 +39,7 @@ const ResultsGrid = () => {
             }
 
 
-            {!context.loading && context.vacantesData?.resultados?.length === 0 ?
+            {(!context.loading && (!context.vacantesData || context.vacantesData?.resultados?.length === 0)) ?
                 <RecordNotFoundCard/>
                 :
                 <>
@@ -47,6 +47,7 @@ const ResultsGrid = () => {
                         maxHeight={450}
                         gap={10}
                     >
+                        <LoadingCardBig/>
                         <LoadingCardBig/>
                         <LoadingCardBig/>
                         <LoadingCardBig/>
@@ -65,11 +66,11 @@ const ResultsGrid = () => {
                             <input 
                                 type="text" 
                                 pattern="[0-9]"
-                                placeholder={context.vacantesData.currentPage}
+                                placeholder={context.vacantesData?.currentPage}
                                 onKeyDown={(event) => {
                                     if (event.key === 'Enter') {
                                         const pageNumber = parseInt(event.target.value);
-                                        if (!isNaN(pageNumber) && pageNumber >= 1 && pageNumber <= context.vacantesData.totalPages) {
+                                        if (!isNaN(pageNumber) && pageNumber >= 1 && pageNumber <= context.vacantesData?.totalPages) {
                                             context.setCurrentPage(pageNumber);
                                             event.target.value = "";
                                         } else {
@@ -78,7 +79,7 @@ const ResultsGrid = () => {
                                     }
                                 }}
                             />
-                            de {context.vacantesData.totalPages}
+                            de {context.vacantesData?.totalPages}
                         </p>
                         <button
                             onClick={() => context.handlePagination()}
