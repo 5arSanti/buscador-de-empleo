@@ -63,4 +63,32 @@ const Footer = () => {
     );
 }
 
-export { Footer };
+const SecondaryFooter = () => {
+    const context = React.useContext(AppContext);
+    
+    let date = new Date();
+    let year = date.getFullYear();
+
+    return(
+        <div className="second-footer-container blue-color">
+            <div className="daily-and-date-container">
+                <div>
+                    <p>Visitas Diarias: {context.visits?.TotalVisitasDiarias}</p>
+                    <p>Visitas Totales: {context.visits?.TotalVisitasTotales}</p>
+                </div>
+                <p>{context.actualDate()}</p>
+            </div>
+
+            <div className="footer-copy-container">
+                <div className="footer-icons">
+                    {/* <NavIcons
+                        flexDirection={"row"}
+                    /> */}
+                </div>
+                <p>&copy; {year} Servicio Publico de Empleo</p>
+            </div>
+        </div>
+    );
+}
+
+export { Footer, SecondaryFooter };

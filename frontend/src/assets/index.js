@@ -5,6 +5,9 @@ import iconComplete from "./icon-complete.png";
 import notFound from "./not-found.png";
 import sanAndresGeo from "./san-andres.geo.json";
 
+import logoCoFooter from "./logo_co_footer.png"
+import logoFooter from "./logo_footer.png"
+
 
 import Alentti from "./images/Alentti.png";
 import autonomic from "./images/autonomic.jpg";
@@ -41,6 +44,8 @@ export {
     iconComplete,
     notFound,
     sanAndresGeo,
+    logoCoFooter,
+    logoFooter,
 
     //Imagenes
     Alentti,

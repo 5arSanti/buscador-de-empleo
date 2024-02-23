@@ -4,6 +4,7 @@
 
     background-color: var(--all-info-container-color);
     padding: 20px;
+    margin-top: 30px;
 
     border-radius: 20px;
     display: flex;

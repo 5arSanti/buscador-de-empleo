@@ -11,4 +11,17 @@ const SubTitle = ({text, fontSize = 18, color = "#FFF"}) => {
     );
 }
 
-export { SubTitle };
+import "./styles.css";
+
+const SubTitle2 = ({children, color = "#FFF", textAlign = "center"}) => {
+    return(
+        <p className="sub-title" style={{
+            color: color,
+            textAlign: textAlign
+        }}>
+            {children}
+        </p>
+    );
+}
+
+export { SubTitle, SubTitle2 };

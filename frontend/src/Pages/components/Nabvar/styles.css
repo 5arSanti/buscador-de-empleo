@@ -1,7 +1,7 @@
 .navbar-container {
     box-sizing: border-box;
     z-index: 5;
-    position: fixed;
+    /* position: fixed; */
     height: var(--navbar-height);
     top: 0;
     width: 100%;
