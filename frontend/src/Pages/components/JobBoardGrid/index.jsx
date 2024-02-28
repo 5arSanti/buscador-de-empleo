@@ -63,7 +63,7 @@ const JobBoardGrid = () => {
                 }}
                 isActive={context.activeButton === 3}
             />
-            <JobBoardCard
+            {/* <JobBoardCard
                 icon={<BsFillPersonFill/>}
                 text={"Joven"}
                 onClick={() => {
@@ -100,7 +100,7 @@ const JobBoardGrid = () => {
                     context.handleColorsByFilters(6);
                 }}
                 isActive={context.activeButton === 6}
-            />
+            /> */}
         </FiltersWrapper>
     );
 }

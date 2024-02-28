@@ -11,8 +11,9 @@ const AppProvider = ({children}) => {
     }
 
     //API -- Cambiar el valor de la variable api segun la infraestructura de produccion
-    const domain = "http://localhost:3080";
-    // const domain = "http://10.140.0.16:15108";
+    // const domain = "http://localhost:3080";
+    const domain = "http://10.140.0.16:15108";
+    // const domain = "https://ambientesdepruebas.serviciodeempleo.gov.co";
 	const api = `${domain}/api/v1`;
 
 	//-------------------------------------
@@ -102,7 +103,7 @@ const AppProvider = ({children}) => {
 
             // Try different encodings if the first attempt fails
             let data = "";
-            for (const encoding of ['iso-8859-2']) {
+            for (const encoding of ['utf-8']) {
                 try {
                     const decoder = new TextDecoder(encoding);
                     data = decoder.decode(buffer);
