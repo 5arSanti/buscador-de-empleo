@@ -4,13 +4,14 @@ const { filterDateCondition } = require("../functions/fecha");
 
 const router = express.Router();
 
-router.get("/", (request, response) => {
+router.get("/", async (request, response) => {
     sql.query("SELECT * FROM Vacantes_Vigentes_Completo ORDER BY CODIGO_VACANTE DESC OFFSET 0 ROWS FETCH NEXT 50 ROWS ONLY", (err, results) => {
         if (err) {
             throw err;
         }
-        return response.status(200).json(results);
-    })
+
+        return response.status(200).setHeader('Content-Type', 'application/json; charset=utf-8').json(results);
+    });
 });
 
 const PAGE_SIZE = 50; // Número de resultados por página
@@ -82,7 +83,7 @@ router.get("/resultados", async (request, response) => {
         const resultsQuery = await sql.query(baseQuery);
         const totalPages = Math.ceil(total_registros / PAGE_SIZE);
 
-        return response.status(200).json({
+        return response.status(200).setHeader('Content-Type', 'application/json; charset=utf-8').json({
             resultados: resultsQuery.recordset,
             totalPages,
             currentPage: page,
@@ -92,6 +93,7 @@ router.get("/resultados", async (request, response) => {
         });
     }
     catch (err) {
+        console.log(err)
         return response.status(500).json({ error: 'Internal Server Error' });
     }
 });

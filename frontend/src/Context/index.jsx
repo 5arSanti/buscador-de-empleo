@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { TextEncoder, TextDecoder } from 'text-encoding';
 
 export const AppContext = React.createContext();
 
@@ -10,8 +11,8 @@ const AppProvider = ({children}) => {
     }
 
     //API -- Cambiar el valor de la variable api segun la infraestructura de produccion
-    // const domain = "http://localhost:3080";
-    const domain = "http://10.140.0.16:15108";
+    const domain = "http://localhost:3080";
+    // const domain = "http://10.140.0.16:15108";
 	const api = `${domain}/api/v1`;
 
 	//-------------------------------------
@@ -86,16 +87,40 @@ const AppProvider = ({children}) => {
 
     const fetchData = async (endpoint) => {
         try {
-            const response = await fetch(`${apiUri}/${endpoint}`);
+            const response = await fetch(`${apiUri}/${endpoint}`,{
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8',
+                  },
+            });
 
             if (!response.status === 200) {
                 throw new Error(`Error fetching ${endpoint}: ${response.statusText}`);
             }
-    
-            return await response.json();
 
+            const buffer = await response.arrayBuffer();
+            console.log(buffer)
+
+            // Try different encodings if the first attempt fails
+            let data = "";
+            for (const encoding of ['iso-8859-2']) {
+                try {
+                    const decoder = new TextDecoder(encoding);
+                    data = decoder.decode(buffer);
+
+                    break; // Stop iterating if decoding is successful
+                } catch (error) {
+                    console.log(`Decoding with ${encoding} failed:`, error);
+                }
+            }
+        
+            if (!data) {
+              throw new Error('Unable to decode response data');
+            }
+        
+            return JSON.parse(data);
         }
         catch (err) {
+            console.log(err)
             throw new Error(`Error fetching ${endpoint}: ${err.message}`);
         }
     };
