@@ -8,7 +8,10 @@
     justify-content: center;
     gap: 25px;
 
-    box-sizing: border-box;
+    box-sizing: border-box; 
+}
+.footer-container p, .footer-container a{
+    font-family: "WorkSans-Regular" !important;
 }
 
 .footer-image-container {
