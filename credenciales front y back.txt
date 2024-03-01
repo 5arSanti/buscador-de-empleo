@@ -1,0 +1,17 @@
+----------------------
+FRONT-END
+----------------------
+IP: 10.140.0.16
+Puerto: 32001
+Usuario: root
+Clave: Y8Mb+mP8k3j6Azv
+Puerto Aplicación: 15201
+
+----------------------
+BACK-END
+----------------------
+IP: 10.140.0.16
+Puerto: 32002
+Usuario: root
+Clave: j2n-87.6HxZxu3M
+Puerto Aplicación: 15202

@@ -18,6 +18,7 @@ const whiteList = [
 
     "http://10.140.0.16:15106",
     "http://10.140.0.16:15105",
+    "http://10.140.0.16:15201",
 
 	"https://buscadordeempleo.gov.co/",
 	"https://ambientesdepruebas.serviciodeempleo.gov.co",
