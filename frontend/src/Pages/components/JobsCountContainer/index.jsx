@@ -14,7 +14,7 @@ const JobsCountContainer = () => {
             padding={25}
             gap={10}
         >
-            <SubTitle fontSize={16} text={"Número total de ofertas de empleo hoy de acuerdo a su búsqueda."}/>
+            <SubTitle fontSize={16} text={"Número total de ofertas de empleo encontradas."}/>
 
             <div className="count-container">
                 <p>{context.vacantesData?.total_registros}</p>

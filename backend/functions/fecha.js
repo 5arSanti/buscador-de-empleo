@@ -19,4 +19,12 @@ const obtenerFechaHoraHoy = () => {
 	return `${anio}-${mes}-${dia} ${hora}:${minutos}:${segundos}`;
 }
 
-module.exports = { obtenerFechaHoy, obtenerFechaHoraHoy };
+const filterDateCondition = (dateFilter) => {
+	if (!dateFilter) {
+		return "";
+	}
+
+	return `AND FECHA_CREACION >= '${dateFilter}'`;
+}
+
+module.exports = { obtenerFechaHoy, obtenerFechaHoraHoy, filterDateCondition };

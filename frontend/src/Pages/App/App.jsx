@@ -16,8 +16,11 @@ import { SubscriptionScreen } from "../Screens/SubscriptionScreen";
 
 import { Navbar } from "../components/nabvar";
 import { NavBarResponsive } from "../components/NavBarResponsive";
-import { Footer } from "../components/Footer";
+import { Footer, SecondaryFooter } from "../components/Footer";
 import { NotificationsContainer } from "../components/NotificationsContainer";
+import { GovNavbar } from "../components/GovNavbars";
+import { GovFooter } from "../components/GovFooter";
+import { AccesibilityCard } from "../components/AccesibilityCard";
 
 
 const Wrapper = ({children}) => {
@@ -46,11 +49,15 @@ const App = () => {
             <HashRouter>
             {/* <BrowserRouter> */}
                 <Wrapper>
-                    <Navbar/>
-                    <NavBarResponsive/>
+                    <GovNavbar/>
+                    {/* <Navbar/> */}
+                    {/* <NavBarResponsive/> */}
+                    <AccesibilityCard/>
                     <AppRoutes/>
                     <NotificationsContainer/>
-                    <Footer/>
+                    {/* <Footer/> */}
+                    <GovFooter/>
+                    <SecondaryFooter/>
                 </Wrapper>
             </HashRouter>
         </AppProvider>

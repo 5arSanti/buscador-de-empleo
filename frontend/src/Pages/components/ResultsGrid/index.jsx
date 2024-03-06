@@ -25,11 +25,21 @@ const ResultsGrid = () => {
                 text={"Resultados"}
             />
             <div className="info-container">
-                <p>Seleccione la oferta de su interés dando clic en el logo de la vacante, esto lo llevará directamente a la página donde se encuentra publicada.</p>
-                <p>Los logos corresponden a los prestadores autorizados que tienen dicha vacante registrada. Seleccione el de su preferencia.</p>
+                <p>Seleccione la oferta de su interés haciendo clic en Ir a la Oferta, esto lo llevará directamente a la página donde se encuentra publicada.</p>
+                {/* <p>Los logos corresponden a los prestadores autorizados que tienen dicha vacante registrada. Seleccione el de su preferencia.</p> */}
             </div>
 
-            {!context.loading && context.vacantesData?.resultados?.length === 0 ?
+            {context.windowWidth > 750 && 
+                <div className="titles-cards-container">
+                    <p>Ir a la Oferta</p>
+                    <p>Prestador</p>
+                    <p>Descripción</p>
+                    <p>Detalles</p>
+                </div>
+            }
+
+
+            {(!context.loading && (!context.vacantesData || context.vacantesData?.resultados?.length === 0)) ?
                 <RecordNotFoundCard/>
                 :
                 <>
@@ -37,6 +47,7 @@ const ResultsGrid = () => {
                         maxHeight={450}
                         gap={10}
                     >
+                        <LoadingCardBig/>
                         <LoadingCardBig/>
                         <LoadingCardBig/>
                         <LoadingCardBig/>
@@ -55,11 +66,11 @@ const ResultsGrid = () => {
                             <input 
                                 type="text" 
                                 pattern="[0-9]"
-                                placeholder={context.vacantesData.currentPage}
+                                placeholder={context.vacantesData?.currentPage}
                                 onKeyDown={(event) => {
                                     if (event.key === 'Enter') {
                                         const pageNumber = parseInt(event.target.value);
-                                        if (!isNaN(pageNumber) && pageNumber >= 1 && pageNumber <= context.vacantesData.totalPages) {
+                                        if (!isNaN(pageNumber) && pageNumber >= 1 && pageNumber <= context.vacantesData?.totalPages) {
                                             context.setCurrentPage(pageNumber);
                                             event.target.value = "";
                                         } else {
@@ -68,7 +79,7 @@ const ResultsGrid = () => {
                                     }
                                 }}
                             />
-                            de {context.vacantesData.totalPages}
+                            de {context.vacantesData?.totalPages}
                         </p>
                         <button
                             onClick={() => context.handlePagination()}

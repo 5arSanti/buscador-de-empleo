@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { TextEncoder, TextDecoder } from 'text-encoding';
 
 export const AppContext = React.createContext();
 
@@ -10,9 +11,10 @@ const AppProvider = ({children}) => {
     }
 
     //API -- Cambiar el valor de la variable api segun la infraestructura de produccion
-    const domain = "http://localhost:3080";
-    // const domain = "http://10.140.0.16:15105";
-	const api = `${domain}/api/v1`;
+    // const domain = "http://localhost:3080";
+    // const domain = "http://10.140.0.16:15202";
+    const domain = "https://ambientesdepruebas.serviciodeempleo.gov.co";
+	const api = `${domain}/qabackbue/v1`;
 
 	//-------------------------------------
     const [apiUri, setApiUri] = React.useState(api);
@@ -55,7 +57,7 @@ const AppProvider = ({children}) => {
 
 
     // VACANTES:
-    const [vacantesData, setVacantesData] = React.useState({});
+    const [vacantesData, setVacantesData] = React.useState(null);
 
     const [currentPage, setCurrentPage] = React.useState(1);
     const [totalPages, setTotalPages] = React.useState(1);
@@ -86,16 +88,39 @@ const AppProvider = ({children}) => {
 
     const fetchData = async (endpoint) => {
         try {
-            const response = await fetch(`${apiUri}/${endpoint}`);
+            const response = await fetch(`${apiUri}/${endpoint}`,{
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8',
+                  },
+            });
 
             if (!response.status === 200) {
                 throw new Error(`Error fetching ${endpoint}: ${response.statusText}`);
             }
-    
-            return await response.json();
 
+            const buffer = await response.arrayBuffer();
+
+            // Try different encodings if the first attempt fails
+            let data = "";
+            for (const encoding of ['utf-8']) {
+                try {
+                    const decoder = new TextDecoder(encoding);
+                    data = decoder.decode(buffer);
+
+                    break; // Stop iterating if decoding is successful
+                } catch (error) {
+                    console.log(`Decoding with ${encoding} failed:`, error);
+                }
+            }
+        
+            if (!data) {
+              throw new Error('Unable to decode response data');
+            }
+        
+            return JSON.parse(data);
         }
         catch (err) {
+            console.log(err)
             throw new Error(`Error fetching ${endpoint}: ${err.message}`);
         }
     };
@@ -168,70 +193,80 @@ const AppProvider = ({children}) => {
         if(activeHighContrast) {
             root.style.setProperty("--navbar-color", "#000000");
             root.style.setProperty("--navbar-responsive-color", "rgba(0, 0, 0, 0.75)");
-            root.style.setProperty("--main-body-color", "#434343");
+            root.style.setProperty("--main-body-color", "#737373");
             root.style.setProperty('--main-title-color', 'rgb(255, 255, 255)');
             root.style.setProperty('--all-info-container-color', '#353535');
             root.style.setProperty('--input-and-info-container-color', '#000000');
-            root.style.setProperty('--municipios-and-result-border-clicked', '#434343');
+            root.style.setProperty('--municipios-and-result-border-clicked', '#737373');
             root.style.setProperty("--tool-tip-map-text-color", "#FFFFFF");
-            root.style.setProperty("--confirm-color", "#434343");
-            root.style.setProperty("--cancel-color", "#434343");
-            root.style.setProperty("--time-color", "#434343");
+            root.style.setProperty("--confirm-color", "#737373");
+            root.style.setProperty("--cancel-color", "#737373");
+            root.style.setProperty("--time-color", "#737373");
+            root.style.setProperty("--result-subtitle-card", "#000000");
+            root.style.setProperty("--gov-accesibility-card", "#000000");
             return;
         }
 
         switch (type) {
             case 1:
-                root.style.setProperty("--navbar-color", "#00589c");
-                root.style.setProperty("--navbar-responsive-color", "rgba(65, 114, 255, 0.75)");
-                root.style.setProperty("--main-body-color", "#EEFAFF");
-                root.style.setProperty('--main-title-color', 'rgb(0, 105, 142)');
-                root.style.setProperty('--all-info-container-color', '#DCF6FF');
-                root.style.setProperty('--input-and-info-container-color', '#6ABFE1');
-                root.style.setProperty('--municipios-and-result-border-clicked', '#5D59DC');
-                root.style.setProperty("--tool-tip-map-text-color", "#7B7B7B");
-                root.style.setProperty("--confirm-color", "#74C59A");
-                root.style.setProperty("--cancel-color", "#DA4F6A");
-                root.style.setProperty("--time-color", "#4172FF");
+                root.style.setProperty("--navbar-color", "#3366cc");
+                root.style.setProperty("--navbar-responsive-color", "rgba(51, 102, 204, 0.75)");
+                root.style.setProperty("--main-body-color", "#F6F8F9");
+                root.style.setProperty('--main-title-color', '#681d35');
+                root.style.setProperty('--all-info-container-color', '#E6EFFD');
+                root.style.setProperty('--input-and-info-container-color', '#81ABFF');
+                root.style.setProperty('--municipios-and-result-border-clicked', '#3366CC');
+                root.style.setProperty("--tool-tip-map-text-color", "#737373");
+                root.style.setProperty("--confirm-color", "#069169");
+                root.style.setProperty("--cancel-color", "#D31F3F");
+                root.style.setProperty("--time-color", "#3366cc");
+                root.style.setProperty("--result-subtitle-card", "#3366CC");
+                root.style.setProperty("--gov-accesibility-card", "#681d35");
             break;
             case 2:
-                root.style.setProperty("--navbar-color", "#9C0000");
-                root.style.setProperty("--navbar-responsive-color", "rgba(255, 14, 14, 0.75)");
-                root.style.setProperty("--main-body-color", "#FFEEEE");
-                root.style.setProperty('--main-title-color', 'rgb(142, 0, 0)');
-                root.style.setProperty('--all-info-container-color', '#FFDCDC');
-                root.style.setProperty('--input-and-info-container-color', '#E16A6A');
-                root.style.setProperty('--municipios-and-result-border-clicked', '#DC5959');
-                root.style.setProperty("--tool-tip-map-text-color", "#7B7B7B");
-                root.style.setProperty("--confirm-color", "#74C59A");
-                root.style.setProperty("--cancel-color", "#DA4F6A");
-                root.style.setProperty("--time-color", "#4172FF");
+                root.style.setProperty("--navbar-color", "#3366cc");
+                root.style.setProperty("--navbar-responsive-color", "rgba(51, 102, 204, 0.75)");
+                root.style.setProperty("--main-body-color", "#F6F8F9");
+                root.style.setProperty('--main-title-color', '#681d35');
+                root.style.setProperty('--all-info-container-color', '#E6EFFD');
+                root.style.setProperty('--input-and-info-container-color', '#9DBEFF');
+                root.style.setProperty('--municipios-and-result-border-clicked', '#3366CC');
+                root.style.setProperty("--tool-tip-map-text-color", "#737373");
+                root.style.setProperty("--confirm-color", "#069169");
+                root.style.setProperty("--cancel-color", "#D31F3F");
+                root.style.setProperty("--time-color", "#3366cc");
+                root.style.setProperty("--result-subtitle-card", "#3366CC");
+                root.style.setProperty("--gov-accesibility-card", "#681d35");
             break;
             case 3:
-                root.style.setProperty("--navbar-color", "#009C5F");
-                root.style.setProperty("--navbar-responsive-color", "rgba(35, 223, 129, 0.75)");
-                root.style.setProperty("--main-body-color", "#EEFFF5");
-                root.style.setProperty('--main-title-color', 'rgb(0, 105, 77)');
-                root.style.setProperty('--all-info-container-color', '#DCFFEC');
-                root.style.setProperty('--input-and-info-container-color', '#6AE197');
-                root.style.setProperty('--municipios-and-result-border-clicked', '#4BC472');
-                root.style.setProperty("--tool-tip-map-text-color", "#7B7B7B");
-                root.style.setProperty("--confirm-color", "#74C59A");
-                root.style.setProperty("--cancel-color", "#DA4F6A");
-                root.style.setProperty("--time-color", "#4172FF");
+                root.style.setProperty("--navbar-color", "#3366cc");
+                root.style.setProperty("--navbar-responsive-color", "rgba(51, 102, 204, 0.75)");
+                root.style.setProperty("--main-body-color", "#F6F8F9");
+                root.style.setProperty('--main-title-color', '#681d35');
+                root.style.setProperty('--all-info-container-color', '#E6EFFD');
+                root.style.setProperty('--input-and-info-container-color', '#4A7EFF');
+                root.style.setProperty('--municipios-and-result-border-clicked', '#3366CC');
+                root.style.setProperty("--tool-tip-map-text-color", "#737373");
+                root.style.setProperty("--confirm-color", "#069169");
+                root.style.setProperty("--cancel-color", "#D31F3F");
+                root.style.setProperty("--time-color", "#3366cc");
+                root.style.setProperty("--result-subtitle-card", "#3366CC");
+                root.style.setProperty("--gov-accesibility-card", "#681d35");
             break;
             case 4:
-                root.style.setProperty("--navbar-color", "#9C7B00");
-                root.style.setProperty("--navbar-responsive-color", "rgba(255, 223, 65, 0.75)");
-                root.style.setProperty("--main-body-color", "#FFFCEE");
-                root.style.setProperty('--main-title-color', 'rgb(105, 77, 0)');
-                root.style.setProperty('--all-info-container-color', '#FFF8DC');
-                root.style.setProperty('--input-and-info-container-color', '#E1CA6A');
-                root.style.setProperty('--municipios-and-result-border-clicked', '#C4A34B');
-                root.style.setProperty("--tool-tip-map-text-color", "#7B7B7B");
-                root.style.setProperty("--confirm-color", "#74C59A");
-                root.style.setProperty("--cancel-color", "#DA4F6A");
-                root.style.setProperty("--time-color", "#4172FF");
+                root.style.setProperty("--navbar-color", "#3366cc");
+                root.style.setProperty("--navbar-responsive-color", "rgba(51, 102, 204, 0.75)");
+                root.style.setProperty("--main-body-color", "#F6F8F9");
+                root.style.setProperty('--main-title-color', '#681d35');
+                root.style.setProperty('--all-info-container-color', '#E6EFFD');
+                root.style.setProperty('--input-and-info-container-color', '#9DBEFF');
+                root.style.setProperty('--municipios-and-result-border-clicked', '#3366CC');
+                root.style.setProperty("--tool-tip-map-text-color", "#737373");
+                root.style.setProperty("--confirm-color", "#069169");
+                root.style.setProperty("--cancel-color", "#D31F3F");
+                root.style.setProperty("--time-color", "#3366cc");
+                root.style.setProperty("--result-subtitle-card", "#3366CC");
+                root.style.setProperty("--gov-accesibility-card", "#681d35");
             break;
             case 5:
                 root.style.setProperty("--navbar-color", "#23009C");
@@ -245,6 +280,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty("--confirm-color", "#74C59A");
                 root.style.setProperty("--cancel-color", "#DA4F6A");
                 root.style.setProperty("--time-color", "#4172FF");
+                root.style.setProperty("--result-subtitle-card", "rgb(22, 0, 105)");
             break;
             case 6:
                 root.style.setProperty("--navbar-color", "#9C0055");
@@ -258,19 +294,22 @@ const AppProvider = ({children}) => {
                 root.style.setProperty("--confirm-color", "#74C59A");
                 root.style.setProperty("--cancel-color", "#DA4F6A");
                 root.style.setProperty("--time-color", "#4172FF");
+                root.style.setProperty("--result-subtitle-card", "rgb(142, 0, 73)");
             break;    
             default:
-                root.style.setProperty("--navbar-color", "#00589c");
-                root.style.setProperty("--navbar-responsive-color", "rgba(65, 114, 255, 0.75)");
-                root.style.setProperty("--main-body-color", "#EEFAFF");
-                root.style.setProperty('--main-title-color', 'rgb(0, 105, 142)');
-                root.style.setProperty('--all-info-container-color', '#DCF6FF');
-                root.style.setProperty('--input-and-info-container-color', '#6ABFE1');
-                root.style.setProperty('--municipios-and-result-border-clicked', '#5D59DC');
-                root.style.setProperty("--tool-tip-map-text-color", "#7B7B7B")
-                root.style.setProperty("--confirm-color", "#434343");
-                root.style.setProperty("--cancel-color", "#434343");
-                root.style.setProperty("--time-color", "#434343");
+                root.style.setProperty("--navbar-color", "#3366cc");
+                root.style.setProperty("--navbar-responsive-color", "rgba(51, 102, 204, 0.75)");
+                root.style.setProperty("--main-body-color", "#F6F8F9");
+                root.style.setProperty('--main-title-color', '#681d35');
+                root.style.setProperty('--all-info-container-color', '#E6EFFD');
+                root.style.setProperty('--input-and-info-container-color', '#81ABFF');
+                root.style.setProperty('--municipios-and-result-border-clicked', '#3366CC');
+                root.style.setProperty("--tool-tip-map-text-color", "#737373");
+                root.style.setProperty("--confirm-color", "#069169");
+                root.style.setProperty("--cancel-color", "#D31F3F");
+                root.style.setProperty("--time-color", "#3366cc");
+                root.style.setProperty("--result-subtitle-card", "#3366CC");
+                root.style.setProperty("--gov-accesibility-card", "#681d35");
             break;
         }
     }
@@ -368,6 +407,32 @@ const AppProvider = ({children}) => {
         return fechaCapitalizada;
     }
 
+    const handleDateFilterChange = (value) => {
+        let dateFilter = "";
+    
+        // Lógica para determinar el filtro de fecha según la opción seleccionada
+        const today = new Date();
+        const oneWeekAgo = new Date((today.getTime() - 8 * 24 * 60 * 60 * 1000));
+        const oneMonthAgo = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
+    
+        switch(value) {
+            case "Hoy":
+                dateFilter = today.toISOString().split('T')[0];
+                break;
+            case "Última semana":
+                dateFilter = oneWeekAgo.toISOString().split('T')[0];
+                break;
+            case "Último mes":
+                dateFilter = oneMonthAgo.toISOString().split('T')[0];
+                break;
+            default:
+                dateFilter = "";
+        }
+    
+        // Actualizar los filtros
+        handleFilterChange("FECHA_CREACION", dateFilter);
+    };
+
 
     return (
         <AppContext.Provider
@@ -426,6 +491,7 @@ const AppProvider = ({children}) => {
                 visits,
 
                 handleNotifications,
+                handleDateFilterChange,
             }}
         >
             {children}

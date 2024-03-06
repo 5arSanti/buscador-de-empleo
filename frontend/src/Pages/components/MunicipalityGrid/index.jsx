@@ -5,6 +5,7 @@ import { ScrollableWrapper } from "../ScrollableWrapper";
 import { SubTitle } from "../SubTitle";
 import { MunicipalityCard } from "./MunicipalityCard";
 import { LoadingCardSmall } from "../LoadingCard";
+import { RecordNotFoundCard } from "../ResultsGrid/RecordNotFoundCard";
 
 const MunicipalityGrid = () => {
     const context = React.useContext(AppContext);
@@ -17,7 +18,7 @@ const MunicipalityGrid = () => {
             padding={25}
             gap={15}
         >
-            <SubTitle text="Municipios"/>
+            <SubTitle text="Departamentos"/>
 
             <ScrollableWrapper
                 maxHeight={325}
@@ -36,7 +37,7 @@ const MunicipalityGrid = () => {
                 <LoadingCardSmall/>
                 <LoadingCardSmall/>
 
-                {context.vacantesData?.total_departments?.length <= 1 && !context.loading &&
+                {!context.loading && context.vacantesData?.total_departments?.length <= 1  &&
                     <MunicipalityCard
                         text={"Todos los Departamentos"}
                         value={null}
@@ -45,7 +46,13 @@ const MunicipalityGrid = () => {
                         }}
                     />
                 }
-                { !context.loading && sortedTotalDepartments?.map((item, index) => (
+                { !context.loading && !context.vacantesData ?
+                <RecordNotFoundCard
+                    minHeight={300}
+                    text="ningún departamento"
+                /> 
+                :
+                sortedTotalDepartments?.map((item, index) => (
                     <MunicipalityCard
                         key={index}
                         text={item.department}

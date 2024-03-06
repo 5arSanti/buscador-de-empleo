@@ -27,3 +27,11 @@
     text-decoration: none;
     font-style: italic;
 }
+
+
+@media(max-width: 600px) {
+    .icon-layout-container svg {
+        width: 30px;
+        height: 30px;
+    }
+}

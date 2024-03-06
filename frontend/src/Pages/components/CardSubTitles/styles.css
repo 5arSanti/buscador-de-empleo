@@ -1,0 +1,5 @@
+span {
+    color: var(--result-text-card);
+    font-style: italic;
+    font-size: 12px;
+}

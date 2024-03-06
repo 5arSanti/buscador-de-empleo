@@ -23,7 +23,7 @@ const JobBoardGrid = () => {
             gap={10}
         >
             
-            <SubTitle text={"Otras Bolsas"}/>
+            <SubTitle text={"Otros Filtros"}/>
 
             <JobBoardCard
                 icon={<FaHome/>}
@@ -63,7 +63,7 @@ const JobBoardGrid = () => {
                 }}
                 isActive={context.activeButton === 3}
             />
-            <JobBoardCard
+            {/* <JobBoardCard
                 icon={<BsFillPersonFill/>}
                 text={"Joven"}
                 onClick={() => {
@@ -100,7 +100,7 @@ const JobBoardGrid = () => {
                     context.handleColorsByFilters(6);
                 }}
                 isActive={context.activeButton === 6}
-            />
+            /> */}
         </FiltersWrapper>
     );
 }

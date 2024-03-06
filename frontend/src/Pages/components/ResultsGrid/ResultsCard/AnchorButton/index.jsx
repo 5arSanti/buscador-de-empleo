@@ -11,7 +11,8 @@ const AnchorButton = ({data, imagen, handleClick, hovered, type=0}) => {
                         <FiExternalLink/>
                     </div>
 
-                    <img src={imagen} alt={`alt_${imagen}`} />
+                    {/* <img src={imagen} alt={`alt_${imagen}`} /> */}
+                    <p>Ir a la Oferta <FiExternalLink/></p>
                 </a>
             )
         } else {
@@ -23,7 +24,8 @@ const AnchorButton = ({data, imagen, handleClick, hovered, type=0}) => {
                         </div>
                     }
 
-                    <img src={imagen} alt={`alt_${imagen}`} />
+                    {/* <img src={imagen} alt={`alt_${imagen}`} /> */}
+                    <p>Ir a la Oferta <FiExternalLink/></p>
                 </a>
             )
         }

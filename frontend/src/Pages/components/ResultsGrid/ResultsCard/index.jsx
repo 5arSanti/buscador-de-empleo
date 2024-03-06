@@ -8,6 +8,7 @@ import { AppContext } from "../../../../Context";
 import { prestadorImagenes } from "../../../../utils/images";
 
 import { AnchorButton } from "./AnchorButton"
+import { CardSubTitles } from "../../CardSubTitles";
 
 const ResultsCard = ({data}) => {
     ResultsCard.propTypes = {
@@ -20,8 +21,8 @@ const ResultsCard = ({data}) => {
 
     const fechaDesdeBaseDeDatos = data.FECHA_CREACION;
     const fechaFormateada = new Date(fechaDesdeBaseDeDatos).toLocaleDateString({
-        day: '2-digit',
-        month: '2-digit',
+        day: '2-digits',
+        month: '2-digits',
         year: 'numeric',
     });
 
@@ -53,7 +54,7 @@ const ResultsCard = ({data}) => {
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(null)}
         >
-            {context.windowWidth > 650 &&
+            {context.windowWidth > 750 &&
                 <AnchorButton
                     data={data}
                     imagen={imagenRuta}
@@ -64,12 +65,12 @@ const ResultsCard = ({data}) => {
             }
 
             <div className="results-card-main-info">
-                <p>{data.NOMBRE_PRESTADOR}</p>
+                <p><CardSubTitles>Prestador</CardSubTitles>{data.NOMBRE_PRESTADOR}</p>
                 <p>{data.RANGO_SALARIAL}</p>
                 <p>{data.DEPARTAMENTO}</p>
             </div>
 
-            {context.windowWidth < 650 &&
+            {context.windowWidth < 750 &&
                 <AnchorButton
                     data={data}
                     imagen={imagenRuta}
@@ -79,16 +80,16 @@ const ResultsCard = ({data}) => {
             }
             
             <div className="results-card-secondary-info">
-                <p>{data.TITULO_VACANTE}</p>
+                <p><CardSubTitles>Descripción</CardSubTitles>{data.TITULO_VACANTE}</p>
                 <p className="results-card-secondary-description">{data.DESCRIPCION_VACANTE}</p>
             </div>
             <div className="results-card-complementary-info">
                 <div>
-                    <p className="mini-title">Codigo</p>
+                    <p className="mini-title">Código Vacante</p>
                     <p>{data.CODIGO_VACANTE}</p>
                 </div>
                 <div>
-                    <p className="mini-title">Publicacion</p>
+                    <p className="mini-title">Fecha de Publicación</p>
                     <p>{fechaFormateada}</p>
                 </div>
             </div>

@@ -78,6 +78,18 @@
 }
 
 
+.blue-color {
+    background-color: var(--gov-accesibility-card);
+    padding: 25px 100px;
+    box-sizing: border-box;
+    gap: 20px;  
+    opacity: 1;
+}
+.blue-color .footer-copy-container p {
+    width: 100%;
+    text-align: center;
+}
+
 
 
 
@@ -91,5 +103,11 @@
         flex-direction: column;
         justify-content: center;
         gap: 10px;
+    }
+    .daily-and-date-container {
+        flex-direction: column;
+        justify-content: center;
+
+        gap: 20px;
     }
 }

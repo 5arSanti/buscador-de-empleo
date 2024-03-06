@@ -2,11 +2,13 @@ import "./styles.css";
 
 import { notFound } from "../../../../assets";
 
-const RecordNotFoundCard = () => {
+const RecordNotFoundCard = ({minHeight= 400, text="ninguna vacante"}) => {
     return(
-        <div className="record-not-found-card-container">
+        <div className="record-not-found-card-container" style={{
+            minHeight: minHeight,
+        }}>
             <img src={notFound} alt="not-found-icon" />
-            <p>No se encontro ninguna vacante con estos filtros.</p>
+            <p>No se encontró {text} con estos filtros.</p>
         </div>
     );
 }

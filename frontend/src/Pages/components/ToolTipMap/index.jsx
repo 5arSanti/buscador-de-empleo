@@ -9,7 +9,7 @@ const ToolTipMap = ({ content }) => {
     return (
         <div className="tool-tip-container">
             <SubTitle
-                text={"Pase el cursor por encima o dele click al departamento para ver mas opciones"}
+                text={"Seleccione con el cursor el departamento de su interés"}
                 fontSize={11}
                 color={context.activeHighContrast ? "#FFFFFF" : "#7B7B7B"}
             />
@@ -22,7 +22,7 @@ const ToolTipMap = ({ content }) => {
 
             <div className="tool-tip-info-container">
                 <p>Vacantes: </p>
-                {context.selectedDepartment && context.vacantesData.total_departments.length <= 1 ?
+                {context.selectedDepartment && context.vacantesData?.total_departments?.length <= 1 ?
                     <p>{
                         context.vacantesData?.total_departments[0]?.total || 
                         context.vacantesData?.total_registros}

@@ -56,9 +56,15 @@ const FiltersInputs = () => {
 
             <FiltersOptionCard
                 id={"foreigner"}
-                title={"Vacantes del Extranjero"}
+                title={"Vacantes en el Extranjero"}
                 array={["SI"]}
                 onChange={(value) => context.saveSelectedDepartment(value == "SI" ? "VACANTES PARA TODO EL TERRITORIO" : "")}
+            />
+            <FiltersOptionCard
+                id={"foreigner"}
+                title={"Fecha de Publicación"}
+                array={["Hoy", "Última semana", "Último mes"]}
+                onChange={(value) => context.handleDateFilterChange(value)}
             />
         </FiltersWrapper>
     );

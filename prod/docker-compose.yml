@@ -1,12 +1,12 @@
 version: '3.9'
 services:
- buscadordeempleo_apache:
+ consolidainfoarchivos_apache:
   build:
-   context: /var/lib/docker/volumes/pr_buscadordeempleo_documentroot/_data/bue/backend
+   context: /var/lib/docker/volumes/pr_consolidainfoarchivos_documentroot/_data/consolidainfo/backend
    dockerfile: Dockerfile
-  image: buscadordeempleo_apache:latest
-  container_name: buscadordeempleo_apache
-  hostname: buscadordeempleodocker
+  image: consolidainfoarchivos_apache:latest
+  container_name: consolidainfoarchivos_apache
+  hostname: consolidainfoarchivosdocker
   restart: always
   privileged: true
   volumes:
@@ -19,24 +19,24 @@ services:
     - /sys/fs/cgroup:/sys/fs/cgroup:ro
     - /etc/localtime:/etc/localtime:ro
   networks:
-    buscadordeempleo:
-     ipv4_address: 192.168.250.42
+    consolidainfoarchivos:
+     ipv4_address: 192.168.250.50
   ports:
-   - "15105:3080"
+   - "15106:3080"
   expose:
-   - 15105
+   - 15106
 
 volumes:
  documentroot:
  apacheconfig:
 
 networks:
-  buscadordeempleo:
-    name: buscadordeempleo
+  consolidainfoarchivos:
+    name: consolidainfoarchivos
     driver: bridge
     enable_ipv6: false
     ipam:
       driver: default
       config:
-        - subnet: 192.168.250.40/29 
-          gateway: 192.168.250.41
+        - subnet: 192.168.250.48/29
+          gateway: 192.168.250.49
