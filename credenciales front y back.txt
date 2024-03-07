@@ -15,3 +15,10 @@ Puerto: 32002
 Usuario: root
 Clave: j2n-87.6HxZxu3M
 Puerto Aplicación: 15202
+
+
+
+
+pruebas
+https://ambientesdepruebas.serviciodeempleo.gov.co/qabue
+qabackbue  --> Contexto para el BackEnd en QA

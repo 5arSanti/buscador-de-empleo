@@ -1,4 +1,7 @@
 const express = require("express");
+const PropertiesReader = require('properties-reader');
+const properties = PropertiesReader('../backend/app.properties.ini');
+
 const vacantesRouter = require("./vacantes.router");
 const departamentosRouter = require("./departamentos.router")
 const filtersRouter = require("./filters.router")
@@ -6,10 +9,11 @@ const subscriptionRouter = require("./subscription.router")
 const estadisticasRouter = require("./estadisticas.router")
 
 
+const apiStructure = properties.get("app.api.structure")
 
 const routerApi = (app) => {
 	const router = express.Router();
-	app.use("/qabackbue/v1", router);
+	app.use(`/${apiStructure}/v1`, router);
 
 	// Routes
 	router.use("/vacantes", vacantesRouter);

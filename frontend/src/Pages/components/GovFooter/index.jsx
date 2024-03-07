@@ -35,9 +35,9 @@ const GovFooter = () => {
                     Unidad Administrativa Especial del Servicio Público de Empleo
                 </SubTitle2>
                 <p>
-                    Dirección: Carrera 7, No. 31-10, Pisos 13 y 14, Bogotá D.C.
+                    
                     <br /> <br /> <br />
-                    Horario de Atención: Lunes a Viernes de 8:00 a.m. a 4:00 p.m. en jornada continua
+                    
                 </p>
                 <NavIcons/>
             </div>
