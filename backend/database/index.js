@@ -3,19 +3,6 @@ const sql = require("mssql");
 const PropertiesReader = require('properties-reader');
 const properties = PropertiesReader('../backend/app.properties.ini');
 
-// DEV
-// const sqlConfig = {
-// 	user: "root",
-// 	password: "1234",
-// 	database: "PRUEBAS",
-// 	server: "localhost",
-
-// 	options: {
-// 		trustedConnection: true,
-// 		trustServerCertificate: true,
-// 	},
-// }
-
 // PRUEBAS
 const sqlConfig = {
 	user: `${properties.get('app.database.user')}`,
