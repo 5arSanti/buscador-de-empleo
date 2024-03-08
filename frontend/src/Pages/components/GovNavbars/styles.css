@@ -82,9 +82,22 @@
   
 .container-logo-header-govco .logo-header-govco {
 	height: 3rem;
-	content: url("../../../assets/banner.png");
+	padding: 5px 15px;
 	background-color: #F6F8F9;
 }
+.container-logo-header-govco .logo-header-govco img {
+	height: 100%;
+	object-fit: contain;
+}
+.container-logo-header-govco .logo-header-govco img:nth-child(1) {
+	padding-right: 24px;
+	border-right: 2px solid black;
+}
+.container-logo-header-govco .logo-header-govco img:nth-child(2) {
+	padding-left: 24px;
+}
+
+
   
 .container-logo-header-govco .container-search-header-govco {
 	max-width: 21.875rem;

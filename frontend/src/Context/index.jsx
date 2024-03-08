@@ -1,9 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import PropertiesReader from "properties-reader";
-
-import { TextEncoder, TextDecoder } from 'text-encoding';
+import { TextDecoder } from 'text-encoding';
 
 export const AppContext = React.createContext();
 
@@ -12,11 +10,10 @@ const AppProvider = ({children}) => {
     AppProvider.propTypes = {
         children: PropTypes.node.isRequired,
     }
-    // const properties = PropertiesReader("../../app.properties.ini");
 
     //API -- Cambiar el valor de la variable api segun la infraestructura de produccion
-    const domain = "http://localhost:3080";
-    // const domain = "https://ambientesdepruebas.serviciodeempleo.gov.co";
+    // const domain = "http://localhost:3080";
+    const domain = "https://ambientesdepruebas.serviciodeempleo.gov.co";
 
     const api = `${domain}/qabackbue/v1`;
 	//-------------------------------------
