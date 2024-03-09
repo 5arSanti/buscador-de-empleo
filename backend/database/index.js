@@ -1,7 +1,7 @@
 const sql = require("mssql");
 
 const PropertiesReader = require('properties-reader');
-const properties = PropertiesReader('../backend/app.properties.ini');
+const properties = PropertiesReader('./app.properties.ini');
 
 // PRUEBAS
 const sqlConfig = {

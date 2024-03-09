@@ -1,6 +1,6 @@
 const express = require("express");
 const PropertiesReader = require('properties-reader');
-const properties = PropertiesReader('../backend/app.properties.ini');
+const properties = PropertiesReader('./app.properties.ini');
 
 const vacantesRouter = require("./vacantes.router");
 const departamentosRouter = require("./departamentos.router")
