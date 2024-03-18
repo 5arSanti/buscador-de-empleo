@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { TextEncoder, TextDecoder } from 'text-encoding';
+import { TextDecoder } from 'text-encoding';
 
 export const AppContext = React.createContext();
+
 
 const AppProvider = ({children}) => {
     AppProvider.propTypes = {
@@ -11,13 +12,13 @@ const AppProvider = ({children}) => {
     }
 
     //API -- Cambiar el valor de la variable api segun la infraestructura de produccion
-    // const domain = "http://localhost:3080";
-    // const domain = "http://10.140.0.16:15202";
-    const domain = "https://ambientesdepruebas.serviciodeempleo.gov.co";
-	const api = `${domain}/qabackbue/v1`;
+    const domain = import.meta.env.VITE_API_DOMAIN;
+    const apiStructure = import.meta.env.VITE_API_STRUCTURE;
 
+    const api = `${domain}/${apiStructure}/v1`;
 	//-------------------------------------
     const [apiUri, setApiUri] = React.useState(api);
+    
 
     //LOADING, ERROR
     const [loading, setLoading] = React.useState(null);

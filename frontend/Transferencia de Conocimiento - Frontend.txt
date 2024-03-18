@@ -1,0 +1,17 @@
+Para generar una build del Frontend, se debe dirigir a la carpeta raiz de la carpeta frontend en el codigo fuente y ejecutar el siguiente comando:
+
+	npm run build
+
+Una vez ejecutado este comando, se creará una carpeta dist encargada de contener los archivos necesarios de la Build construida listos para ser desplegados en PRUEBAS.
+
+
+En el archivo
+	app.properties.env
+
+Ubicado en la raiz de la carpeta frontend se encuentran los datos del dominio de conexion al backend, y la estructura de la API, 
+la cual debe ser igual a la estructura de la API del servidor backend.
+
+Es importante que al realizar un cambio en el archivo desde el codigo fuente, es necesario ejecutar el comando "npm run build" y 
+subir la build generada por este mismo.
+
+

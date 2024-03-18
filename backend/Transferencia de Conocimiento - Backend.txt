@@ -1,0 +1,18 @@
+Para iniciar el servidor backend, se debe dirigir a la carpeta raiz del Backend en una consola, donde se encuentre el archivo package.json y ejecutar 
+el siguiente comando:
+
+	npm run prod
+
+Una vez ejecutado este comando, el servidor backend se empezara a ejecutar mostrando en consola el puerto de ejecucion y 
+el estado de conexion a la base de datos conectada.
+
+
+En el archivo
+	app.properties.ini
+
+Ubicado en la raiz del servidor backend se encuentran los datos de conexion de la base de datos tanto de Desarrollo como de PRUEBAS.
+
+Igualmente se encuentra la base de la estructura de la API.
+
+Es importante que al realizar un cambio en el archivo, es necesario reiniciar el servidor backend (Detener el servidor y 
+volver a ejecutar el comando "npm run prod" en la raiz del backend).

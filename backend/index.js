@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 
 const routerApi = require("./routes");
-const { registrarVisita, obtenerFechaHoy } = require("./functions/visitas");
 
 const app = express();
 const port = 3080;
@@ -18,7 +17,9 @@ const whiteList = [
 
     "http://10.140.0.16:15106",
     "http://10.140.0.16:15105",
+    "http://10.140.0.16",
     "http://10.140.0.16:15201",
+
 
 	"https://buscadordeempleo.gov.co/",
 	"https://ambientesdepruebas.serviciodeempleo.gov.co",
@@ -33,18 +34,6 @@ const options = {
     }
 }
 app.use(cors(options));
-
-
-// app.use(async (req, res, next) => {
-// 	try {
-// 		const fechaHoy = obtenerFechaHoy();
-// 		await registrarVisita(fechaHoy);
-// 		next();
-// 	} catch (err) {
-// 		console.error('Error al registrar visitas:', err.message);
-// 		res.status(500).send('Error interno del servidor');
-// 	}
-// });
 
 
 
