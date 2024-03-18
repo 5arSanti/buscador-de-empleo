@@ -1,4 +1,4 @@
-Teniendo en cuenta que el codigo fuente del Frontend de la BUE se va a encontrar en las carpetas de Desarrollo y Pruebas del Servidor, es necesario realizar los cambios de direccionamiento de visualizacion de archivos estaticos (index.html)
+Teniendo en cuenta que el codigo fuente del Frontend de la BUE se va a encontrar en las carpetas de Desarrollo y Pruebas del Servidor, es necesario realizar los cambios de direccionamiento de visualizacion de archivos estaticos (Ejemplo: index.html)
 
 Para generar una build del Frontend, se debe dirigir a la carpeta raiz de la carpeta frontend en el codigo fuente y ejecutar el siguiente comando:
 
