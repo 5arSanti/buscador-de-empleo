@@ -8,6 +8,7 @@ import { ResultsCard } from "./ResultsCard";
 
 import { FiSkipBack, FiSkipForward } from "react-icons/fi";
 import { AiOutlineHome } from "react-icons/ai";
+import { MdImportExport } from "react-icons/md";
 
 import "./styles.css";
 import { LoadingCardBig } from "../LoadingCard";
@@ -52,16 +53,23 @@ const ResultsGrid = () => {
                         <LoadingCardBig/>
                         <LoadingCardBig/>
                         <LoadingCardBig/>
-
+                    
                         {!context.loading && context.vacantesData?.resultados?.map((item, index) => (
                             <ResultsCard
                                 key={index}
                                 data={item}
                             />
-                        ))
-                        }
+                        ))}
+                        
                     </ScrollableWrapper>
                     <div className="pagination-buttons-container">
+                        <button
+                            title="Exportar"
+                            onClick={() => context.handlePagination()}
+                        >
+                            <MdImportExport/>
+                        </button>
+
                         <p>Pagina 
                             <input 
                                 type="text" 
@@ -82,16 +90,19 @@ const ResultsGrid = () => {
                             de {context.vacantesData?.totalPages}
                         </p>
                         <button
+                            title="Volver a la Primera Página"
                             onClick={() => context.handlePagination()}
                         >
                             <AiOutlineHome/>
                         </button>
                         <button
+                            title="Página Anterior"
                             onClick={() => context.handlePagination(1)}
                         >
                             <FiSkipBack/>
                         </button>
                         <button
+                            title="Página Siguiente"
                             onClick={() => context.handlePagination(2)}
                         >
                             <FiSkipForward/>

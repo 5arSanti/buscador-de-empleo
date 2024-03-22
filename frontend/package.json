@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon -e .env --exec vite",
     "build": "rm -rf dist && vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint . --ext .*, js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview --port 3090"
   },
   "dependencies": {
