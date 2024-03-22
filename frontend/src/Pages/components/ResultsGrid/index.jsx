@@ -64,7 +64,7 @@ const ResultsGrid = () => {
                     </ScrollableWrapper>
                     <div className="pagination-buttons-container">
                         <button
-                            title="Exportar"
+                            title="Exportar resultados, vista acutal"
                             onClick={() => context.handlePagination()}
                         >
                             <MdImportExport/>
