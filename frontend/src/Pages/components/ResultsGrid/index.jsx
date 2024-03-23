@@ -14,8 +14,12 @@ import "./styles.css";
 import { LoadingCardBig } from "../LoadingCard";
 import { RecordNotFoundCard } from "./RecordNotFoundCard";
 
+import { usePDF } from 'react-to-pdf';
+
 const ResultsGrid = () => {
     const context = React.useContext(AppContext);
+
+    // const { toPDF, targetRef } = usePDF({filename: 'Resultados.pdf'});
 
     return (
         <FiltersWrapper
@@ -46,29 +50,33 @@ const ResultsGrid = () => {
                 <>
                     <ScrollableWrapper
                         maxHeight={450}
-                        gap={10}
+                        gap={0}
                     >
-                        <LoadingCardBig/>
-                        <LoadingCardBig/>
-                        <LoadingCardBig/>
-                        <LoadingCardBig/>
-                        <LoadingCardBig/>
-                    
-                        {!context.loading && context.vacantesData?.resultados?.map((item, index) => (
-                            <ResultsCard
-                                key={index}
-                                data={item}
-                            />
-                        ))}
+                        <div className="export-container" ref={context.targetRef}>
+                            <LoadingCardBig/>
+                            <LoadingCardBig/>
+                            <LoadingCardBig/>
+                            <LoadingCardBig/>
+                            <LoadingCardBig/>
+                        
+                            {!context.loading && context.vacantesData?.resultados?.map((item, index) => (
+                                <ResultsCard
+                                    key={index}
+                                    data={item}
+                                />
+                            ))}
+                        </div>
+                        
                         
                     </ScrollableWrapper>
                     <div className="pagination-buttons-container">
                         <button
                             title="Exportar resultados, vista acutal"
-                            onClick={() => context.handlePagination()}
+                            onClick={() => context.setOpenExportModal(!context.openExportModal)}
                         >
                             <MdImportExport/>
                         </button>
+
 
                         <p>Pagina 
                             <input 
@@ -89,6 +97,7 @@ const ResultsGrid = () => {
                             />
                             de {context.vacantesData?.totalPages}
                         </p>
+
                         <button
                             title="Volver a la Primera Página"
                             onClick={() => context.handlePagination()}

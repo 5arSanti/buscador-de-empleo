@@ -21,6 +21,7 @@ import { NotificationsContainer } from "../components/NotificationsContainer";
 import { GovNavbar } from "../components/GovNavbars";
 import { GovFooter } from "../components/GovFooter";
 import { AccesibilityCard } from "../components/AccesibilityCard";
+import { ExportModal } from "../components/ExportModal";
 
 
 const Wrapper = ({children}) => {
@@ -53,7 +54,10 @@ const App = () => {
                     {/* <Navbar/> */}
                     {/* <NavBarResponsive/> */}
                     <AccesibilityCard/>
+                    <ExportModal/>
+
                     <AppRoutes/>
+                    
                     <NotificationsContainer/>
                     {/* <Footer/> */}
                     <GovFooter/>

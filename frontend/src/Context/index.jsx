@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { TextDecoder } from 'text-encoding';
+import { Resolution, usePDF } from "react-to-pdf";
 
 export const AppContext = React.createContext();
 
@@ -398,14 +399,31 @@ const AppProvider = ({children}) => {
         }
     }
 
-    const actualDate = () => {
-        const opciones = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+    const actualDate = (type = 1) => {
         const fecha = new Date();
-        const fechaFormateada = fecha.toLocaleDateString('es-ES', opciones);
 
-        const fechaCapitalizada = fechaFormateada.charAt(0).toUpperCase() + fechaFormateada.slice(1);
-      
-        return fechaCapitalizada;
+        if(type === 1) {
+            const opciones = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+
+            const fechaFormateada = fecha.toLocaleDateString('es-ES', opciones);
+            const fechaCapitalizada = fechaFormateada.charAt(0).toUpperCase() + fechaFormateada.slice(1);
+          
+            return fechaCapitalizada;
+        } else {
+  
+            const dia = String(fecha.getDate()).padStart(2, '0');
+            const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+            const año = fecha.getFullYear();
+            
+            const horas = String(fecha.getHours()).padStart(2, '0');
+            const minutos = String(fecha.getMinutes()).padStart(2, '0');
+            const segundos = String(fecha.getSeconds()).padStart(2, '0');
+            
+            const fechaFormateada = `${dia}${mes}${año}-${horas}${minutos}${segundos}`;
+            
+            return fechaFormateada;
+        }
+
     }
 
     const handleDateFilterChange = (value) => {
@@ -433,6 +451,14 @@ const AppProvider = ({children}) => {
         // Actualizar los filtros
         handleFilterChange("FECHA_CREACION", dateFilter);
     };
+
+    // Abrir modal de exporte
+    const [openExportModal, setOpenExportModal] = React.useState(false);
+    const { toPDF, targetRef } = usePDF({
+        filename: `BUE-${actualDate(2)}.pdf`,
+        method: "save",
+        resolution: Resolution.LOW
+    });
 
 
     return (
@@ -493,6 +519,11 @@ const AppProvider = ({children}) => {
 
                 handleNotifications,
                 handleDateFilterChange,
+
+                openExportModal,
+                setOpenExportModal,
+                toPDF,
+                targetRef
             }}
         >
             {children}

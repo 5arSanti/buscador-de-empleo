@@ -31,6 +31,17 @@
     width: 119.59px;
 }
 
+.export-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 10px;
+
+    background-color: var(--input-and-info-container-color);
+}
+
 .pagination-buttons-container {
     width: 100%;
 
