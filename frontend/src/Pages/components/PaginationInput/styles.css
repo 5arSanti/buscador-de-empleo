@@ -1,0 +1,37 @@
+.pagination-input-container{
+    color: var(--white);
+    font-size: 15px;
+    margin-right: 10px;
+
+    display: flex;
+    align-items: center;
+}
+.pagination-input-container input{
+    width: 40px;
+    max-width: 100px;
+
+    text-align: center;
+    padding: 5px 0px;
+    margin: 0 5px;
+
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--municipios-and-result-border-clicked);
+
+    color: var(--white);
+    font-weight: bold;
+    outline: none;  
+
+    transition: all 0.2s ease;
+}
+.pagination-input-container input:focus{
+    background-color: var(--white-025);
+    border: 1px solid var(--municipios-and-result-border-clicked);
+}
+.pagination-input-container input:hover{
+    background-color: var(--white-025);
+}
+.pagination-input-container input::placeholder{
+    color: var(--white);
+    font-weight: bold;
+}

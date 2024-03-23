@@ -21,7 +21,7 @@ const MunicipalityGrid = () => {
             <SubTitle text="Departamentos"/>
 
             <ScrollableWrapper
-                maxHeight={325}
+                maxHeight={405}
             >
                 <LoadingCardSmall/>
                 <LoadingCardSmall/>

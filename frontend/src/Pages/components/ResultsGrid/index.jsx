@@ -15,6 +15,8 @@ import { LoadingCardBig } from "../LoadingCard";
 import { RecordNotFoundCard } from "./RecordNotFoundCard";
 
 import { usePDF } from 'react-to-pdf';
+import { NavigationButton } from "../NavigationButton";
+import { PaginationInput } from "../PaginationInput";
 
 const ResultsGrid = () => {
     const context = React.useContext(AppContext);
@@ -69,54 +71,40 @@ const ResultsGrid = () => {
                         
                         
                     </ScrollableWrapper>
-                    <div className="pagination-buttons-container">
-                        <button
-                            title="Exportar resultados, vista acutal"
-                            onClick={() => context.setOpenExportModal(!context.openExportModal)}
-                        >
-                            <MdImportExport/>
-                        </button>
+                    
+                    {!context.loading &&
+                        <div className="pagination-buttons-container">
+                            <NavigationButton 
+                                title={"Exportar resultados, vista acutal"}
+                                onClick={() => context.setOpenExportModal(!context.openExportModal)}
+                            >
+                                <MdImportExport/>
+                            </NavigationButton>
 
+                            <PaginationInput/>
 
-                        <p>Pagina 
-                            <input 
-                                type="text" 
-                                pattern="[0-9]"
-                                placeholder={context.vacantesData?.currentPage}
-                                onKeyDown={(event) => {
-                                    if (event.key === 'Enter') {
-                                        const pageNumber = parseInt(event.target.value);
-                                        if (!isNaN(pageNumber) && pageNumber >= 1 && pageNumber <= context.vacantesData?.totalPages) {
-                                            context.setCurrentPage(pageNumber);
-                                            event.target.value = "";
-                                        } else {
-                                            event.target.value = "";
-                                        }
-                                    }
-                                }}
-                            />
-                            de {context.vacantesData?.totalPages}
-                        </p>
+                            <NavigationButton 
+                                title={"Volver a la Primera Página"}
+                                onClick={() => context.handlePagination()}
+                            >
+                                <AiOutlineHome/>
+                            </NavigationButton>
 
-                        <button
-                            title="Volver a la Primera Página"
-                            onClick={() => context.handlePagination()}
-                        >
-                            <AiOutlineHome/>
-                        </button>
-                        <button
-                            title="Página Anterior"
-                            onClick={() => context.handlePagination(1)}
-                        >
-                            <FiSkipBack/>
-                        </button>
-                        <button
-                            title="Página Siguiente"
-                            onClick={() => context.handlePagination(2)}
-                        >
-                            <FiSkipForward/>
-                        </button>
-                    </div>              
+                            <NavigationButton 
+                                title={"Página Anterior"}
+                                onClick={() => context.handlePagination(1)}
+                            >
+                                <FiSkipBack/>
+                            </NavigationButton>
+
+                            <NavigationButton 
+                                title={"Página Siguiente"}
+                                onClick={() => context.handlePagination(2)}
+                            >
+                                <FiSkipForward/>
+                            </NavigationButton>
+                        </div>
+                    }
                 </>
             }
         </FiltersWrapper>

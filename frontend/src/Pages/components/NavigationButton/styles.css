@@ -1,0 +1,22 @@
+.navigation-button {
+    padding: 5px;
+    border-radius: 5px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--white-025);
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.navigation-button:hover {
+    background-color: var(--white-05);
+}
+.navigation-button svg{
+    width: 20px;
+    height: 20px;
+    color: var(--white);
+}

@@ -48,18 +48,15 @@ const App = () => {
     return (
         <AppProvider>
             <HashRouter>
-            {/* <BrowserRouter> */}
                 <Wrapper>
                     <GovNavbar/>
-                    {/* <Navbar/> */}
-                    {/* <NavBarResponsive/> */}
                     <AccesibilityCard/>
                     <ExportModal/>
 
                     <AppRoutes/>
                     
                     <NotificationsContainer/>
-                    {/* <Footer/> */}
+
                     <GovFooter/>
                     <SecondaryFooter/>
                 </Wrapper>

@@ -7,6 +7,7 @@ import { FaRegFilePdf } from "react-icons/fa";
 import { IoCloseOutline } from "react-icons/io5";
 
 import "./styles.css";
+import { NavigationButton } from "../NavigationButton";
 
 const ExportModal = () => {
     const context = React.useContext(AppContext)
@@ -15,31 +16,32 @@ const ExportModal = () => {
         return(
             <div className="modal-container">
                 <div className="modal-buttons-container">
-                    <SubTitle2>Exportar resultados como:</SubTitle2>
+                    <SubTitle2>Exportar resultados</SubTitle2>
+
                     <div className="info-container">
                         <p>La exportación puede durar unos momentos, por favor sea paciente.</p>
                     </div>
 
-                    <button className="button top-rigth" 
+                    <NavigationButton 
+                        title={"Cerrar"}
                         onClick={() => context.setOpenExportModal(!context.openExportModal)}
-                        title="Cerrar"
+                        className={"top-right"}
                     >
                         <IoCloseOutline/>
-                    </button>
+                    </NavigationButton>
     
                     <button className="export-button excel" 
-                        onClick={() => {}}
+                        onClick={() => {context.exportToExcel(context.vacantesData?.resultados)}}
                         title="Exportar resultados como Excel"
                     >
-                        <RiFileExcel2Line/>
-                        Excel
+                        <RiFileExcel2Line/> Excel
                     </button>
+
                     <button className="export-button pdf" 
                         onClick={() => context.toPDF()}
                         title="Exportar resultados como PDF"
                     >
-                        <FaRegFilePdf/>
-                        PDF
+                        <FaRegFilePdf/> PDF
                     </button>
 
                 </div>

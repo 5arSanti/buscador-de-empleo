@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { TextDecoder } from 'text-encoding';
 import { Resolution, usePDF } from "react-to-pdf";
 
+import * as XLSX from 'xlsx';
+
 export const AppContext = React.createContext();
 
 
@@ -454,11 +456,24 @@ const AppProvider = ({children}) => {
 
     // Abrir modal de exporte
     const [openExportModal, setOpenExportModal] = React.useState(false);
+    const name = `BUE-${vacantesData?.currentPage}-${actualDate(2)}`;
+
+    //Exportar a PDF
     const { toPDF, targetRef } = usePDF({
-        filename: `BUE-${actualDate(2)}.pdf`,
-        method: "save",
+        filename: `${name}.pdf`,
+        method: "open",
         resolution: Resolution.LOW
     });
+
+    //Exportar a Excel
+    const exportToExcel = (data) => {
+        const worksheet = XLSX.utils.json_to_sheet(data);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, `Res_Vacantes-Pagina ${vacantesData?.currentPage}`);
+        //let buffer = XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
+        //XLSX.write(workbook, { bookType: "xlsx", type: "binary" });
+        XLSX.writeFile(workbook, `${name}.xlsx`);
+      };
 
 
     return (
@@ -522,6 +537,7 @@ const AppProvider = ({children}) => {
 
                 openExportModal,
                 setOpenExportModal,
+                exportToExcel,
                 toPDF,
                 targetRef
             }}
