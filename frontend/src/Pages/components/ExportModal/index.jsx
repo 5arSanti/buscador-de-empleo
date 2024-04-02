@@ -12,6 +12,22 @@ import { NavigationButton } from "../NavigationButton";
 const ExportModal = () => {
     const context = React.useContext(AppContext)
 
+    const { vacantesData } = context;
+
+    const filteredData = vacantesData?.resultados.map(item => ({
+        CODIGO_VACANTE: item.CODIGO_VACANTE,
+        TITULO_VACANTE: item.TITULO_VACANTE,
+        DESCRIPCION_VACANTE: item.DESCRIPCION_VACANTE,
+        NIVEL_ESTUDIOS: item.NIVEL_ESTUDIOS,
+        RANGO_SALARIAL: item.RANGO_SALARIAL,
+        NOMBRE_PRESTADOR: item.NOMBRE_PRESTADOR,
+        DEPARTAMENTO: item.DEPARTAMENTO,
+        MUNICIPIO: item.MUNICIPIO,
+        TIPO_CONTRATO: item.TIPO_CONTRATO,
+        URL_DETALLE_VACANTE: item.URL_DETALLE_VACANTE,
+        FECHA_CREACION: item.FECHA_CREACION,
+    }));
+
     if(context.openExportModal) {
         return(
             <div className="modal-container">
@@ -31,7 +47,7 @@ const ExportModal = () => {
                     </NavigationButton>
     
                     <button className="export-button excel" 
-                        onClick={() => {context.exportToExcel(context.vacantesData?.resultados)}}
+                        onClick={() => {context.exportToExcel(filteredData)}}
                         title="Exportar resultados como Excel"
                     >
                         <RiFileExcel2Line/> Excel
