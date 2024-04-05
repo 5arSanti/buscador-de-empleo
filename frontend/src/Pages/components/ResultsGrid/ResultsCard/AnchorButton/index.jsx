@@ -2,7 +2,7 @@ import { FiExternalLink } from "react-icons/fi";
 
 import "./styles.css"
 
-const AnchorButton = ({data, imagen, handleClick, hovered, type=0}) => {
+const AnchorButton = ({data, imagen="", handleClick, hovered, type=0}) => {
     const handleHover = () => {
         if (type === 0) {
             return(

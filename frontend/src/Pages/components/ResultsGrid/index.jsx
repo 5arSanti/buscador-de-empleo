@@ -6,22 +6,18 @@ import { ScrollableWrapper } from "../ScrollableWrapper";
 import { SubTitle } from "../SubTitle";
 import { ResultsCard } from "./ResultsCard";
 
-import { FiSkipBack, FiSkipForward } from "react-icons/fi";
+import { FiSkipBack, FiSkipForward, FiDownload  } from "react-icons/fi";
 import { AiOutlineHome } from "react-icons/ai";
-import { MdImportExport } from "react-icons/md";
 
 import "./styles.css";
 import { LoadingCardBig } from "../LoadingCard";
 import { RecordNotFoundCard } from "./RecordNotFoundCard";
 
-import { usePDF } from 'react-to-pdf';
 import { NavigationButton } from "../NavigationButton";
 import { PaginationInput } from "../PaginationInput";
 
 const ResultsGrid = () => {
     const context = React.useContext(AppContext);
-
-    // const { toPDF, targetRef } = usePDF({filename: 'Resultados.pdf'});
 
     return (
         <FiltersWrapper
@@ -78,7 +74,7 @@ const ResultsGrid = () => {
                                 title={"Exportar resultados, vista acutal"}
                                 onClick={() => context.setOpenExportModal(!context.openExportModal)}
                             >
-                                <MdImportExport/>
+                                <FiDownload />
                             </NavigationButton>
 
                             <PaginationInput/>
