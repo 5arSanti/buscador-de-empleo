@@ -1,0 +1,44 @@
+Cordial Saludo
+
+Revisando el correo enviado ya realice los siguientes cambios:
+
+1. En el entorno de Desarrollo de BUE ubicado en el Servidor en la carpeta /var/www/html/devbue/tmp/dev_source/ se encuentra el codigo fuente referente al Frontend.
+Por lo tanto, los cambios que se realicen directamente en el codigo fuente serán cargados a esta carpeta.
+
+En este directorio se encuentra el archivo app.properties.env y es donde se realizan las builds respectivas listas para ser desplegadas en PROD.
+
+
+
+
+2. En el archivo app.properties.env se encuentras las propiedades referentes al Dominio y a la estrctura de la API.
+
+Las variables son las siguientes:
+
+# Estrucutra de la API
+Esta variable es la encargada de subministrar la direccion correcta para la API ubicada en el Servidor Backend de la BUE
+
+Ejemplo:
+VITE_API_STRUCTURE=qabackbue
+
+Para que la conexion sea correcta, el valor de esta variable debe ser IGUAL a la siguiente variable ubicada en el archivo app.properties.ini ubicado en el Backend de la BUE
+
+app.api.structure=qabackbue
+
+
+
+# Dominio de conexion al Backend
+Esta variable es la encargada de subministrar el dominio correcto de alojamiento o redireccion del Servidor Backend
+
+Ejemplo:
+VITE_API_DOMAIN=https://ambientesdepruebas.serviciodeempleo.gov.co
+
+
+
+Explicación:
+El codigo fuente de la BUE utiliza estas dos variables de esta forma:
+VITE_API_DOMAIN/VITE_API_STRUCTURE/RESTO_DE_LA_API_BACKEND
+
+Ejemplo:
+https://ambientesdepruebas.serviciodeempleo.gov.co/qabackbue/v1/...
+
+Por lo tanto, realiza las peticiones HTTP a esta dirección para solicitar la informacion del backend y de la Base de Datos utilizada.
