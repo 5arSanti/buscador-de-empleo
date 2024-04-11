@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon -e .env --exec vite",
     "build": "rm -rf dist && vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint . --ext .*, js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview --port 3090"
   },
   "dependencies": {
@@ -15,7 +15,9 @@
     "react-icons": "^4.11.0",
     "react-router-dom": "^6.16.0",
     "react-simple-maps": "^3.0.0",
-    "text-encoding": "^0.7.0"
+    "react-to-pdf": "^1.0.1",
+    "text-encoding": "^0.7.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

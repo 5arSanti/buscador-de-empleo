@@ -6,12 +6,15 @@ import { ScrollableWrapper } from "../ScrollableWrapper";
 import { SubTitle } from "../SubTitle";
 import { ResultsCard } from "./ResultsCard";
 
-import { FiSkipBack, FiSkipForward } from "react-icons/fi";
+import { FiSkipBack, FiSkipForward, FiDownload  } from "react-icons/fi";
 import { AiOutlineHome } from "react-icons/ai";
 
 import "./styles.css";
 import { LoadingCardBig } from "../LoadingCard";
 import { RecordNotFoundCard } from "./RecordNotFoundCard";
+
+import { NavigationButton } from "../NavigationButton";
+import { PaginationInput } from "../PaginationInput";
 
 const ResultsGrid = () => {
     const context = React.useContext(AppContext);
@@ -45,58 +48,59 @@ const ResultsGrid = () => {
                 <>
                     <ScrollableWrapper
                         maxHeight={450}
-                        gap={10}
+                        gap={0}
                     >
-                        <LoadingCardBig/>
-                        <LoadingCardBig/>
-                        <LoadingCardBig/>
-                        <LoadingCardBig/>
-                        <LoadingCardBig/>
-
-                        {!context.loading && context.vacantesData?.resultados?.map((item, index) => (
-                            <ResultsCard
-                                key={index}
-                                data={item}
-                            />
-                        ))
-                        }
+                        <div className="export-container" ref={context.targetRef}>
+                            <LoadingCardBig/>
+                            <LoadingCardBig/>
+                            <LoadingCardBig/>
+                            <LoadingCardBig/>
+                            <LoadingCardBig/>
+                        
+                            {!context.loading && context.vacantesData?.resultados?.map((item, index) => (
+                                <ResultsCard
+                                    key={index}
+                                    data={item}
+                                />
+                            ))}
+                        </div>
+                        
+                        
                     </ScrollableWrapper>
-                    <div className="pagination-buttons-container">
-                        <p>Pagina 
-                            <input 
-                                type="text" 
-                                pattern="[0-9]"
-                                placeholder={context.vacantesData?.currentPage}
-                                onKeyDown={(event) => {
-                                    if (event.key === 'Enter') {
-                                        const pageNumber = parseInt(event.target.value);
-                                        if (!isNaN(pageNumber) && pageNumber >= 1 && pageNumber <= context.vacantesData?.totalPages) {
-                                            context.setCurrentPage(pageNumber);
-                                            event.target.value = "";
-                                        } else {
-                                            event.target.value = "";
-                                        }
-                                    }
-                                }}
-                            />
-                            de {context.vacantesData?.totalPages}
-                        </p>
-                        <button
-                            onClick={() => context.handlePagination()}
-                        >
-                            <AiOutlineHome/>
-                        </button>
-                        <button
-                            onClick={() => context.handlePagination(1)}
-                        >
-                            <FiSkipBack/>
-                        </button>
-                        <button
-                            onClick={() => context.handlePagination(2)}
-                        >
-                            <FiSkipForward/>
-                        </button>
-                    </div>              
+                    
+                    {!context.loading &&
+                        <div className="pagination-buttons-container">
+                            <NavigationButton 
+                                title={"Exportar resultados, vista acutal"}
+                                onClick={() => context.setOpenExportModal(!context.openExportModal)}
+                            >
+                                <FiDownload />
+                            </NavigationButton>
+
+                            <PaginationInput/>
+
+                            <NavigationButton 
+                                title={"Volver a la Primera Página"}
+                                onClick={() => context.handlePagination()}
+                            >
+                                <AiOutlineHome/>
+                            </NavigationButton>
+
+                            <NavigationButton 
+                                title={"Página Anterior"}
+                                onClick={() => context.handlePagination(1)}
+                            >
+                                <FiSkipBack/>
+                            </NavigationButton>
+
+                            <NavigationButton 
+                                title={"Página Siguiente"}
+                                onClick={() => context.handlePagination(2)}
+                            >
+                                <FiSkipForward/>
+                            </NavigationButton>
+                        </div>
+                    }
                 </>
             }
         </FiltersWrapper>

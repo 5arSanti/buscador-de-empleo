@@ -1,0 +1,84 @@
+.modal-container {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+
+    z-index: 1;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal-buttons-container {
+    width: 100%;
+    padding: 50px 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 20px;
+
+    transition: all .2s ease;
+
+    background-color: var(--input-and-info-container-color);
+    border-radius: 20px;
+    border: 1px solid var(--white);
+
+    opacity: 0.95;
+
+    position: relative;
+}
+.modal-buttons-container:hover {
+    opacity: 1;
+}
+
+.top-right {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+}
+
+.export-button {
+    width: 95%;
+    padding: 20px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+
+    background-color: var(--white);
+
+    transition: all .2s ease;
+
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+.export-button:hover {
+    width: 100%;
+    transition: all .25s ease;
+    color: var(--white);
+}
+.excel:hover {
+    background-color: var(--confirm-color);
+}
+.pdf:hover {
+    background-color: var(--cancel-color);
+}
+
+.export-button svg{
+    width: 15px;
+    height: 15px;
+}
+
+
+@media(max-width: 900px) {
+    .modal-buttons-container {
+        width: 80%;
+    }
+}

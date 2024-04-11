@@ -54,14 +54,14 @@ const FiltersInputs = () => {
                 onChange={(value) => context.handleFilterChange("NIVEL_ESTUDIOS", value)}
             />
 
-            <FiltersOptionCard
+            {/* <FiltersOptionCard
                 id={"foreigner"}
                 title={"Vacantes en el Extranjero"}
                 array={["SI"]}
                 onChange={(value) => context.saveSelectedDepartment(value == "SI" ? "VACANTES PARA TODO EL TERRITORIO" : "")}
-            />
+            /> */}
             <FiltersOptionCard
-                id={"foreigner"}
+                id={"publication-date"}
                 title={"Fecha de Publicación"}
                 array={["Hoy", "Última semana", "Último mes"]}
                 onChange={(value) => context.handleDateFilterChange(value)}

@@ -26,8 +26,8 @@ const ResultsCard = ({data}) => {
         year: 'numeric',
     });
 
-    const nombrePrestador = data.NOMBRE_PRESTADOR;
-    const imagenRuta = prestadorImagenes[nombrePrestador] || icon;
+    // const nombrePrestador = data.NOMBRE_PRESTADOR;
+    // const imagenRuta = prestadorImagenes[nombrePrestador] || icon;
 
     const handleClick = async (item) => {
         try {
@@ -57,7 +57,7 @@ const ResultsCard = ({data}) => {
             {context.windowWidth > 750 &&
                 <AnchorButton
                     data={data}
-                    imagen={imagenRuta}
+                    // imagen={imagenRuta}
                     handleClick={() => handleClick(data)}
                     hovered={hovered}
                     type={1}
@@ -73,7 +73,7 @@ const ResultsCard = ({data}) => {
             {context.windowWidth < 750 &&
                 <AnchorButton
                     data={data}
-                    imagen={imagenRuta}
+                    // imagen={imagenRuta}
                     handleClick={() => handleClick(data)}
                     hovered={hovered}
                 />
