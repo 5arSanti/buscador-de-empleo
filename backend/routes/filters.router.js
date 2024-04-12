@@ -1,5 +1,7 @@
 const express = require("express");
-const { sql } = require("../database")
+const { sql } = require("../database");
+const { salaryRangeOrder, tipoContratoOrder, nivelDeEstudiosOrder } = require("../utils/arraysOrder");
+const { orderArray } = require("../functions/order");
 
 const router = express.Router();
 
@@ -7,22 +9,26 @@ router.get("/", async (request, response) => {
 	try {
 		const rangoSalarialQuery = await sql.query`SELECT DISTINCT RANGO_SALARIAL FROM Vacantes_Vigentes_Completo`;
         const rangoSalarial = rangoSalarialQuery.recordset.map(row => row.RANGO_SALARIAL);
+		const rangoSalarialOrdenado = orderArray(rangoSalarial, salaryRangeOrder)
 
 		const prestadorQuery = await sql.query`SELECT DISTINCT NOMBRE_PRESTADOR FROM Vacantes_Vigentes_Completo`;
         const prestador = prestadorQuery.recordset.map(row => row.NOMBRE_PRESTADOR);
 
 		const contratoQuery = await sql.query`SELECT DISTINCT TIPO_CONTRATO FROM Vacantes_Vigentes_Completo`;
-        const tipoContrato = contratoQuery.recordset.map(row => row.TIPO_CONTRATO);
+        const tipoContrato = contratoQuery.recordset.map(row => row.TIPO_CONTRATO).filter(value => value !== null);;
+		const tipoContratoOrdenado = orderArray(tipoContrato, tipoContratoOrder);
+
 
 		const estudiosQuery = await sql.query`SELECT DISTINCT NIVEL_ESTUDIOS FROM Vacantes_Vigentes_Completo`;
         const nivelDeEstudios = estudiosQuery.recordset.map(row => row.NIVEL_ESTUDIOS);
+		const nivelDeEstudiosOrdenado = orderArray(nivelDeEstudios, nivelDeEstudiosOrder);
 
 		return response.status(200).json({
 			filters: {
-				rangoSalarial,
+				rangoSalarial: rangoSalarialOrdenado,
 				prestador,
-				tipoContrato,
-				nivelDeEstudios
+				tipoContrato: tipoContratoOrdenado,
+				nivelDeEstudios: nivelDeEstudiosOrdenado,
 			}
 		});
 	}

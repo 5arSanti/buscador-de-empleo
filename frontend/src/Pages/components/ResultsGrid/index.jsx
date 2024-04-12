@@ -73,11 +73,14 @@ const ResultsGrid = () => {
                             <NavigationButton 
                                 title={"Exportar resultados, vista acutal"}
                                 onClick={() => context.setOpenExportModal(!context.openExportModal)}
+                                className={context.windowWidth <= 400 && "span-3"}
                             >
                                 <FiDownload />
                             </NavigationButton>
 
-                            <PaginationInput/>
+                            <PaginationInput
+                                className={context.windowWidth <= 400 && "span-3"}
+                            />
 
                             <NavigationButton 
                                 title={"Volver a la Primera Página"}

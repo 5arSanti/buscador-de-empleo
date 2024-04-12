@@ -3,6 +3,8 @@ import { AppContext } from "../../../Context";
 import { FiltersWrapper } from "../FiltersWrapper";
 import { SubTitle } from "../SubTitle";
 
+import { formatNumbers } from "../../../utils/formatNumbers.js";
+
 import "./styles.css";
 
 const JobsCountContainer = () => {
@@ -17,7 +19,7 @@ const JobsCountContainer = () => {
             <SubTitle fontSize={16} text={"Número total de ofertas de empleo encontradas."}/>
 
             <div className="count-container">
-                <p>{context.vacantesData?.total_registros}</p>
+                <p>{formatNumbers(context.vacantesData?.total_registros)}</p>
             </div>
         </FiltersWrapper>
     );

@@ -2,12 +2,13 @@ import React from "react";
 import { AppContext } from "../../../Context";
 
 import "./styles.css"
+import { formatNumbers } from "../../../utils/formatNumbers";
 
-const PaginationInput = () => {
+const PaginationInput = ({className}) => {
     const context = React.useContext(AppContext);
 
     return(
-        <p className="pagination-input-container">Pagina 
+        <p className={`pagination-input-container ${className}`}>Pagina 
             <input 
                 type="text" 
                 pattern="[0-9]"
@@ -24,7 +25,7 @@ const PaginationInput = () => {
                     }
                 }}
             />
-            de {context.vacantesData?.totalPages}
+            de {formatNumbers(context.vacantesData?.totalPages)}
         </p>
     );
 }

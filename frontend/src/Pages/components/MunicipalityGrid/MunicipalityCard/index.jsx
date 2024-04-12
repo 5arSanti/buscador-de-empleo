@@ -1,3 +1,4 @@
+import { formatNumbers } from "../../../../utils/formatNumbers";
 import "./styles.css";
 
 const MunicipalityCard = ({text, value, onClick}) => {
@@ -8,7 +9,7 @@ const MunicipalityCard = ({text, value, onClick}) => {
             }}
         >
             <p>{text}</p>
-            <p>{value}</p>
+            <p>{formatNumbers(value)}</p>
         </div>
     );
 }

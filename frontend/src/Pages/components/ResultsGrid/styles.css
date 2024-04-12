@@ -53,3 +53,26 @@
     padding: 0 15px;
     box-sizing: border-box;
 }
+
+
+@media (max-width: 500px) {
+    .pagination-buttons-container {
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+    
+        padding: 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .pagination-buttons-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+    
+        padding: 0;
+    }
+}

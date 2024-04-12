@@ -2,6 +2,7 @@ import React from "react";
 import { SubTitle } from "../SubTitle";
 import "./styles.css";
 import { AppContext } from "../../../Context";
+import { formatNumbers } from "../../../utils/formatNumbers";
 
 const ToolTipMap = ({ content }) => {
     const context = React.useContext(AppContext);
@@ -21,13 +22,13 @@ const ToolTipMap = ({ content }) => {
             </div>
 
             <div className="tool-tip-info-container">
-                <p>Vacantes: </p>
+                <p>Ofertas de Empleo: </p>
                 {context.selectedDepartment && context.vacantesData?.total_departments?.length <= 1 ?
                     <p>{
-                        context.vacantesData?.total_departments[0]?.total || 
-                        context.vacantesData?.total_registros}
+                        formatNumbers(context.vacantesData?.total_departments[0]?.total) || 
+                        formatNumbers(context.vacantesData?.total_registros)}
                     </p> : 
-                    <p>{content.totalVacantes}</p>
+                    <p>{formatNumbers(content.totalVacantes)}</p>
                 }
             </div>
             {context.selectedDepartment &&

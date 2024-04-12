@@ -19,10 +19,10 @@ const GovFooter = () => {
     return(
         <footer className="footer-container">
             <div className="footer-image-container">
-                <a href="https://www.gov.co/" title={altTitleImg1}>
+                <a href="https://www.gov.co/" rel="noopener noreferrer" target="_blank" title={altTitleImg1}>
                     <img src={logoCoFooter} title={altTitleImg1} alt={altTitleImg1} />
                 </a>
-                <a href="https://www.colombia.co/" title={altTitleImg2}>
+                <a href="https://www.colombia.co/" rel="noopener noreferrer" target="_blank" title={altTitleImg2}>
                     <img src={logoFooter} title={altTitleImg2} alt={altTitleImg2} />
                 </a>
             </div>

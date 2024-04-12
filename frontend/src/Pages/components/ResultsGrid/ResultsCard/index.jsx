@@ -42,10 +42,10 @@ const ResultsCard = ({data}) => {
             })
 
             if(!response.ok) {
-                throw new Error;
+                throw Error(response.data.message);
             }
         } catch (err) {
-            context.handleNotifications("err", err.message);
+            context.handleNotifications("err", err);
         }
     }
 

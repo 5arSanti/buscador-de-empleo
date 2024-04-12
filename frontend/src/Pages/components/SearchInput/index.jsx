@@ -46,7 +46,7 @@ const SearchInput = ({onSearch}) => {
 
                 </div>
                 <div className="info-container">
-                    <p>Busque por una palabra o palabras claves, ejemplo: &apos;Mecanico&apos;, y presione Enter. Tambi&eacute;n puede realizar su b&uacute;squeda por el C&oacute;digo de la Vacante.</p>
+                    <p>Busque por una palabra o palabras claves, ejemplo: &apos;Mecanico&apos;, y presione Enter. Tambi&eacute;n puede realizar su b&uacute;squeda por el C&oacute;digo de la Oferta de Empleo.</p>
                     <p>Se recomienda no escribir con tildes. </p>
                 </div>
 

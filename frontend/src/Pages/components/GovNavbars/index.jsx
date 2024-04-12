@@ -10,7 +10,7 @@ const GovNavbar = () => {
             </nav>
             
             <div className="container-logo-header-govco">
-                <a className="logo-header-govco" rel="noopener noreferrer" target="_blank" href="https://ambientesdepruebas.serviciodeempleo.gov.co/qabue">
+                <a className="logo-header-govco" rel="noopener noreferrer" target="_blank" href="https://www.buscadordeempleo.gov.co/">
                     <span className="">
                         <img src={iconComplete} alt="" />
                         <img src={banner} alt="" />
