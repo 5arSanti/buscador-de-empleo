@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const FiltersOptionCard = ({id, title, array=[], onChange}) => {
+const FiltersOptionCard = ({id, title, array=[], onChange, defaultValue=""}) => {
     FiltersOptionCard.propTypes = {
         id: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
@@ -14,6 +14,7 @@ const FiltersOptionCard = ({id, title, array=[], onChange}) => {
                 name={id} 
                 id={id}
                 onChange={(event) => {onChange(event.target.value)}}
+                value={defaultValue}
             >
                 <option value="">
                     Todo

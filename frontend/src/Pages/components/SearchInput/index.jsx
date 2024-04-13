@@ -7,7 +7,7 @@ import { CiSearch } from "react-icons/ci";
 
 import "./styles.css";
 
-const SearchInput = ({onSearch}) => {
+const SearchInput = () => {
     const context = React.useContext(AppContext);
 
     const handleInputChange = (event) => {
@@ -16,7 +16,7 @@ const SearchInput = ({onSearch}) => {
   
     const handleKeyPress = (event) => {
         if (event.code === "Enter") {
-            onSearch(context.searchValue);
+            context.handleSearch(context.searchValue);
         }
     };
 
@@ -37,7 +37,7 @@ const SearchInput = ({onSearch}) => {
                             onChange={handleInputChange}
                             onKeyDown={handleKeyPress}
                         />
-                        <button onClick={() => onSearch(context.searchValue)}
+                        <button onClick={() => context.handleSearch(context.searchValue)}
                             title="Buscar"
                         >
                             <CiSearch/>

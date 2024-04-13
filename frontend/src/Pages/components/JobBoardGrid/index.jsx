@@ -63,44 +63,6 @@ const JobBoardGrid = () => {
                 }}
                 isActive={context.activeButton === 3}
             />
-            {/* <JobBoardCard
-                icon={<BsFillPersonFill/>}
-                text={"Joven"}
-                onClick={() => {
-                    context.handleFilterChange("HIDROCARBUROS", "")
-                    context.handleFilterChange("PLAZA_PRACTICA", "");
-                    context.handleFilterChange("DESCRIPCION_VACANTE", "")
-                    context.handleFilterChange("MESES_EXPERIENCIA_CARGO", "")
-                    context.handleColorsByFilters(4);
-                }}
-                isActive={context.activeButton === 4}
-            />
-            <JobBoardCard
-                icon={<HiUserGroup/>}
-                text={"Jóvenes"}
-                onClick={() => {
-                    context.handleFilterChange("HIDROCARBUROS", "")
-                    context.handleFilterChange("PLAZA_PRACTICA", "");
-                    context.handleFilterChange("DESCRIPCION_VACANTE", "")
-                    context.handleFilterChange("MESES_EXPERIENCIA_CARGO", "")
-
-                    context.handleColorsByFilters(5);
-                }}
-                isActive={context.activeButton === 5}
-            />
-            <JobBoardCard
-                icon={<MdElderly/>}
-                text={"Adulto Mayor"}
-                onClick={() => {
-                    context.handleFilterChange("HIDROCARBUROS", "")
-                    context.handleFilterChange("PLAZA_PRACTICA", "");
-                    context.handleFilterChange("DESCRIPCION_VACANTE", "")
-                    context.handleFilterChange("MESES_EXPERIENCIA_CARGO", "")
-                    
-                    context.handleColorsByFilters(6);
-                }}
-                isActive={context.activeButton === 6}
-            /> */}
         </FiltersWrapper>
     );
 }

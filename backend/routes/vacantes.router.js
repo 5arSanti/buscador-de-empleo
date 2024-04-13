@@ -79,6 +79,21 @@ router.get("/resultados", async (request, response) => {
             total: row.total_vacantes
         }));
 
+		// TOTAL REGISTROS POR MUNICIPIO
+        const totalRecordsByMunicipalityQuery = await sql.query(`
+            SELECT MUNICIPIO, COUNT(*) AS total_vacantes
+            FROM Vacantes_Vigentes_Completo
+            WHERE LOWER(BUSQUEDA) LIKE LOWER('%${searchTerm}%')
+			AND (DESCRIPCION_VACANTE) LIKE ('%${descriptionFilter}%')
+            ${filterConditions ? `AND ${filterConditions}` : ""}
+			${filterDateCondition(request.query.FECHA_CREACION)}
+            GROUP BY MUNICIPIO
+        `);
+        const total_municipios = totalRecordsByMunicipalityQuery.recordset.map(row => ({
+            municipio: row.MUNICIPIO,
+            total: row.total_vacantes
+        }));
+
 
         const resultsQuery = await sql.query(baseQuery);
         const totalPages = Math.ceil(total_registros / PAGE_SIZE);
@@ -89,7 +104,8 @@ router.get("/resultados", async (request, response) => {
             currentPage: page,
             total_registros,
             total,
-            total_departments
+            total_departments,
+			total_municipios
         });
     }
     catch (err) {
