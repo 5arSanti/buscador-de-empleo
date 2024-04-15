@@ -35,7 +35,7 @@ const Map = () => {
         "ATLÁNTICO": "#00D8FF",
         "BOGOTÁ, D.C.": "#F02B76",
         "BOLÍVAR": "#F0B12B",
-        "DPTO. BOYACÁ": "#BF4BDC",
+        "BOYACÁ": "#BF4BDC",
         "CALDAS": "#AF22CE",
         "CAQUETÁ": "#23FF00",
         "CAUCA": "#4BBFDC",
