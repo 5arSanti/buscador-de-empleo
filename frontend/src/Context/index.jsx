@@ -480,6 +480,7 @@ const AppProvider = ({children}) => {
                 selectedDepartment,
                 setSelectedDepartment,
                 saveSelectedDepartment,
+                claerDPOandMuncipios,
                 clearSelectedDepartment,
                 clearSelectedMunicipio,
 

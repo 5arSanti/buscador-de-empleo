@@ -10,8 +10,16 @@ import { RecordNotFoundCard } from "../ResultsGrid/RecordNotFoundCard";
 const MunicipalityGrid = () => {
     const context = React.useContext(AppContext);
 
-    const sortedTotalDepartments = context.vacantesData?.total_departments?.sort((a, b) => b.total - a.total);
-    const sortedTotalMunicipios = context.vacantesData?.total_municipios?.sort((a, b) => b.total - a.total);
+    // const sortedTotalDepartments = context.vacantesData?.total_departments?.sort((a, b) => b.total - a.total);
+    // const sortedTotalMunicipios = context.vacantesData?.total_municipios?.sort((a, b) => b.total - a.total);
+
+    const sortedTotalDepartments = context.vacantesData?.total_departments?.sort((a, b) => {
+        return a.department.localeCompare(b.department);
+    });
+    
+    const sortedTotalMunicipios = context.vacantesData?.total_municipios?.sort((a, b) => {
+        return a.municipio.localeCompare(b.municipio);
+    });
 
     return(
         <FiltersWrapper
