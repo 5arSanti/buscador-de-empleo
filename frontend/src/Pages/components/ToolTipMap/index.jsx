@@ -33,7 +33,10 @@ const ToolTipMap = ({ content }) => {
             </div>
             {context.selectedDepartment &&
                 <button
-                    onClick={() => {context.clearSelectedDepartment()}}
+                    onClick={() => {
+                        context.clearSelectedDepartment()
+                        context.clearSelectedMunicipio();
+                    }}
                 >
                     Borrar Selección
                 </button>

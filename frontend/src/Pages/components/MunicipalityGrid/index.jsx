@@ -27,6 +27,18 @@ const MunicipalityGrid = () => {
             padding={25}
             gap={15}
         >
+            {(context.filters?.DEPARTAMENTO || context.filters?.MUNICIPIO) && 
+                <MunicipalityCard
+                    text={"Ver Todo"}
+                    value={""}
+                    onClick={() => {
+                        context.clearSelectedDepartment();
+                        context.clearSelectedMunicipio();
+                    }}
+                    marginHorizontal={20}
+                />  
+            }
+
             <SubTitle text="Departamentos"/>
 
             <ScrollableWrapper
@@ -72,8 +84,7 @@ const MunicipalityGrid = () => {
                 <LoadingCardSmall/>
                 <LoadingCardSmall/>
 
-
-                { !context.loading && context.vacantesData?.total_municipios.length <= 0 ?
+                { !context.loading && context.vacantesData?.total_municipios?.length <= 0 ?
                     <RecordNotFoundCard
                         minHeight={175}
                         text="ningún municipio"
