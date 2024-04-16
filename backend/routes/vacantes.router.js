@@ -23,11 +23,11 @@ router.get("/resultados", async (request, response) => {
 
         const searchTerm = request.query.BUSQUEDA || '';
 		const descriptionFilter = request.query.DESCRIPCION_VACANTE || '';
-		const fechaCreacion = request.query.FECHA_CREACION || "";
+		const fechaCreacion = request.query.FECHA_PUBLICACION || "";
 
 
         const filterConditions = Object.keys(request.query)
-            .filter((key) => key !== "page" && request.query[key] !== "" && key !== "FECHA_CREACION" && key !== "BUSQUEDA" && key !== "DESCRIPCION_VACANTE")
+            .filter((key) => key !== "page" && request.query[key] !== "" && key !== "FECHA_PUBLICACION" && key !== "BUSQUEDA" && key !== "DESCRIPCION_VACANTE")
             .map((key) => `${key} = '${request.query[key]}'`)
             .join(" AND ");
 
@@ -40,7 +40,7 @@ router.get("/resultados", async (request, response) => {
             ${filterConditions ? `AND ${filterConditions}` : ""}
 			${filterDateCondition(fechaCreacion)}
 
-            ORDER BY FECHA_CREACION DESC
+            ORDER BY FECHA_PUBLICACION DESC
             OFFSET ${offset} ROWS
             FETCH NEXT ${PAGE_SIZE} ROWS ONLY
         `;
@@ -52,7 +52,7 @@ router.get("/resultados", async (request, response) => {
             WHERE LOWER(BUSQUEDA) LIKE LOWER('%${searchTerm}%')
 			AND (DESCRIPCION_VACANTE) LIKE ('%${descriptionFilter}%')
             ${filterConditions ? `AND ${filterConditions}` : ""}
-			${filterDateCondition(request.query.FECHA_CREACION)}
+			${filterDateCondition(fechaCreacion)}
 			`
         );
         const total_registros = totalRecordsBySearchQuery.recordset[0].total_registros;
@@ -71,7 +71,7 @@ router.get("/resultados", async (request, response) => {
             WHERE LOWER(BUSQUEDA) LIKE LOWER('%${searchTerm}%')
 			AND (DESCRIPCION_VACANTE) LIKE ('%${descriptionFilter}%')
             ${filterConditions ? `AND ${filterConditions}` : ""}
-			${filterDateCondition(request.query.FECHA_CREACION)}
+			${filterDateCondition(fechaCreacion)}
             GROUP BY DEPARTAMENTO
         `);
         const total_departments = totalRecordsByDepartmentQuery.recordset.map(row => ({
@@ -86,7 +86,7 @@ router.get("/resultados", async (request, response) => {
             WHERE LOWER(BUSQUEDA) LIKE LOWER('%${searchTerm}%')
 			AND (DESCRIPCION_VACANTE) LIKE ('%${descriptionFilter}%')
             ${filterConditions ? `AND ${filterConditions}` : ""}
-			${filterDateCondition(request.query.FECHA_CREACION)}
+			${filterDateCondition(fechaCreacion)}
             GROUP BY MUNICIPIO
         `);
         const total_municipios = totalRecordsByMunicipalityQuery.recordset.map(row => ({

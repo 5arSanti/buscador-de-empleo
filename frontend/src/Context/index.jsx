@@ -425,8 +425,7 @@ const AppProvider = ({children}) => {
         }
     
         // Actualizar los filtros
-        handleFilterChange("FECHA_CREACION", dateFilter);
-        console.log(dateFilter);
+        handleFilterChange("FECHA_PUBLICACION", dateFilter);
     };
 
     // Abrir modal de exporte
@@ -480,7 +479,6 @@ const AppProvider = ({children}) => {
                 selectedDepartment,
                 setSelectedDepartment,
                 saveSelectedDepartment,
-                claerDPOandMuncipios,
                 clearSelectedDepartment,
                 clearSelectedMunicipio,
 

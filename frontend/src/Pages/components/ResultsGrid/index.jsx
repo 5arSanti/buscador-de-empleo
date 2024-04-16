@@ -35,7 +35,7 @@ const ResultsGrid = () => {
             {context.windowWidth > 750 && 
                 <div className="titles-cards-container">
                     <p>Ir a la Oferta</p>
-                    <p>Prestador</p>
+                    <p>Oferta de Empleo</p>
                     <p>Descripción</p>
                     <p>Detalles</p>
                 </div>

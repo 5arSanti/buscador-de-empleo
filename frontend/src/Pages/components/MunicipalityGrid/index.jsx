@@ -53,7 +53,7 @@ const MunicipalityGrid = () => {
                 <LoadingCardSmall/>
                 <LoadingCardSmall/>
 
-                { !context.loading && context.vacantesData?.total_departments.length <= 0 ?
+                { !context.loading && context.vacantesData?.total_departments?.length <= 0 ?
                     <RecordNotFoundCard
                         minHeight={175}
                         text="ningún departamento"
