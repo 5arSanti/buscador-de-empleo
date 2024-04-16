@@ -35,7 +35,7 @@ const ResultsGrid = () => {
             {context.windowWidth > 750 && 
                 <div className="titles-cards-container">
                     <p>Ir a la Oferta</p>
-                    <p>Prestador</p>
+                    <p>Oferta de Empleo</p>
                     <p>Descripción</p>
                     <p>Detalles</p>
                 </div>
@@ -73,11 +73,14 @@ const ResultsGrid = () => {
                             <NavigationButton 
                                 title={"Exportar resultados, vista acutal"}
                                 onClick={() => context.setOpenExportModal(!context.openExportModal)}
+                                className={context.windowWidth <= 400 && "span-3"}
                             >
                                 <FiDownload />
                             </NavigationButton>
 
-                            <PaginationInput/>
+                            <PaginationInput
+                                className={context.windowWidth <= 400 && "span-3"}
+                            />
 
                             <NavigationButton 
                                 title={"Volver a la Primera Página"}

@@ -14,7 +14,7 @@ const ExportModal = () => {
 
     const { vacantesData } = context;
 
-    const filteredData = vacantesData?.resultados.map(item => ({
+    const filteredData = vacantesData?.resultados?.map(item => ({
         CODIGO_VACANTE: item.CODIGO_VACANTE,
         TITULO_VACANTE: item.TITULO_VACANTE,
         DESCRIPCION_VACANTE: item.DESCRIPCION_VACANTE,

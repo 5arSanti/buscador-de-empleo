@@ -35,3 +35,15 @@
     color: var(--white);
     font-weight: bold;
 }
+
+.span-3 {
+    grid-column: span 3;
+}
+
+@media (max-width: 500px) {
+    .pagination-input-container{
+        font-size: 12px;
+        text-align: center;
+        justify-content: center;
+    }
+}

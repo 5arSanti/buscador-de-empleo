@@ -125,6 +125,9 @@
 		padding-top: 15px;
 		padding-bottom: 0;
 		text-align: center;
-
 	}
+    .footer-contact-container p, .footer-contact-container p a  {
+        color: var(--white);
+        font-size: 11px;
+    }
 }

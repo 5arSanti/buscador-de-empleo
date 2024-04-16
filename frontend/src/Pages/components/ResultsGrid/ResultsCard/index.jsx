@@ -19,7 +19,7 @@ const ResultsCard = ({data}) => {
 
     const [hovered, setHovered] = React.useState(null);
 
-    const fechaDesdeBaseDeDatos = data.FECHA_CREACION;
+    const fechaDesdeBaseDeDatos = data.FECHA_PUBLICACION;
     const fechaFormateada = new Date(fechaDesdeBaseDeDatos).toLocaleDateString({
         day: '2-digits',
         month: '2-digits',
@@ -42,10 +42,10 @@ const ResultsCard = ({data}) => {
             })
 
             if(!response.ok) {
-                throw new Error;
+                throw Error(response.data.message);
             }
         } catch (err) {
-            context.handleNotifications("err", err.message);
+            context.handleNotifications("err", err);
         }
     }
 
@@ -65,7 +65,7 @@ const ResultsCard = ({data}) => {
             }
 
             <div className="results-card-main-info">
-                <p><CardSubTitles>Prestador</CardSubTitles>{data.NOMBRE_PRESTADOR}</p>
+                <p><CardSubTitles>Oferta de Empleo</CardSubTitles>{data.CODIGO_VACANTE}</p>
                 <p>{data.RANGO_SALARIAL}</p>
                 <p>{data.DEPARTAMENTO}</p>
             </div>
@@ -85,8 +85,8 @@ const ResultsCard = ({data}) => {
             </div>
             <div className="results-card-complementary-info">
                 <div>
-                    <p className="mini-title">Código Vacante</p>
-                    <p>{data.CODIGO_VACANTE}</p>
+                    <p className="mini-title">Prestador</p>
+                    <p>{data.NOMBRE_PRESTADOR}</p>
                 </div>
                 <div>
                     <p className="mini-title">Fecha de Publicación</p>

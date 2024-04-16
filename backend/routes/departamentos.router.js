@@ -8,11 +8,16 @@ router.get("/", async (request, response) => {
 		const resultQuery = await sql.query`SELECT DISTINCT DEPARTAMENTO FROM Vacantes_Vigentes_Completo`;
         const departments = resultQuery.recordset.map(row => row.DEPARTAMENTO);
 
-		return response.status(200).json({departments});
+		const municipiosQuery = await sql.query`SELECT DISTINCT MUNICIPIO FROM Vacantes_Vigentes_Completo`;
+        const municipios = municipiosQuery.recordset.map(row => row.MUNICIPIO);
+
+		return response.status(200).json({
+			departments,
+			municipios
+		});
 	}
 	catch (err) {
-		console.error('Error fetching results:', err);
-		return response.status(500).json({ error: 'Internal Server Error' });
+		return response.status(500).json({ message: "Error interno del servidor" });
 	}
 });
 

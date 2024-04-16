@@ -8,6 +8,7 @@ import "./styles.css";
 import { BsFillBuildingFill } from "react-icons/bs";
 import React from "react";
 import { AppContext } from "../../../Context";
+import { formatNumbers } from "../../../utils/formatNumbers";
 
 const Footer = () => {
     const context = React.useContext(AppContext)
@@ -73,8 +74,8 @@ const SecondaryFooter = () => {
         <div className="second-footer-container blue-color">
             <div className="daily-and-date-container">
                 <div>
-                    <p>Visitas Diarias: {context.visits?.TotalVisitasDiarias}</p>
-                    <p>Visitas Totales: {context.visits?.TotalVisitasTotales}</p>
+                    <p>Visitas Diarias: {formatNumbers(context.visits?.TotalVisitasDiarias)}</p>
+                    <p>Visitas Totales: {formatNumbers(context.visits?.TotalVisitasTotales)}</p>
                 </div>
                 <p>{context.actualDate()}</p>
             </div>

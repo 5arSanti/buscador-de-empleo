@@ -95,10 +95,13 @@
 
 @media(max-width: 800px){
     .footer-container{
-        padding: 50px 50px;
+        padding: 50px;
     }
 }
 @media(max-width: 600px){
+    .blue-color {
+        padding: 25px 50px;
+    }
     .footer-copy-container{
         flex-direction: column;
         justify-content: center;

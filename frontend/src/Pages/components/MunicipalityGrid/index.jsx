@@ -10,7 +10,16 @@ import { RecordNotFoundCard } from "../ResultsGrid/RecordNotFoundCard";
 const MunicipalityGrid = () => {
     const context = React.useContext(AppContext);
 
-    const sortedTotalDepartments = context.vacantesData?.total_departments?.sort((a, b) => b.total - a.total);
+    // const sortedTotalDepartments = context.vacantesData?.total_departments?.sort((a, b) => b.total - a.total);
+    // const sortedTotalMunicipios = context.vacantesData?.total_municipios?.sort((a, b) => b.total - a.total);
+
+    const sortedTotalDepartments = context.vacantesData?.total_departments?.sort((a, b) => {
+        return a.department.localeCompare(b.department);
+    });
+    
+    const sortedTotalMunicipios = context.vacantesData?.total_municipios?.sort((a, b) => {
+        return a.municipio.localeCompare(b.municipio);
+    });
 
     return(
         <FiltersWrapper
@@ -18,10 +27,22 @@ const MunicipalityGrid = () => {
             padding={25}
             gap={15}
         >
+            {(context.filters?.DEPARTAMENTO || context.filters?.MUNICIPIO) && 
+                <MunicipalityCard
+                    text={"Ver Todo"}
+                    value={""}
+                    onClick={() => {
+                        context.clearSelectedDepartment();
+                        context.clearSelectedMunicipio();
+                    }}
+                    marginHorizontal={20}
+                />  
+            }
+
             <SubTitle text="Departamentos"/>
 
             <ScrollableWrapper
-                maxHeight={405}
+                maxHeight={225}
             >
                 <LoadingCardSmall/>
                 <LoadingCardSmall/>
@@ -31,35 +52,53 @@ const MunicipalityGrid = () => {
                 <LoadingCardSmall/>
                 <LoadingCardSmall/>
                 <LoadingCardSmall/>
+
+                { !context.loading && context.vacantesData?.total_departments?.length <= 0 ?
+                    <RecordNotFoundCard
+                        minHeight={175}
+                        text="ningún departamento"
+                    /> 
+                    :
+                    sortedTotalDepartments?.map((item, index) => (
+                        <MunicipalityCard
+                            key={index}
+                            text={item.department}
+                            value={item.total}
+                            onClick={(value) => context.saveSelectedDepartment(value)}
+                        />   
+                    ))
+                }
+
+            </ScrollableWrapper>
+
+            <SubTitle text="Municipios"/>
+            <ScrollableWrapper
+                maxHeight={225}
+            >
+                <LoadingCardSmall/>
+                <LoadingCardSmall/>
+                <LoadingCardSmall/>
                 <LoadingCardSmall/>
                 <LoadingCardSmall/>
                 <LoadingCardSmall/>
                 <LoadingCardSmall/>
                 <LoadingCardSmall/>
 
-                {!context.loading && context.vacantesData?.total_departments?.length <= 1  &&
-                    <MunicipalityCard
-                        text={"Todos los Departamentos"}
-                        value={null}
-                        onClick={() => {
-                            context.clearSelectedDepartment();
-                        }}
-                    />
+                { !context.loading && context.vacantesData?.total_municipios?.length <= 0 ?
+                    <RecordNotFoundCard
+                        minHeight={175}
+                        text="ningún municipio"
+                    /> 
+                    :
+                    sortedTotalMunicipios?.map((item, index) => (
+                        <MunicipalityCard
+                            key={index}
+                            text={item.municipio}
+                            value={item.total}
+                            onClick={(value) => context.handleFilterChange("MUNICIPIO", value)}
+                        />   
+                    ))
                 }
-                { !context.loading && !context.vacantesData ?
-                <RecordNotFoundCard
-                    minHeight={300}
-                    text="ningún departamento"
-                /> 
-                :
-                sortedTotalDepartments?.map((item, index) => (
-                    <MunicipalityCard
-                        key={index}
-                        text={item.department}
-                        value={item.total}
-                        onClick={(value) => context.saveSelectedDepartment(value)}
-                    />   
-                ))}
 
             </ScrollableWrapper>
         </FiltersWrapper>

@@ -68,18 +68,21 @@ const AppProvider = ({children}) => {
 
     const [searchValue, setSearchValue] = React.useState("");
 
-    const [filters, setFilters] = React.useState({
-        RANGO_SALARIAL: "",
-        NOMBRE_PRESTADOR: "",
-        TELETRABAJO: "",
-        TIPO_CONTRATO: "",
-        NIVEL_ESTUDIOS: "",
-        DEPARTAMENTO: "",
-        HIDROCARBUROS: "",
-        PLAZA_PRACTICA: "",
-        BUSQUEDA: "",
-        DESCRIPCION_VACANTE: "",
-    });
+    const [filters, setFilters] = React.useState(null);
+    // Valores de Respaldo
+    // {
+    //     RANGO_SALARIAL: "",
+    //     NOMBRE_PRESTADOR: "",
+    //     TELETRABAJO: "",
+    //     TIPO_CONTRATO: "",
+    //     NIVEL_ESTUDIOS: "",
+    //     DEPARTAMENTO: "",
+    //     MUNICIPIO: "",
+    //     HIDROCARBUROS: "",
+    //     PLAZA_PRACTICA: "",
+    //     BUSQUEDA: "",
+    //     DESCRIPCION_VACANTE: "",
+    // }
 
     const handleFilterChange = (filterName, value) => {
         setFilters((prevFilters) => ({ ...prevFilters, [filterName]: value }));
@@ -89,6 +92,14 @@ const AppProvider = ({children}) => {
     const handleSearch = (searchValue) => {
         handleFilterChange("BUSQUEDA", searchValue);
     };
+
+    const clearFilters = () => {
+        setFilters(null);
+        setSelectedDepartment(null);
+        setSearchValue("")
+        handleColorsByFilters(1);
+        setSelectedDate("")
+    }
 
     const fetchData = async (endpoint) => {
         try {
@@ -257,49 +268,6 @@ const AppProvider = ({children}) => {
                 root.style.setProperty("--result-subtitle-card", "#3366CC");
                 root.style.setProperty("--gov-accesibility-card", "#681d35");
             break;
-            case 4:
-                root.style.setProperty("--navbar-color", "#3366cc");
-                root.style.setProperty("--navbar-responsive-color", "rgba(51, 102, 204, 0.75)");
-                root.style.setProperty("--main-body-color", "#F6F8F9");
-                root.style.setProperty('--main-title-color', '#681d35');
-                root.style.setProperty('--all-info-container-color', '#E6EFFD');
-                root.style.setProperty('--input-and-info-container-color', '#9DBEFF');
-                root.style.setProperty('--municipios-and-result-border-clicked', '#3366CC');
-                root.style.setProperty("--tool-tip-map-text-color", "#737373");
-                root.style.setProperty("--confirm-color", "#069169");
-                root.style.setProperty("--cancel-color", "#D31F3F");
-                root.style.setProperty("--time-color", "#3366cc");
-                root.style.setProperty("--result-subtitle-card", "#3366CC");
-                root.style.setProperty("--gov-accesibility-card", "#681d35");
-            break;
-            case 5:
-                root.style.setProperty("--navbar-color", "#23009C");
-                root.style.setProperty("--navbar-responsive-color", "rgba(111, 65, 255, 0.75)");
-                root.style.setProperty("--main-body-color", "#F2EEFF");
-                root.style.setProperty('--main-title-color', 'rgb(22, 0, 105)');
-                root.style.setProperty('--all-info-container-color', '#E3DCFF');
-                root.style.setProperty('--input-and-info-container-color', '#816AE1');
-                root.style.setProperty('--municipios-and-result-border-clicked', '#684BC4');
-                root.style.setProperty("--tool-tip-map-text-color", "#7B7B7B");
-                root.style.setProperty("--confirm-color", "#74C59A");
-                root.style.setProperty("--cancel-color", "#DA4F6A");
-                root.style.setProperty("--time-color", "#4172FF");
-                root.style.setProperty("--result-subtitle-card", "rgb(22, 0, 105)");
-            break;
-            case 6:
-                root.style.setProperty("--navbar-color", "#9C0055");
-                root.style.setProperty("--navbar-responsive-color", "rgba(255, 65, 166, 0.75)");
-                root.style.setProperty("--main-body-color", "#FFEEF6");
-                root.style.setProperty('--main-title-color', 'rgb(142, 0, 73)');
-                root.style.setProperty('--all-info-container-color', '#FFDCEE');
-                root.style.setProperty('--input-and-info-container-color', '#E16AA9');
-                root.style.setProperty('--municipios-and-result-border-clicked', '#C44B8B');
-                root.style.setProperty("--tool-tip-map-text-color", "#7B7B7B");
-                root.style.setProperty("--confirm-color", "#74C59A");
-                root.style.setProperty("--cancel-color", "#DA4F6A");
-                root.style.setProperty("--time-color", "#4172FF");
-                root.style.setProperty("--result-subtitle-card", "rgb(142, 0, 73)");
-            break;    
             default:
                 root.style.setProperty("--navbar-color", "#3366cc");
                 root.style.setProperty("--navbar-responsive-color", "rgba(51, 102, 204, 0.75)");
@@ -345,6 +313,10 @@ const AppProvider = ({children}) => {
     const clearSelectedDepartment = () => {
         handleFilterChange("DEPARTAMENTO", "")
         setSelectedDepartment(null);
+    }
+
+    const clearSelectedMunicipio = () => {
+        handleFilterChange("MUNICIPIO", "")
     }
 
     const handleMapMouseEnter = (event, department) => {
@@ -401,6 +373,7 @@ const AppProvider = ({children}) => {
         }
     }
 
+
     const actualDate = (type = 1) => {
         const fecha = new Date();
 
@@ -428,12 +401,13 @@ const AppProvider = ({children}) => {
 
     }
 
+    const [selectedDate, setSelectedDate] = React.useState("");
     const handleDateFilterChange = (value) => {
+        setSelectedDate(value)
         let dateFilter = "";
     
-        // Lógica para determinar el filtro de fecha según la opción seleccionada
         const today = new Date();
-        const oneWeekAgo = new Date((today.getTime() - 8 * 24 * 60 * 60 * 1000));
+        const oneWeekAgo = new Date((today.getTime() - 7 * 24 * 60 * 60 * 1000));
         const oneMonthAgo = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
     
         switch(value) {
@@ -451,7 +425,7 @@ const AppProvider = ({children}) => {
         }
     
         // Actualizar los filtros
-        handleFilterChange("FECHA_CREACION", dateFilter);
+        handleFilterChange("FECHA_PUBLICACION", dateFilter);
     };
 
     // Abrir modal de exporte
@@ -489,6 +463,7 @@ const AppProvider = ({children}) => {
                 setTime,
 
                 //VACANTES
+                filters,
                 vacantesData,
                 setVacantesData,
 
@@ -501,11 +476,12 @@ const AppProvider = ({children}) => {
                 setWindowWidth,
 
                 //Eventos del Mapa
-                saveSelectedDepartment,
-                clearSelectedDepartment,
-
                 selectedDepartment,
                 setSelectedDepartment,
+                saveSelectedDepartment,
+                clearSelectedDepartment,
+                clearSelectedMunicipio,
+
                 tooltipContent,
                 setTooltipContent,
                 handleMapMouseEnter,
@@ -514,11 +490,13 @@ const AppProvider = ({children}) => {
                 //Filtros y paginacion
                 setFilters,
                 handleFilterChange,
+                clearFilters,
                 handlePagination,
                 setCurrentPage,
                 searchValue,
                 setSearchValue,
                 handleSearch,
+                selectedDate,
 
                 //COLORES POR FILTRO
                 handleColorsByFilters,

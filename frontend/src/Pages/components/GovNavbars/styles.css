@@ -72,35 +72,10 @@
 .logo-aut-header-govco .link-login-header-govco:hover {
 	color: var(--navbar-color);
 }
-  
-.container-logo-header-govco {
-	padding: 3.563rem 5.375rem 0 5.375rem;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-  
-.container-logo-header-govco .logo-header-govco {
-	height: 3rem;
-	padding: 5px 15px;
-}
-.container-logo-header-govco .logo-header-govco img {
-	height: 100%;
-	object-fit: contain;
-}
-.container-logo-header-govco .logo-header-govco img:nth-child(1) {
-	padding-right: 24px;
-	border-right: 2px solid black;
-}
-.container-logo-header-govco .logo-header-govco img:nth-child(2) {
-	padding-left: 24px;
-}
 
 
   
-.container-logo-header-govco .container-search-header-govco {
-	max-width: 21.875rem;
-}
+
   
 @media (max-width: 991px) {
 	.logo-aut-header-govco {

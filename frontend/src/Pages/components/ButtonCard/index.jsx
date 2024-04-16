@@ -11,4 +11,16 @@ const ButtonCard = ({ text="Placeholder", onClick }) => {
     );
 }
 
-export { ButtonCard};
+const Button = ({children, className="button", onClick, title=""}) => {
+    return(
+        <button 
+            className={`${className}`}
+            onClick={onClick}
+            title={title}
+        >
+            {children}
+        </button>
+    );
+}
+
+export { ButtonCard, Button };
