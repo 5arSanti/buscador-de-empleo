@@ -167,6 +167,7 @@ const AppProvider = ({children}) => {
 
         } catch (err) {
             handleNotifications("err", err.message);
+            console.log(err)
         }
         finally {
             const endTime = performance.now();
