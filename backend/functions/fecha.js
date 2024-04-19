@@ -24,7 +24,7 @@ const filterDateCondition = (dateFilter) => {
 		return "";
 	}
 
-	return `AND FECHA_CREACION >= '${dateFilter}'`;
+	return `AND FECHA_PUBLICACION >= '${dateFilter}'`;
 }
 
 module.exports = { obtenerFechaHoy, obtenerFechaHoraHoy, filterDateCondition };
