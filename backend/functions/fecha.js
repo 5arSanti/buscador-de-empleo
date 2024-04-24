@@ -27,4 +27,5 @@ const filterDateCondition = (dateFilter) => {
 	return `AND FECHA_PUBLICACION >= '${dateFilter}'`;
 }
 
+
 module.exports = { obtenerFechaHoy, obtenerFechaHoraHoy, filterDateCondition };

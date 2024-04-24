@@ -99,6 +99,7 @@ const AppProvider = ({children}) => {
         setSearchValue("")
         handleColorsByFilters(1);
         setSelectedDate("")
+        setSelectedExperience("");
     }
 
     const fetchData = async (endpoint) => {
@@ -431,6 +432,26 @@ const AppProvider = ({children}) => {
         handleFilterChange("FECHA_PUBLICACION", dateFilter);
     };
 
+    const [selectedExperience, setSelectedExperience] = React.useState("");
+    const handleExperienceFilterChange = (value) => {
+        setSelectedExperience(value)
+        let expereienceMonth = "";
+    
+        switch(value) {
+            case "Menor a 6 Meses":
+                expereienceMonth = "<= 6";
+                break;
+            case "Mayor a 6 Meses":
+                expereienceMonth = "> 6";
+                break;
+            default:
+                expereienceMonth = "";
+        }
+    
+        // Actualizar los filtros
+        handleFilterChange("MESES_EXPERIENCIA_CARGO", expereienceMonth);
+    };
+
     // Abrir modal de exporte
     const [openExportModal, setOpenExportModal] = React.useState(false);
     const name = `BUE-${vacantesData?.currentPage}-${actualDate(2)}`;
@@ -513,6 +534,8 @@ const AppProvider = ({children}) => {
 
                 handleNotifications,
                 handleDateFilterChange,
+                selectedExperience,
+                handleExperienceFilterChange,
 
                 openExportModal,
                 setOpenExportModal,
