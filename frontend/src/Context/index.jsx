@@ -408,12 +408,14 @@ const AppProvider = ({children}) => {
         let dateFilter = "";
     
         const today = new Date();
+        const yesterday = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate() - 1);
         const oneWeekAgo = new Date((today.getTime() - 7 * 24 * 60 * 60 * 1000));
         const oneMonthAgo = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
     
         switch(value) {
             case "Hoy":
-                dateFilter = today.toISOString().split('T')[0];
+                // dateFilter = today.toISOString().split('T')[0];
+                dateFilter = yesterday.toISOString().split('T')[0];
                 break;
             case "Última semana":
                 dateFilter = oneWeekAgo.toISOString().split('T')[0];
