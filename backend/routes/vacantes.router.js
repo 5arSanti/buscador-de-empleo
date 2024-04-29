@@ -1,6 +1,7 @@
 const express = require("express");
 const { sql } = require("../database");
 const { filterDateCondition } = require("../functions/fecha");
+const { filterExperienceCondition } = require("../functions/experiencia");
 
 const router = express.Router();
 
@@ -24,10 +25,11 @@ router.get("/resultados", async (request, response) => {
         const searchTerm = request.query.BUSQUEDA || '';
 		const descriptionFilter = request.query.DESCRIPCION_VACANTE || '';
 		const fechaCreacion = request.query.FECHA_PUBLICACION || "";
+        const experienceMonth = request.query.MESES_EXPERIENCIA_CARGO || "";
 
 
         const filterConditions = Object.keys(request.query)
-            .filter((key) => key !== "page" && request.query[key] !== "" && key !== "FECHA_PUBLICACION" && key !== "BUSQUEDA" && key !== "DESCRIPCION_VACANTE")
+            .filter((key) => key !== "page" && request.query[key] !== "" && key !== "FECHA_PUBLICACION" && key !== "BUSQUEDA" && key !== "DESCRIPCION_VACANTE" && key !== "MESES_EXPERIENCIA_CARGO")
             .map((key) => `${key} = '${request.query[key]}'`)
             .join(" AND ");
 
@@ -39,6 +41,7 @@ router.get("/resultados", async (request, response) => {
 			AND (DESCRIPCION_VACANTE) LIKE ('%${descriptionFilter}%')
             ${filterConditions ? `AND ${filterConditions}` : ""}
 			${filterDateCondition(fechaCreacion)}
+			${filterExperienceCondition(experienceMonth)}
 
             ORDER BY FECHA_PUBLICACION DESC
             OFFSET ${offset} ROWS
@@ -53,6 +56,7 @@ router.get("/resultados", async (request, response) => {
 			AND (DESCRIPCION_VACANTE) LIKE ('%${descriptionFilter}%')
             ${filterConditions ? `AND ${filterConditions}` : ""}
 			${filterDateCondition(fechaCreacion)}
+			${filterExperienceCondition(experienceMonth)}
 			`
         );
         const total_registros = totalRecordsBySearchQuery.recordset[0].total_registros;
@@ -72,6 +76,7 @@ router.get("/resultados", async (request, response) => {
 			AND (DESCRIPCION_VACANTE) LIKE ('%${descriptionFilter}%')
             ${filterConditions ? `AND ${filterConditions}` : ""}
 			${filterDateCondition(fechaCreacion)}
+			${filterExperienceCondition(experienceMonth)}
             GROUP BY DEPARTAMENTO
         `);
         const total_departments = totalRecordsByDepartmentQuery.recordset.map(row => ({
@@ -87,6 +92,7 @@ router.get("/resultados", async (request, response) => {
 			AND (DESCRIPCION_VACANTE) LIKE ('%${descriptionFilter}%')
             ${filterConditions ? `AND ${filterConditions}` : ""}
 			${filterDateCondition(fechaCreacion)}
+			${filterExperienceCondition(experienceMonth)}
             GROUP BY MUNICIPIO
         `);
         const total_municipios = totalRecordsByMunicipalityQuery.recordset.map(row => ({
@@ -109,7 +115,6 @@ router.get("/resultados", async (request, response) => {
         });
     }
     catch (err) {
-        console.log(err)
         return response.status(500).json({ error: 'Internal Server Error' });
     }
 });

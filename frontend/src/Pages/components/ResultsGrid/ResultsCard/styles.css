@@ -98,7 +98,7 @@
     gap: 5px;
 }
 .results-card-complementary-info div .mini-title {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: bold;
     font-style: italic;
     color: var(--result-subtitle-card);
@@ -148,7 +148,7 @@
         justify-content: space-around;
     }
     .results-card-complementary-info div .mini-title {
-        font-size: 11px;
+        font-size: 10px;
     }
     .results-card-complementary-info div p:nth-child(2) {
         font-size: 12px;

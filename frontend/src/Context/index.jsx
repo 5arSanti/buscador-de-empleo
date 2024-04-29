@@ -99,6 +99,7 @@ const AppProvider = ({children}) => {
         setSearchValue("")
         handleColorsByFilters(1);
         setSelectedDate("")
+        setSelectedExperience("");
     }
 
     const fetchData = async (endpoint) => {
@@ -408,12 +409,14 @@ const AppProvider = ({children}) => {
         let dateFilter = "";
     
         const today = new Date();
+        const yesterday = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate() - 1);
         const oneWeekAgo = new Date((today.getTime() - 7 * 24 * 60 * 60 * 1000));
         const oneMonthAgo = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
     
         switch(value) {
             case "Hoy":
-                dateFilter = today.toISOString().split('T')[0];
+                // dateFilter = today.toISOString().split('T')[0];
+                dateFilter = yesterday.toISOString().split('T')[0];
                 break;
             case "Última semana":
                 dateFilter = oneWeekAgo.toISOString().split('T')[0];
@@ -427,6 +430,26 @@ const AppProvider = ({children}) => {
     
         // Actualizar los filtros
         handleFilterChange("FECHA_PUBLICACION", dateFilter);
+    };
+
+    const [selectedExperience, setSelectedExperience] = React.useState("");
+    const handleExperienceFilterChange = (value) => {
+        setSelectedExperience(value)
+        let expereienceMonth = "";
+    
+        switch(value) {
+            case "Menor a 6 Meses":
+                expereienceMonth = "<= 6";
+                break;
+            case "Mayor a 6 Meses":
+                expereienceMonth = "> 6";
+                break;
+            default:
+                expereienceMonth = "";
+        }
+    
+        // Actualizar los filtros
+        handleFilterChange("MESES_EXPERIENCIA_CARGO", expereienceMonth);
     };
 
     // Abrir modal de exporte
@@ -511,6 +534,8 @@ const AppProvider = ({children}) => {
 
                 handleNotifications,
                 handleDateFilterChange,
+                selectedExperience,
+                handleExperienceFilterChange,
 
                 openExportModal,
                 setOpenExportModal,

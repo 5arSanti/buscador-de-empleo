@@ -72,6 +72,13 @@ const FiltersInputs = () => {
                 array={["Hoy", "Última semana", "Último mes"]}
                 onChange={(value) => context.handleDateFilterChange(value)}
             />
+            <FiltersOptionCard
+                id={"months-experience"}
+                title={"Meses de Experiencia"}
+                defaultValue={context.selectedExperience}
+                array={["Menor a 6 Meses", "Mayor a 6 Meses"]}
+                onChange={(value) => context.handleExperienceFilterChange(value)}
+            />
         </FiltersWrapper>
     );
 }
