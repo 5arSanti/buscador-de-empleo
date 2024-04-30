@@ -79,11 +79,13 @@
 
 
 .blue-color {
-    background-color: var(--gov-accesibility-card);
+    background-color: var(--navbar-color);
     padding: 25px 100px;
     box-sizing: border-box;
     gap: 20px;  
     opacity: 1;
+
+    border-top: 1px solid var(--white);
 }
 .blue-color .footer-copy-container p {
     width: 100%;

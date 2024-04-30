@@ -229,7 +229,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty("--navbar-color", "#3366cc");
                 root.style.setProperty("--navbar-responsive-color", "rgba(51, 102, 204, 0.75)");
                 root.style.setProperty("--main-body-color", "#F6F8F9");
-                root.style.setProperty('--main-title-color', '#681d35');
+                root.style.setProperty('--main-title-color', '#E0161E');
                 root.style.setProperty('--all-info-container-color', '#E6EFFD');
                 root.style.setProperty('--input-and-info-container-color', '#81ABFF');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#3366CC');
@@ -238,13 +238,13 @@ const AppProvider = ({children}) => {
                 root.style.setProperty("--cancel-color", "#D31F3F");
                 root.style.setProperty("--time-color", "#3366cc");
                 root.style.setProperty("--result-subtitle-card", "#3366CC");
-                root.style.setProperty("--gov-accesibility-card", "#681d35");
+                root.style.setProperty("--gov-accesibility-card", "#E0161E");
             break;
             case 2:
                 root.style.setProperty("--navbar-color", "#3366cc");
                 root.style.setProperty("--navbar-responsive-color", "rgba(51, 102, 204, 0.75)");
                 root.style.setProperty("--main-body-color", "#F6F8F9");
-                root.style.setProperty('--main-title-color', '#681d35');
+                root.style.setProperty('--main-title-color', '#E0161E');
                 root.style.setProperty('--all-info-container-color', '#E6EFFD');
                 root.style.setProperty('--input-and-info-container-color', '#9DBEFF');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#3366CC');
@@ -253,13 +253,13 @@ const AppProvider = ({children}) => {
                 root.style.setProperty("--cancel-color", "#D31F3F");
                 root.style.setProperty("--time-color", "#3366cc");
                 root.style.setProperty("--result-subtitle-card", "#3366CC");
-                root.style.setProperty("--gov-accesibility-card", "#681d35");
+                root.style.setProperty("--gov-accesibility-card", "#E0161E");
             break;
             case 3:
                 root.style.setProperty("--navbar-color", "#3366cc");
                 root.style.setProperty("--navbar-responsive-color", "rgba(51, 102, 204, 0.75)");
                 root.style.setProperty("--main-body-color", "#F6F8F9");
-                root.style.setProperty('--main-title-color', '#681d35');
+                root.style.setProperty('--main-title-color', '#E0161E');
                 root.style.setProperty('--all-info-container-color', '#E6EFFD');
                 root.style.setProperty('--input-and-info-container-color', '#4A7EFF');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#3366CC');
@@ -268,13 +268,13 @@ const AppProvider = ({children}) => {
                 root.style.setProperty("--cancel-color", "#D31F3F");
                 root.style.setProperty("--time-color", "#3366cc");
                 root.style.setProperty("--result-subtitle-card", "#3366CC");
-                root.style.setProperty("--gov-accesibility-card", "#681d35");
+                root.style.setProperty("--gov-accesibility-card", "#E0161E");
             break;
             default:
                 root.style.setProperty("--navbar-color", "#3366cc");
                 root.style.setProperty("--navbar-responsive-color", "rgba(51, 102, 204, 0.75)");
                 root.style.setProperty("--main-body-color", "#F6F8F9");
-                root.style.setProperty('--main-title-color', '#681d35');
+                root.style.setProperty('--main-title-color', '#E0161E');
                 root.style.setProperty('--all-info-container-color', '#E6EFFD');
                 root.style.setProperty('--input-and-info-container-color', '#81ABFF');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#3366CC');
@@ -283,7 +283,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty("--cancel-color", "#D31F3F");
                 root.style.setProperty("--time-color", "#3366cc");
                 root.style.setProperty("--result-subtitle-card", "#3366CC");
-                root.style.setProperty("--gov-accesibility-card", "#681d35");
+                root.style.setProperty("--gov-accesibility-card", "#E0161E");
             break;
         }
     }
