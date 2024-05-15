@@ -99,6 +99,7 @@ const AppProvider = ({children}) => {
         setSearchValue("")
         handleColorsByFilters(1);
         setSelectedDate("")
+        setSelectedExperience("");
     }
 
     const fetchData = async (endpoint) => {
@@ -167,6 +168,7 @@ const AppProvider = ({children}) => {
 
         } catch (err) {
             handleNotifications("err", err.message);
+            console.log(err)
         }
         finally {
             const endTime = performance.now();
@@ -227,7 +229,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty("--navbar-color", "#3366cc");
                 root.style.setProperty("--navbar-responsive-color", "rgba(51, 102, 204, 0.75)");
                 root.style.setProperty("--main-body-color", "#F6F8F9");
-                root.style.setProperty('--main-title-color', '#681d35');
+                root.style.setProperty('--main-title-color', '#E0161E');
                 root.style.setProperty('--all-info-container-color', '#E6EFFD');
                 root.style.setProperty('--input-and-info-container-color', '#81ABFF');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#3366CC');
@@ -236,13 +238,13 @@ const AppProvider = ({children}) => {
                 root.style.setProperty("--cancel-color", "#D31F3F");
                 root.style.setProperty("--time-color", "#3366cc");
                 root.style.setProperty("--result-subtitle-card", "#3366CC");
-                root.style.setProperty("--gov-accesibility-card", "#681d35");
+                root.style.setProperty("--gov-accesibility-card", "#E0161E");
             break;
             case 2:
                 root.style.setProperty("--navbar-color", "#3366cc");
                 root.style.setProperty("--navbar-responsive-color", "rgba(51, 102, 204, 0.75)");
                 root.style.setProperty("--main-body-color", "#F6F8F9");
-                root.style.setProperty('--main-title-color', '#681d35');
+                root.style.setProperty('--main-title-color', '#E0161E');
                 root.style.setProperty('--all-info-container-color', '#E6EFFD');
                 root.style.setProperty('--input-and-info-container-color', '#9DBEFF');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#3366CC');
@@ -251,13 +253,13 @@ const AppProvider = ({children}) => {
                 root.style.setProperty("--cancel-color", "#D31F3F");
                 root.style.setProperty("--time-color", "#3366cc");
                 root.style.setProperty("--result-subtitle-card", "#3366CC");
-                root.style.setProperty("--gov-accesibility-card", "#681d35");
+                root.style.setProperty("--gov-accesibility-card", "#E0161E");
             break;
             case 3:
                 root.style.setProperty("--navbar-color", "#3366cc");
                 root.style.setProperty("--navbar-responsive-color", "rgba(51, 102, 204, 0.75)");
                 root.style.setProperty("--main-body-color", "#F6F8F9");
-                root.style.setProperty('--main-title-color', '#681d35');
+                root.style.setProperty('--main-title-color', '#E0161E');
                 root.style.setProperty('--all-info-container-color', '#E6EFFD');
                 root.style.setProperty('--input-and-info-container-color', '#4A7EFF');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#3366CC');
@@ -266,13 +268,13 @@ const AppProvider = ({children}) => {
                 root.style.setProperty("--cancel-color", "#D31F3F");
                 root.style.setProperty("--time-color", "#3366cc");
                 root.style.setProperty("--result-subtitle-card", "#3366CC");
-                root.style.setProperty("--gov-accesibility-card", "#681d35");
+                root.style.setProperty("--gov-accesibility-card", "#E0161E");
             break;
             default:
                 root.style.setProperty("--navbar-color", "#3366cc");
                 root.style.setProperty("--navbar-responsive-color", "rgba(51, 102, 204, 0.75)");
                 root.style.setProperty("--main-body-color", "#F6F8F9");
-                root.style.setProperty('--main-title-color', '#681d35');
+                root.style.setProperty('--main-title-color', '#E0161E');
                 root.style.setProperty('--all-info-container-color', '#E6EFFD');
                 root.style.setProperty('--input-and-info-container-color', '#81ABFF');
                 root.style.setProperty('--municipios-and-result-border-clicked', '#3366CC');
@@ -281,7 +283,7 @@ const AppProvider = ({children}) => {
                 root.style.setProperty("--cancel-color", "#D31F3F");
                 root.style.setProperty("--time-color", "#3366cc");
                 root.style.setProperty("--result-subtitle-card", "#3366CC");
-                root.style.setProperty("--gov-accesibility-card", "#681d35");
+                root.style.setProperty("--gov-accesibility-card", "#E0161E");
             break;
         }
     }
@@ -407,12 +409,14 @@ const AppProvider = ({children}) => {
         let dateFilter = "";
     
         const today = new Date();
+        const yesterday = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate() - 1);
         const oneWeekAgo = new Date((today.getTime() - 7 * 24 * 60 * 60 * 1000));
         const oneMonthAgo = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
     
         switch(value) {
             case "Hoy":
-                dateFilter = today.toISOString().split('T')[0];
+                // dateFilter = today.toISOString().split('T')[0];
+                dateFilter = yesterday.toISOString().split('T')[0];
                 break;
             case "Última semana":
                 dateFilter = oneWeekAgo.toISOString().split('T')[0];
@@ -426,6 +430,26 @@ const AppProvider = ({children}) => {
     
         // Actualizar los filtros
         handleFilterChange("FECHA_PUBLICACION", dateFilter);
+    };
+
+    const [selectedExperience, setSelectedExperience] = React.useState("");
+    const handleExperienceFilterChange = (value) => {
+        setSelectedExperience(value)
+        let expereienceMonth = "";
+    
+        switch(value) {
+            case "Menor a 6 Meses":
+                expereienceMonth = "<= 6";
+                break;
+            case "Mayor a 6 Meses":
+                expereienceMonth = "> 6";
+                break;
+            default:
+                expereienceMonth = "";
+        }
+    
+        // Actualizar los filtros
+        handleFilterChange("MESES_EXPERIENCIA_CARGO", expereienceMonth);
     };
 
     // Abrir modal de exporte
@@ -510,6 +534,8 @@ const AppProvider = ({children}) => {
 
                 handleNotifications,
                 handleDateFilterChange,
+                selectedExperience,
+                handleExperienceFilterChange,
 
                 openExportModal,
                 setOpenExportModal,

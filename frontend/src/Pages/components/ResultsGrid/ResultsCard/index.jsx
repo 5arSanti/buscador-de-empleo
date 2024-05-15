@@ -31,7 +31,7 @@ const ResultsCard = ({data}) => {
 
     const handleClick = async (item) => {
         try {
-            const codigoVacante = item.CODIGO_VACANTE;
+            const codigoVacante = item?.CODIGO_VACANTE;
 
             const response = await fetch(`${context.apiUri}/estadisticas/vacantes/registrar`, {
                 method: 'POST',
@@ -42,9 +42,10 @@ const ResultsCard = ({data}) => {
             })
 
             if(!response.ok) {
-                throw Error(response.data.message);
+                throw Error(response?.data?.message);
             }
         } catch (err) {
+            console.log(err);
             context.handleNotifications("err", err);
         }
     }
