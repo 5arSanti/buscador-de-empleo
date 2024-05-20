@@ -1,32 +1,29 @@
 import React from "react";
 
-import { icon } from "../../../../assets";
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 
 import "./styles.css";
 import PropTypes from "prop-types";
 import { AppContext } from "../../../../Context";
-import { prestadorImagenes } from "../../../../utils/images";
 
 import { AnchorButton } from "./AnchorButton"
 import { CardSubTitles } from "../../CardSubTitles";
-import { formatDate } from "../../../../utils/formatDate";
+
+dayjs.extend(utc)
 
 const ResultsCard = ({data}) => {
+    const context = React.useContext(AppContext);
+
     ResultsCard.propTypes = {
         data: PropTypes.object.isRequired,
     }
 
-    const context = React.useContext(AppContext);
 
     const [hovered, setHovered] = React.useState(null);
 
-    const fechaDesdeBaseDeDatos = data.FECHA_PUBLICACION;
-    const fechaFormateada = dayjs(fechaDesdeBaseDeDatos).format("dd/MM/yyyy");
-    console.log(fechaDesdeBaseDeDatos, fechaFormateada);
+    const fechaFormateada = dayjs(data?.FECHA_PUBLICACION).utc().format("DD/MM/YYYY");
 
-    // const nombrePrestador = data.NOMBRE_PRESTADOR;
-    // const imagenRuta = prestadorImagenes[nombrePrestador] || icon;
 
     const handleClick = async (item) => {
         try {
@@ -57,7 +54,6 @@ const ResultsCard = ({data}) => {
             {context.windowWidth > 750 &&
                 <AnchorButton
                     data={data}
-                    // imagen={imagenRuta}
                     handleClick={() => handleClick(data)}
                     hovered={hovered}
                     type={1}
@@ -73,7 +69,6 @@ const ResultsCard = ({data}) => {
             {context.windowWidth < 750 &&
                 <AnchorButton
                     data={data}
-                    // imagen={imagenRuta}
                     handleClick={() => handleClick(data)}
                     hovered={hovered}
                 />
