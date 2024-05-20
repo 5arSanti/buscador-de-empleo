@@ -1,6 +1,7 @@
 import React from "react";
 
 import { icon } from "../../../../assets";
+import dayjs from "dayjs";
 
 import "./styles.css";
 import PropTypes from "prop-types";
@@ -21,7 +22,7 @@ const ResultsCard = ({data}) => {
     const [hovered, setHovered] = React.useState(null);
 
     const fechaDesdeBaseDeDatos = data.FECHA_PUBLICACION;
-    const fechaFormateada = formatDate(fechaDesdeBaseDeDatos, "/");
+    const fechaFormateada = dayjs(fechaDesdeBaseDeDatos).format("dd/MM/yyyy");
     console.log(fechaDesdeBaseDeDatos, fechaFormateada);
 
     // const nombrePrestador = data.NOMBRE_PRESTADOR;
