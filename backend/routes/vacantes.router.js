@@ -33,15 +33,19 @@ router.get("/resultados", async (request, response) => {
             .map((key) => `${key} = '${request.query[key]}'`)
             .join(" AND ");
 
+        const aditionalFilters = `
+            WHERE LOWER(BUSQUEDA) LIKE LOWER('%${searchTerm}%')
+            AND (DESCRIPCION_VACANTE) LIKE ('%${descriptionFilter}%')
+            ${filterConditions ? `AND ${filterConditions}` : ""}
+            ${filterDateCondition(fechaCreacion)}
+            ${filterExperienceCondition(experienceMonth)}
+        `
+
         // QUERY BASE
         const baseQuery = `
             SELECT *
             FROM Vacantes_Vigentes_Completo
-            WHERE LOWER(BUSQUEDA) LIKE LOWER('%${searchTerm}%')
-			AND (DESCRIPCION_VACANTE) LIKE ('%${descriptionFilter}%')
-            ${filterConditions ? `AND ${filterConditions}` : ""}
-			${filterDateCondition(fechaCreacion)}
-			${filterExperienceCondition(experienceMonth)}
+            ${aditionalFilters}
 
             ORDER BY FECHA_PUBLICACION DESC
             OFFSET ${offset} ROWS
@@ -52,11 +56,7 @@ router.get("/resultados", async (request, response) => {
         const totalRecordsBySearchQuery = await sql.query(`
             SELECT COUNT(*) AS total_registros
             FROM Vacantes_Vigentes_Completo
-            WHERE LOWER(BUSQUEDA) LIKE LOWER('%${searchTerm}%')
-			AND (DESCRIPCION_VACANTE) LIKE ('%${descriptionFilter}%')
-            ${filterConditions ? `AND ${filterConditions}` : ""}
-			${filterDateCondition(fechaCreacion)}
-			${filterExperienceCondition(experienceMonth)}
+            ${aditionalFilters}
 			`
         );
         const total_registros = totalRecordsBySearchQuery.recordset[0].total_registros;
@@ -72,11 +72,7 @@ router.get("/resultados", async (request, response) => {
         const totalRecordsByDepartmentQuery = await sql.query(`
             SELECT DEPARTAMENTO, COUNT(*) AS total_vacantes
             FROM Vacantes_Vigentes_Completo
-            WHERE LOWER(BUSQUEDA) LIKE LOWER('%${searchTerm}%')
-			AND (DESCRIPCION_VACANTE) LIKE ('%${descriptionFilter}%')
-            ${filterConditions ? `AND ${filterConditions}` : ""}
-			${filterDateCondition(fechaCreacion)}
-			${filterExperienceCondition(experienceMonth)}
+            ${aditionalFilters}
             GROUP BY DEPARTAMENTO
         `);
         const total_departments = totalRecordsByDepartmentQuery.recordset.map(row => ({
@@ -88,11 +84,7 @@ router.get("/resultados", async (request, response) => {
         const totalRecordsByMunicipalityQuery = await sql.query(`
             SELECT MUNICIPIO, COUNT(*) AS total_vacantes
             FROM Vacantes_Vigentes_Completo
-            WHERE LOWER(BUSQUEDA) LIKE LOWER('%${searchTerm}%')
-			AND (DESCRIPCION_VACANTE) LIKE ('%${descriptionFilter}%')
-            ${filterConditions ? `AND ${filterConditions}` : ""}
-			${filterDateCondition(fechaCreacion)}
-			${filterExperienceCondition(experienceMonth)}
+            ${aditionalFilters}
             GROUP BY MUNICIPIO
         `);
         const total_municipios = totalRecordsByMunicipalityQuery.recordset.map(row => ({

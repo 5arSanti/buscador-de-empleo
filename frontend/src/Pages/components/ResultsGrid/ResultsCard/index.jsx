@@ -9,6 +9,7 @@ import { prestadorImagenes } from "../../../../utils/images";
 
 import { AnchorButton } from "./AnchorButton"
 import { CardSubTitles } from "../../CardSubTitles";
+import { formatDate } from "../../../../utils/formatDate";
 
 const ResultsCard = ({data}) => {
     ResultsCard.propTypes = {
@@ -20,11 +21,8 @@ const ResultsCard = ({data}) => {
     const [hovered, setHovered] = React.useState(null);
 
     const fechaDesdeBaseDeDatos = data.FECHA_PUBLICACION;
-    const fechaFormateada = new Date(fechaDesdeBaseDeDatos).toLocaleDateString({
-        day: '2-digits',
-        month: '2-digits',
-        year: 'numeric',
-    });
+    const fechaFormateada = formatDate(fechaDesdeBaseDeDatos, "/");
+    console.log(fechaDesdeBaseDeDatos, fechaFormateada);
 
     // const nombrePrestador = data.NOMBRE_PRESTADOR;
     // const imagenRuta = prestadorImagenes[nombrePrestador] || icon;

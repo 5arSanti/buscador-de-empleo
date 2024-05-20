@@ -5,6 +5,7 @@ import { TextDecoder } from 'text-encoding';
 import { Resolution, usePDF } from "react-to-pdf";
 
 import * as XLSX from 'xlsx';
+import { formatDate } from "../utils/formatDate";
 
 export const AppContext = React.createContext();
 
@@ -100,6 +101,7 @@ const AppProvider = ({children}) => {
         handleColorsByFilters(1);
         setSelectedDate("")
         setSelectedExperience("");
+        setCurrentPage(1);
     }
 
     const fetchData = async (endpoint) => {
@@ -409,20 +411,19 @@ const AppProvider = ({children}) => {
         let dateFilter = "";
     
         const today = new Date();
-        const yesterday = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate() - 1);
-        const oneWeekAgo = new Date((today.getTime() - 7 * 24 * 60 * 60 * 1000));
-        const oneMonthAgo = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
+        const yesterday = formatDate(new Date(today.getFullYear(), String(today.getMonth()), String(today.getDate() - 1)));
+        const oneWeekAgo = formatDate(new Date((today.getTime() - 7 * 24 * 60 * 60 * 1000)));
+        const oneMonthAgo = formatDate(new Date(today.getFullYear(), today.getMonth() - 1, today.getDate()));
     
         switch(value) {
-            case "Hoy":
-                // dateFilter = today.toISOString().split('T')[0];
-                dateFilter = yesterday.toISOString().split('T')[0];
+            case "Ultimas vacantes publicadas":
+                dateFilter = yesterday;
                 break;
             case "Última semana":
-                dateFilter = oneWeekAgo.toISOString().split('T')[0];
+                dateFilter = oneWeekAgo;
                 break;
             case "Último mes":
-                dateFilter = oneMonthAgo.toISOString().split('T')[0];
+                dateFilter = oneMonthAgo;
                 break;
             default:
                 dateFilter = "";
@@ -431,6 +432,7 @@ const AppProvider = ({children}) => {
         // Actualizar los filtros
         handleFilterChange("FECHA_PUBLICACION", dateFilter);
     };
+    console.log(filters?.FECHA_PUBLICACION)
 
     const [selectedExperience, setSelectedExperience] = React.useState("");
     const handleExperienceFilterChange = (value) => {
