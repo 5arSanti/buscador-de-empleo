@@ -28,11 +28,9 @@ const filterDateCondition = (dateFilter) => {
 	const mes = String(fechaActual.getMonth() + 1).padStart(2, '0');
 	const dia = String(fechaActual.getDate()).padStart(2, '0');
 
-	
+
 
 	const query = `AND FECHA_PUBLICACION BETWEEN '${dateFilter}' AND '${anio}-${mes}-${dia}'`;
-	// const query = `AND FECHA_PUBLICACION BETWEEN '2024-05-15' AND '2024-05-15'`;
-	console.log(query);
 
 	return query;
 }
