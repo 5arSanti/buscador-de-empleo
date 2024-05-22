@@ -117,19 +117,11 @@ const AppProvider = ({children}) => {
             }
 
             const buffer = await response.arrayBuffer();
-
-            // Try different encodings if the first attempt fails
             let data = "";
-            for (const encoding of ['utf-8']) {
-                try {
-                    const decoder = new TextDecoder(encoding);
-                    data = decoder.decode(buffer);
+            const decoder = new TextDecoder("UTF-8");
+            data = decoder.decode(buffer);
 
-                    break; // Stop iterating if decoding is successful
-                } catch (error) {
-                    console.log(`Decoding with ${encoding} failed:`, error);
-                }
-            }
+
         
             if (!data) {
               throw new Error('Unable to decode response data');
@@ -138,7 +130,6 @@ const AppProvider = ({children}) => {
             return JSON.parse(data);
         }
         catch (err) {
-            console.log(err)
             throw new Error(`Error fetching ${endpoint}: ${err.message}`);
         }
     };
@@ -170,7 +161,6 @@ const AppProvider = ({children}) => {
 
         } catch (err) {
             handleNotifications("err", err.message);
-            console.log(err)
         }
         finally {
             const endTime = performance.now();
@@ -432,7 +422,6 @@ const AppProvider = ({children}) => {
         // Actualizar los filtros
         handleFilterChange("FECHA_PUBLICACION", dateFilter);
     };
-    console.log(filters?.FECHA_PUBLICACION)
 
     const [selectedExperience, setSelectedExperience] = React.useState("");
     const handleExperienceFilterChange = (value) => {

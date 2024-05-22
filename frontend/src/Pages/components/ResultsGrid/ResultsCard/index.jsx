@@ -9,6 +9,7 @@ import { AppContext } from "../../../../Context";
 
 import { AnchorButton } from "./AnchorButton"
 import { CardSubTitles } from "../../CardSubTitles";
+import { fixEncoding } from "../../../../utils/fixEncoding";
 
 dayjs.extend(utc)
 
@@ -75,13 +76,13 @@ const ResultsCard = ({data}) => {
             }
             
             <div className="results-card-secondary-info">
-                <p><CardSubTitles>Descripción</CardSubTitles>{data.TITULO_VACANTE}</p>
-                <p className="results-card-secondary-description">{data.DESCRIPCION_VACANTE}</p>
+                <p><CardSubTitles>Descripción</CardSubTitles> {fixEncoding(data.TITULO_VACANTE)}</p>
+                <p className="results-card-secondary-description">{fixEncoding(data.DESCRIPCION_VACANTE)}</p>
             </div>
             <div className="results-card-complementary-info">
                 <div>
                     <p className="mini-title">Prestador</p>
-                    <p>{data.NOMBRE_PRESTADOR}</p>
+                    <p className="scroll">{data.NOMBRE_PRESTADOR}</p>
                 </div>
                 <div>
                     <p className="mini-title">Fecha de Publicación</p>

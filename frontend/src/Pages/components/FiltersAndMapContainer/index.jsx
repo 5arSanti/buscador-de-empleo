@@ -42,12 +42,6 @@ const FiltersAndMapContainer = () => {
                 
             </div>
             <div className="map-and-results-container">
-                {/* <Title 
-                    color={"#00698E"}
-                    borderColor={"#00698E"}
-                >
-                    Mapa Interactivo
-                </Title> */}
                 <Map/>
                 <ResultsGrid/>
             </div>
