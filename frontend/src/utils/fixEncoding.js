@@ -6,9 +6,4 @@ const fixEncoding = (str) => {
     }
 }
 
-let encodedText = "TÃ©cnico de mantenimiento";
-let fixedText = fixEncoding(encodedText);
-
-console.log(fixedText); 
-
 export { fixEncoding }
