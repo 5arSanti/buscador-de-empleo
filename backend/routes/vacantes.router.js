@@ -5,16 +5,6 @@ const { filterExperienceCondition } = require("../functions/experiencia");
 
 const router = express.Router();
 
-router.get("/", async (request, response) => {
-    sql.query("SELECT * FROM Vacantes_Vigentes_Completo ORDER BY CODIGO_VACANTE DESC OFFSET 0 ROWS FETCH NEXT 50 ROWS ONLY", (err, results) => {
-        if (err) {
-            throw err;
-        }
-
-        return response.status(200).setHeader('Content-Type', 'application/json; charset=utf-8').json(results);
-    });
-});
-
 const PAGE_SIZE = 50; // Número de resultados por página
 
 router.get("/resultados", async (request, response) => {
@@ -22,9 +12,9 @@ router.get("/resultados", async (request, response) => {
         const page = parseInt(request.query.page, 10) || 1;
         const offset = (page - 1) * PAGE_SIZE;
 
+		const fechaCreacion = request.query.FECHA_PUBLICACION || "";
         const searchTerm = request.query.BUSQUEDA || '';
 		const descriptionFilter = request.query.DESCRIPCION_VACANTE || '';
-		const fechaCreacion = request.query.FECHA_PUBLICACION || "";
         const experienceMonth = request.query.MESES_EXPERIENCIA_CARGO || "";
 
 
@@ -105,6 +95,18 @@ router.get("/resultados", async (request, response) => {
             total_departments,
 			total_municipios
         });
+    }
+    catch (err) {
+        return response.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+router.get("/date", async (request, response) => {
+	try {
+        const date = await sql.query("SELECT MAX(FECHA_PUBLICACION) FROM Vacantes_Vigentes_Completo")
+		const max_date = date.recordset[0][""];
+
+		return response.status(200).json({max_date})
     }
     catch (err) {
         return response.status(500).json({ error: 'Internal Server Error' });

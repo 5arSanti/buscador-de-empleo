@@ -42,7 +42,6 @@ const ResultsCard = ({data}) => {
                 throw Error(response?.data?.message);
             }
         } catch (err) {
-            console.log(err);
             context.handleNotifications("err", err);
         }
     }

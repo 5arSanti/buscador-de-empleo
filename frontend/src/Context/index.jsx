@@ -5,7 +5,12 @@ import { TextDecoder } from 'text-encoding';
 import { Resolution, usePDF } from "react-to-pdf";
 
 import * as XLSX from 'xlsx';
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+
 import { formatDate } from "../utils/formatDate";
+
+dayjs.extend(utc)
 
 export const AppContext = React.createContext();
 
@@ -144,9 +149,10 @@ const AppProvider = ({children}) => {
 
             const endpoints = [
                 `vacantes/resultados?page=${page}&${filterParams.toString()}`,
+                `vacantes/date`,
                 "filters",
                 "estadisticas/vacantes/obtener"
-                /* otros endpoints */
+                
             ];
 
             // Realizar todas las solicitudes en paralelo
@@ -401,25 +407,23 @@ const AppProvider = ({children}) => {
         let dateFilter = "";
     
         const today = new Date();
-        const yesterday = formatDate(new Date(today.getFullYear(), String(today.getMonth()), String(today.getDate() - 1)));
-        const oneWeekAgo = formatDate(new Date((today.getTime() - 7 * 24 * 60 * 60 * 1000)));
-        const oneMonthAgo = formatDate(new Date(today.getFullYear(), today.getMonth() - 1, today.getDate()));
+        const oneWeekAgo = new Date((today.getTime() - 7 * 24 * 60 * 60 * 1000));
+        const oneMonthAgo = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
     
         switch(value) {
             case "Ultimas vacantes publicadas":
-                dateFilter = yesterday;
+                dateFilter = dayjs(vacantesData?.max_date).utc().format("YYYY-MM-DD");
                 break;
             case "Última semana":
-                dateFilter = oneWeekAgo;
+                dateFilter = dayjs(oneWeekAgo).utc().format("YYYY-MM-DD");
                 break;
             case "Último mes":
-                dateFilter = oneMonthAgo;
+                dateFilter = dayjs(oneMonthAgo).utc().format("YYYY-MM-DD");
                 break;
             default:
                 dateFilter = "";
         }
-    
-        // Actualizar los filtros
+        
         handleFilterChange("FECHA_PUBLICACION", dateFilter);
     };
 
