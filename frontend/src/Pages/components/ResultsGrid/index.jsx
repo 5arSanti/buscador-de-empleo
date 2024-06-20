@@ -71,7 +71,7 @@ const ResultsGrid = () => {
                     {!context.loading &&
                         <div className="pagination-buttons-container">
                             <NavigationButton 
-                                title={"Exportar resultados, vista acutal"}
+                                title={"Exportar resultados, vista actual"}
                                 onClick={() => context.setOpenExportModal(!context.openExportModal)}
                                 className={context.windowWidth <= 400 && "span-3"}
                             >
