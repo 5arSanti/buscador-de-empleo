@@ -29,7 +29,7 @@ app.use(cors(options));
 
 
 app.get("/", (request, response) => {
-    response.send("Hola mi server backend para Buscador de Empleo");
+    response.redirect("https://www.buscadordeempleo.gov.co/");
 });
 
 routerApi(app);

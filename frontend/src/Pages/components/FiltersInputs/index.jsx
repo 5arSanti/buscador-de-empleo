@@ -69,7 +69,7 @@ const FiltersInputs = () => {
                 id={"publication-date"}
                 title={"Fecha de Publicación"}
                 defaultValue={context.selectedDate}
-                array={["Hoy", "Última semana", "Último mes"]}
+                array={["Ultimas vacantes publicadas", "Última semana", "Último mes"]}
                 onChange={(value) => context.handleDateFilterChange(value)}
             />
             <FiltersOptionCard

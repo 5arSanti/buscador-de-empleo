@@ -5,6 +5,12 @@ import { TextDecoder } from 'text-encoding';
 import { Resolution, usePDF } from "react-to-pdf";
 
 import * as XLSX from 'xlsx';
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+
+import { formatDate } from "../utils/formatDate";
+
+dayjs.extend(utc)
 
 export const AppContext = React.createContext();
 
@@ -100,6 +106,7 @@ const AppProvider = ({children}) => {
         handleColorsByFilters(1);
         setSelectedDate("")
         setSelectedExperience("");
+        setCurrentPage(1);
     }
 
     const fetchData = async (endpoint) => {
@@ -115,19 +122,11 @@ const AppProvider = ({children}) => {
             }
 
             const buffer = await response.arrayBuffer();
-
-            // Try different encodings if the first attempt fails
             let data = "";
-            for (const encoding of ['utf-8']) {
-                try {
-                    const decoder = new TextDecoder(encoding);
-                    data = decoder.decode(buffer);
+            const decoder = new TextDecoder("UTF-8");
+            data = decoder.decode(buffer);
 
-                    break; // Stop iterating if decoding is successful
-                } catch (error) {
-                    console.log(`Decoding with ${encoding} failed:`, error);
-                }
-            }
+
         
             if (!data) {
               throw new Error('Unable to decode response data');
@@ -136,7 +135,6 @@ const AppProvider = ({children}) => {
             return JSON.parse(data);
         }
         catch (err) {
-            console.log(err)
             throw new Error(`Error fetching ${endpoint}: ${err.message}`);
         }
     };
@@ -151,9 +149,10 @@ const AppProvider = ({children}) => {
 
             const endpoints = [
                 `vacantes/resultados?page=${page}&${filterParams.toString()}`,
+                `vacantes/date`,
                 "filters",
                 "estadisticas/vacantes/obtener"
-                /* otros endpoints */
+                
             ];
 
             // Realizar todas las solicitudes en paralelo
@@ -168,7 +167,6 @@ const AppProvider = ({children}) => {
 
         } catch (err) {
             handleNotifications("err", err.message);
-            console.log(err)
         }
         finally {
             const endTime = performance.now();
@@ -409,26 +407,23 @@ const AppProvider = ({children}) => {
         let dateFilter = "";
     
         const today = new Date();
-        const yesterday = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate() - 1);
         const oneWeekAgo = new Date((today.getTime() - 7 * 24 * 60 * 60 * 1000));
         const oneMonthAgo = new Date(today.getFullYear(), today.getMonth() - 1, today.getDate());
     
         switch(value) {
-            case "Hoy":
-                // dateFilter = today.toISOString().split('T')[0];
-                dateFilter = yesterday.toISOString().split('T')[0];
+            case "Ultimas vacantes publicadas":
+                dateFilter = dayjs(vacantesData?.max_date).utc().format("YYYY-MM-DD");
                 break;
             case "Última semana":
-                dateFilter = oneWeekAgo.toISOString().split('T')[0];
+                dateFilter = dayjs(oneWeekAgo).utc().format("YYYY-MM-DD");
                 break;
             case "Último mes":
-                dateFilter = oneMonthAgo.toISOString().split('T')[0];
+                dateFilter = dayjs(oneMonthAgo).utc().format("YYYY-MM-DD");
                 break;
             default:
                 dateFilter = "";
         }
-    
-        // Actualizar los filtros
+        
         handleFilterChange("FECHA_PUBLICACION", dateFilter);
     };
 

@@ -22,6 +22,7 @@ import { GovNavbar } from "../components/GovNavbars";
 import { GovFooter } from "../components/GovFooter";
 import { AccesibilityCard } from "../components/AccesibilityCard";
 import { ExportModal } from "../components/ExportModal";
+import { PopUpCard } from "../components/PopUpCard";
 
 
 const Wrapper = ({children}) => {
@@ -51,6 +52,7 @@ const App = () => {
                 <Wrapper>
                     <GovNavbar/>
                     <AccesibilityCard/>
+                    <PopUpCard/>
                     <ExportModal/>
 
                     <AppRoutes/>
